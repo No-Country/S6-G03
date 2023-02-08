@@ -43,8 +43,9 @@ public class Service {
     @JoinColumn(name = "category_id")
     private Category category;
 
-    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "provider_id")
+    @ToString.Exclude
     private Provider provider;
 
     @CreationTimestamp

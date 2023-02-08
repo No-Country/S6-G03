@@ -1,7 +1,4 @@
-package com.nocountry.service.impl;
+package com.nocountry.service;
 
-import org.springframework.stereotype.Service;
-
-@Service
 public interface IAdminService {
 }

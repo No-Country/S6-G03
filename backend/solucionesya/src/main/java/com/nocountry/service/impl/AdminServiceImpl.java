@@ -1,4 +1,6 @@
 package com.nocountry.service.impl;
 
-public class AdminServiceImpl {
+import com.nocountry.service.IAdminService;
+
+public class AdminServiceImpl implements IAdminService {
 }

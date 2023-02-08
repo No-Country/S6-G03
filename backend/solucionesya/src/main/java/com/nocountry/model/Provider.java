@@ -15,6 +15,7 @@ import lombok.Setter;
 import lombok.ToString;
 import org.hibernate.Hibernate;
 
+import javax.swing.text.html.Option;
 import java.util.List;
 import java.util.Objects;
 
@@ -30,6 +31,10 @@ public class Provider extends User {
     @Column(name = "role", nullable = false)
     @Enumerated(EnumType.STRING)
     private ERoleName role = ERoleName.ROLE_PROVIDER;
+
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "provider")
+    @ToString.Exclude
+    private List<Opinion> opinions;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "provider")
     @ToString.Exclude
