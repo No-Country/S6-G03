@@ -4,17 +4,13 @@ import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.MappedSuperclass;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotEmpty;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
@@ -28,12 +24,9 @@ import java.util.Objects;
 
 @Getter
 @Setter
-@Builder
-@MappedSuperclass
-@NoArgsConstructor
-@AllArgsConstructor
+@ToString
 @RequiredArgsConstructor
-@ToString(onlyExplicitlyIncluded = true)
+@MappedSuperclass
 public class User {
 
     @Id
@@ -62,14 +55,11 @@ public class User {
 
     protected String phone;
 
-    protected String photo;
-
-    @ManyToOne
-    @JoinColumn(name = "role_id")
-    protected Role role;
+    @Column(name = "profile_photo")
+    protected String profilePhoto;
 
     @CreationTimestamp
-    @Column(name = "creation_date")
+    @Column(name = "creation_date", nullable = false)
     protected Date creationDate;
 
     @UpdateTimestamp

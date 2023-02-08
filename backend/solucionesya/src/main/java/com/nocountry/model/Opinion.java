@@ -9,7 +9,6 @@ import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
-import lombok.Builder;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
@@ -26,7 +25,6 @@ import java.util.Objects;
 @Setter
 @ToString(onlyExplicitlyIncluded = true)
 @RequiredArgsConstructor
-@Builder
 @Entity
 @Table(name = "opinions")
 public class Opinion {

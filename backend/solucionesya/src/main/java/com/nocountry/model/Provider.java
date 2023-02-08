@@ -1,9 +1,12 @@
 package com.nocountry.model;
 
+import com.nocountry.list.ERoleName;
 import jakarta.persistence.AttributeOverride;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import lombok.Getter;
@@ -18,11 +21,15 @@ import java.util.Objects;
 @Getter
 @Setter
 @ToString(onlyExplicitlyIncluded = true)
-@RequiredArgsConstructor
 @Entity
+@RequiredArgsConstructor
 @Table(name = "providers")
 @AttributeOverride(name="id", column=@Column(name="provider_id"))
 public class Provider extends User {
+
+    @Column(name = "role", nullable = false)
+    @Enumerated(EnumType.STRING)
+    private ERoleName role = ERoleName.ROLE_PROVIDER;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "provider")
     @ToString.Exclude

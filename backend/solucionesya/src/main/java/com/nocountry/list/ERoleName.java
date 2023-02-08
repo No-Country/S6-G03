@@ -1,5 +1,5 @@
 package com.nocountry.list;
 
-public enum RoleName {
+public enum ERoleName {
     ROLE_ADMIN, ROLE_PROVIDER, ROLE_CLIENT
 }
