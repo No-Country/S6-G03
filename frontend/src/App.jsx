@@ -1,3 +1,5 @@
+import UserRegister from "./components/Register/UserRegister";
+import React from "react";
 import { BrowserRouter, Route, Routes, Navigate } from "react-router-dom";
 import Navbar from "./components/Navbar/Navbar"
 
@@ -12,7 +14,7 @@ const App = () => {
     <Route path="login-usuario" element={<h1>Login de Usuario</h1>} />
     <Route path="login-profesional" element={<h1>Login de Profesional</h1>} />
     {/* Rutas de Registro */}
-    <Route path="registro-usuario" element={<h1>Registro de Profesional</h1>} />
+    <Route path="registro-usuario" element={<UserRegister/>} />
     <Route path="registro-profesional" element={<h1>Registro de Profesional</h1>} />
     {/* Rutas de Busqueda de profesional */}
     <Route path="categorias-profesionales" element={<h1>Categorias de Profesionales</h1>} />
@@ -21,7 +23,7 @@ const App = () => {
     {/* Rutas por defecto */}
     <Route path="restringido" element={<h1>No Autorizado</h1>} />
     
-    </Routes>
+   
     {/* Rutas del Panel de Usuario */}
     <Route
             path="perfil-usuario"
@@ -44,6 +46,7 @@ const App = () => {
             <Route path="change-password" element={<h3>Cambiar pass</h3>} />
             <Route path="mensajes" element={<h3>Mis Mensajes</h3>} />
           </Route>
+      </Routes>
       {/* Aqui puede ir el footer */}
     </BrowserRouter>
      
