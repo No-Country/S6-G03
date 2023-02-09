@@ -1,12 +1,33 @@
 import { BrowserRouter, Route, Routes, Navigate } from "react-router-dom";
+import Footer from "./Components/Footer/Footer";
+import Home from "./Components/Home/Home";
 import Login from "./components/Login/Login";
 import Navbar from "./components/Navbar/Navbar";
 
 const App = () => {
   return (
     <>
+
+    <BrowserRouter>
+    <Routes>
+    <Route index element={<Home />} />
+    {/* Rutas de Login */}
+    <Route path="login-usuario" element={<h1>Login de Usuario</h1>} />
+    <Route path="login-profesional" element={<h1>Login de Profesional</h1>} />
+    {/* Rutas de Registro */}
+    <Route path="registro-usuario" element={<h1>Registro de Profesional</h1>} />
+    <Route path="registro-profesional" element={<h1>Registro de Profesional</h1>} />
+    {/* Rutas de Busqueda de profesional */}
+    <Route path="categorias-profesionales" element={<h1>Categorias de Profesionales</h1>} />
+    <Route path="profesionales/:categoria" element={<h1>Lista de Profesionales</h1>} />
+    <Route path="detalle-profesional/:id" element={<h1>Detalle de un solo Profesional</h1>} />
+    {/* Rutas por defecto */}
+    <Route path="restringido" element={<h1>No Autorizado</h1>} />
+    
+    
+    {/* Rutas del Panel de Usuario */}
+    <Route
       <BrowserRouter>
-        <Navbar />
         <Routes>
           <Route index element={<h1>Inicio</h1>} />
           {/* Rutas de Login */}
@@ -70,9 +91,10 @@ const App = () => {
             <Route path="change-password" element={<h3>Cambiar pass</h3>} />
             <Route path="mensajes" element={<h3>Mis Mensajes</h3>} />
           </Route>
-        </Routes>
-        {/* Aqui puede ir el footer */}
-      </BrowserRouter>
+    </Routes>               
+      {/* Aqui puede ir el footer */}
+      <Footer />
+    </BrowserRouter>
     </>
   );
 };
