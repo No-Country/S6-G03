@@ -1,11 +1,10 @@
 import { BrowserRouter, Route, Routes, Navigate } from "react-router-dom";
-import Navbar from "./components/Navbar/Navbar"
+import Footer from "./Components/Footer/Footer";
 
 const App = () => {
   return (
     <>
     <BrowserRouter>
-    <Navbar/>
     <Routes>
     <Route index element={<h1>Inicio</h1>} />
     {/* Rutas de Login */}
@@ -46,7 +45,7 @@ const App = () => {
           </Route>
     </Routes>               
       {/* Aqui puede ir el footer */}
- 
+      <Footer />
     </BrowserRouter>
      
     </>
