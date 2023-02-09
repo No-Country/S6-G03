@@ -21,7 +21,7 @@ const App = () => {
     {/* Rutas por defecto */}
     <Route path="restringido" element={<h1>No Autorizado</h1>} />
     
-    </Routes>
+    
     {/* Rutas del Panel de Usuario */}
     <Route
             path="perfil-usuario"
@@ -44,7 +44,9 @@ const App = () => {
             <Route path="change-password" element={<h3>Cambiar pass</h3>} />
             <Route path="mensajes" element={<h3>Mis Mensajes</h3>} />
           </Route>
+    </Routes>               
       {/* Aqui puede ir el footer */}
+ 
     </BrowserRouter>
      
     </>
