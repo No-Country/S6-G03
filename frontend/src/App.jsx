@@ -1,5 +1,6 @@
 import { BrowserRouter, Route, Routes, Navigate } from "react-router-dom";
 import Navbar from "./components/Navbar/Navbar"
+import ProfesionalByCategory from "./components/Category/ProfesionalByCategory"
 
 const App = () => {
   return (
@@ -16,7 +17,7 @@ const App = () => {
     <Route path="registro-profesional" element={<h1>Registro de Profesional</h1>} />
     {/* Rutas de Busqueda de profesional */}
     <Route path="categorias-profesionales" element={<h1>Categorias de Profesionales</h1>} />
-    <Route path="profesionales/:categoria" element={<h1>Lista de Profesionales</h1>} />
+    <Route path="profesionales/:categoria" element={<ProfesionalByCategory/>} />
     <Route path="detalle-profesional/:id" element={<h1>Detalle de un solo Profesional</h1>} />
     {/* Rutas por defecto */}
     <Route path="restringido" element={<h1>No Autorizado</h1>} />
