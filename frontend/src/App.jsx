@@ -1,12 +1,13 @@
 import { BrowserRouter, Route, Routes, Navigate } from "react-router-dom";
 import Footer from "./Components/Footer/Footer";
+import Home from "./Components/Home/Home";
 
 const App = () => {
   return (
     <>
     <BrowserRouter>
     <Routes>
-    <Route index element={<h1>Inicio</h1>} />
+    <Route index element={<Home />} />
     {/* Rutas de Login */}
     <Route path="login-usuario" element={<h1>Login de Usuario</h1>} />
     <Route path="login-profesional" element={<h1>Login de Profesional</h1>} />
