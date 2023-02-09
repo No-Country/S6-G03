@@ -1,6 +1,5 @@
 package com.nocountry.model;
 
-import com.nocountry.list.RoleName;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import lombok.*;
