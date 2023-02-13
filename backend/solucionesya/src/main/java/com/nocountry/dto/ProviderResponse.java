@@ -7,11 +7,8 @@ import lombok.*;
 
 import java.util.List;
 
-@Getter
-@Setter
-@AllArgsConstructor
-@NoArgsConstructor
-@Builder
+
+@Data
 public class ProviderResponse {
 
     private String firstName;
