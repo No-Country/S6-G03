@@ -8,6 +8,8 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.MappedSuperclass;
+import jakarta.persistence.Temporal;
+import jakarta.persistence.TemporalType;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotEmpty;
 import lombok.Getter;
@@ -58,11 +60,13 @@ public class User {
     @Column(name = "profile_photo")
     protected String profilePhoto;
 
-    @CreationTimestamp
+    //@CreationTimestamp
+    @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "creation_date", nullable = false)
-    protected Date creationDate;
+    protected Date creationDate = new Date();
 
-    @UpdateTimestamp
+    //@UpdateTimestamp
+    @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "update_date")
     protected Date updateDate;
 

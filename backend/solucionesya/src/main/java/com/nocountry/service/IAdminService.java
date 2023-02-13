@@ -7,7 +7,7 @@ import com.nocountry.dto.response.AdminResponse;
 import com.nocountry.dto.response.AdminResponseList;
 import com.nocountry.exception.AdminException;
 import com.nocountry.exception.EmailAlreadyExistException;
-import com.nocountry.exception.FileException;
+import com.nocountry.exception.ImageException;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -46,8 +46,8 @@ public interface IAdminService {
     List<AdminResponse> getForHigh() throws AdminException;
 
     @Transactional
-    void addFileToAdmin(String idAdmin, MultipartFile file) throws AdminException, FileException;
+    void addFileToAdmin(String idAdmin, MultipartFile image) throws AdminException, ImageException;
 
     @Transactional
-    void removeFileToAdmin(String idAdmin, String idFile) throws FileException, AdminException;
+    void removeFileToAdmin(String idAdmin, String idImage) throws ImageException, AdminException;
 }

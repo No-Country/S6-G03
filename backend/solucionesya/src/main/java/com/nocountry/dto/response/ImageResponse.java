@@ -3,11 +3,11 @@ package com.nocountry.dto.response;
 import lombok.Data;
 
 @Data
-public class FileResponse {
+public class ImageResponse {
 
 	private String id;
 	private String originalName;
-	private String fileName;
+	private String imageName;
 	private String path;
 	private String creationDate;
 	private String updateDate;

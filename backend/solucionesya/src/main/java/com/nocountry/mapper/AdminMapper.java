@@ -14,6 +14,7 @@ import org.springframework.stereotype.Component;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @Component
@@ -67,7 +68,7 @@ public class AdminMapper {
         entity.setLastName(request.getLastName());
         entity.setAddress(request.getAddress());
         entity.setPhone(request.getPhone());
-        //entity.setUpdateDate(new Date());
+        entity.setUpdateDate(new Date());
     }
 
     private static void extractedForConvertToEntityModifyFull(Admin entity, AdminRequestModify request) throws AdminException {
@@ -77,7 +78,7 @@ public class AdminMapper {
         entity.setEmail(request.getEmail());
         entity.setAddress(request.getAddress());
         entity.setPhone(request.getPhone());
-        //entity.setUpdateDate(new Date());
+        entity.setUpdateDate(new Date());
     }
 
     public AdminResponse convertToResponse(Admin entity) {
@@ -91,7 +92,12 @@ public class AdminMapper {
         response.setProfilePhoto(entity.getProfilePhoto());
         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
         String stringCreationDate = sdf.format(entity.getCreationDate());
-        String stringUpdateDate = sdf.format(entity.getUpdateDate());
+        String stringUpdateDate;
+        if (entity.getUpdateDate() != null) {
+            stringUpdateDate = sdf.format(entity.getUpdateDate());
+        } else {
+            stringUpdateDate = " - ";
+        }
         response.setCreationDate(stringCreationDate);
         response.setUpdateDate(stringUpdateDate);
         response.setBanned(entity.isBanned());

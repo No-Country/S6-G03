@@ -8,16 +8,16 @@ import com.nocountry.dto.response.AdminResponse;
 import com.nocountry.dto.response.AdminResponseList;
 import com.nocountry.exception.AdminException;
 import com.nocountry.exception.EmailAlreadyExistException;
-import com.nocountry.exception.FileException;
+import com.nocountry.exception.ImageException;
 import com.nocountry.list.EPathUpload;
 import com.nocountry.mapper.AdminMapper;
 import com.nocountry.model.Admin;
 import com.nocountry.model.AdminList;
-import com.nocountry.model.File;
+import com.nocountry.model.Image;
 import com.nocountry.repository.IAdminRepository;
-import com.nocountry.repository.IFileRepository;
+import com.nocountry.repository.IImageRepository;
 import com.nocountry.service.IAdminService;
-import com.nocountry.service.IFileService;
+import com.nocountry.service.IImageService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -39,8 +39,8 @@ public class AdminServiceImpl implements IAdminService {
     private final String pathFileUpload = EPathUpload.PATH_ADMIN_IMAGE.toString();
     private final IAdminRepository repository;
     private final AdminMapper mapper;
-    private final IFileService fileService;
-    private final IFileRepository fileRepository;
+    private final IImageService fileService;
+    private final IImageRepository fileRepository;
 
     @Override
     public AdminResponse save(AdminRequest request) throws AdminException, EmailAlreadyExistException {
@@ -160,16 +160,16 @@ public class AdminServiceImpl implements IAdminService {
     }
 
     @Override
-    public void addFileToAdmin(String idAdmin, MultipartFile multipartFile) throws AdminException, FileException {
+    public void addFileToAdmin(String idAdmin, MultipartFile multipartFile) throws AdminException, ImageException {
         Optional<Admin> optionalAdmin = repository.findById(idAdmin);
         if (optionalAdmin.isPresent()) {
             Admin admin = repository.getReferenceById(idAdmin);
-            if (admin.getFile() != null) {
+            if (admin.getImage() != null) {
                 throw new AdminException("{admin.alreadyContains.image}");
             } else {
-                File file = fileService.saveFile(multipartFile, pathFolderUpload, pathFileUpload);
-                file.setAdmin(admin);
-                admin.setFile(file);
+                Image image = fileService.saveFile(multipartFile, pathFolderUpload, pathFileUpload);
+                image.setAdmin(admin);
+                admin.setImage(image);
                 repository.save(admin);
             }
         } else {
@@ -178,19 +178,19 @@ public class AdminServiceImpl implements IAdminService {
     }
 
     @Override
-    public void removeFileToAdmin(String idAdmin, String idFile) throws FileException, AdminException {
+    public void removeFileToAdmin(String idAdmin, String idImage) throws ImageException, AdminException {
         Optional<Admin> optionalAdmin = repository.findById(idAdmin);
         if (optionalAdmin.isPresent()) {
             Admin admin = repository.getReferenceById(idAdmin);
-            Optional<File> optionalFile = fileRepository.findById(idFile);
+            Optional<Image> optionalFile = fileRepository.findById(idImage);
             if (optionalFile.isPresent()) {
-                File file = fileRepository.getReferenceById(idFile);
-                file.setAdmin(null);
-                admin.setFile(null);
-                fileService.deleteFileById(idFile, pathFolderUpload);
+                Image image = fileRepository.getReferenceById(idImage);
+                image.setAdmin(null);
+                admin.setImage(null);
+                fileService.deleteFileById(idImage, pathFolderUpload);
                 repository.save(admin);
             } else {
-                throw new FileException("{file.notFound}");
+                throw new ImageException("{file.notFound}");
             }
         } else {
             throw new AdminException(ADMIN_NOT_FOUND);

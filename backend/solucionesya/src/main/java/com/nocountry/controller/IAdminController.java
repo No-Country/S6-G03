@@ -7,7 +7,7 @@ import com.nocountry.dto.response.AdminResponse;
 import com.nocountry.dto.response.AdminResponseList;
 import com.nocountry.exception.AdminException;
 import com.nocountry.exception.EmailAlreadyExistException;
-import com.nocountry.exception.FileException;
+import com.nocountry.exception.ImageException;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotNull;
@@ -39,7 +39,7 @@ public interface IAdminController {
     ResponseEntity<AdminResponse> modify(@NotNull @PathVariable("id-admin") String idAdmin,
                                          @Valid @RequestBody AdminRequestModify request) throws AdminException, EmailAlreadyExistException;
 
-    @PostMapping(path = "/modify-admin-password/{id-admin}", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    @PutMapping(path = "/modify-admin-password/{id-admin}", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     ResponseEntity<AdminResponse> modifyPassword(@NotNull @PathVariable("id-admin") String idAdmin,
                                                  @Valid @RequestBody AdminRequestPassword request) throws AdminException;
 
@@ -68,12 +68,12 @@ public interface IAdminController {
     @GetMapping(path = "/get-admin-for-high", produces = MediaType.APPLICATION_JSON_VALUE)
     ResponseEntity<List<AdminResponse>> getAdminForHigh() throws AdminException;
 
-    @PostMapping(path = "/add-file-to-admin/{id-admin}",
-            consumes = {MediaType.APPLICATION_JSON_VALUE, MediaType.MULTIPART_FORM_DATA_VALUE}, produces = MediaType.APPLICATION_JSON_VALUE)
+    @PostMapping(path = "/add-image-to-admin/{id-admin}", consumes = {MediaType.APPLICATION_JSON_VALUE, MediaType.MULTIPART_FORM_DATA_VALUE},
+            produces = MediaType.APPLICATION_JSON_VALUE)
     ResponseEntity<AdminResponse> addFileToAdmin(@NotNull @PathVariable("id-admin") String idAdmin,
-                                                 @RequestParam(value = "file", required = false) MultipartFile file) throws AdminException, FileException;
+                                                 @RequestParam(value = "image", required = false) MultipartFile image) throws AdminException, ImageException;
 
-    @DeleteMapping(path = "/remove-file-to-admin/{id-admin}/file/{id-file}", produces = MediaType.APPLICATION_JSON_VALUE)
+    @DeleteMapping(path = "/remove-image-to-admin/{id-admin}/image/{id-image}", produces = MediaType.APPLICATION_JSON_VALUE)
     ResponseEntity<AdminResponse> removeFileToAdmin(@NotNull @PathVariable("id-admin") String idAdmin,
-                                                    @NotNull @PathVariable("id-admin") String idFile) throws FileException, AdminException;
+                                                    @NotNull @PathVariable("id-image") String idImage) throws ImageException, AdminException;
 }

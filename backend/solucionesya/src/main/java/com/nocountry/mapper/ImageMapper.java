@@ -1,7 +1,7 @@
 package com.nocountry.mapper;
 
-import com.nocountry.dto.response.FileResponse;
-import com.nocountry.model.File;
+import com.nocountry.dto.response.ImageResponse;
+import com.nocountry.model.Image;
 import org.springframework.stereotype.Component;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -10,30 +10,30 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Component
-public class FileMapper {
+public class ImageMapper {
 
-    public File convertToEntity(File entity, MultipartFile file, String newFileName, String pathFileUpload) {
-        extractedForConvertToEntity(entity, file, newFileName, pathFileUpload);
+    public Image convertToEntity(Image entity, MultipartFile image, String newFileName, String pathFileUpload) {
+        extractedForConvertToEntity(entity, image, newFileName, pathFileUpload);
         return entity;
     }
 
-    private static void extractedForConvertToEntity(File entity, MultipartFile file, String newFileName, String pathFileUpload) {
+    private static void extractedForConvertToEntity(Image entity, MultipartFile image, String newFileName, String pathFileUpload) {
         String path = pathFileUpload + newFileName;
-        entity.setOriginalName(file.getOriginalFilename());
-        entity.setFileName(newFileName);
+        entity.setOriginalName(image.getOriginalFilename());
+        entity.setImageName(newFileName);
         entity.setPath(path);
     }
 
-    public FileResponse convertToResponse(File entity) {
-        FileResponse response = new FileResponse();
+    public ImageResponse convertToResponse(Image entity) {
+        ImageResponse response = new ImageResponse();
         extractedForConvertToResponse(entity, response);
         return response;
     }
 
-    private static void extractedForConvertToResponse(File entity, FileResponse response) {
+    private static void extractedForConvertToResponse(Image entity, ImageResponse response) {
         response.setId(entity.getId());
         response.setOriginalName(entity.getOriginalName());
-        response.setFileName(entity.getFileName());
+        response.setImageName(entity.getImageName());
         response.setPath(entity.getPath());
         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
         String stringCreationDate = sdf.format(entity.getCreationDate());
@@ -42,9 +42,9 @@ public class FileMapper {
         response.setUpdateDate(stringUpdateDate);
     }
 
-    public List<FileResponse> convertToResponseList(List<File> list) {
-        List<FileResponse> responseList = new ArrayList<>();
-        for (File entity : list) {
+    public List<ImageResponse> convertToResponseList(List<Image> list) {
+        List<ImageResponse> responseList = new ArrayList<>();
+        for (Image entity : list) {
             responseList.add(this.convertToResponse(entity));
         }
         return responseList;

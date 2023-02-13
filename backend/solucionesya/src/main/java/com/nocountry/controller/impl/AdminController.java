@@ -9,7 +9,7 @@ import com.nocountry.dto.response.AdminResponse;
 import com.nocountry.dto.response.AdminResponseList;
 import com.nocountry.exception.AdminException;
 import com.nocountry.exception.EmailAlreadyExistException;
-import com.nocountry.exception.FileException;
+import com.nocountry.exception.ImageException;
 import com.nocountry.service.IAdminService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.PageRequest;
@@ -47,8 +47,8 @@ public class AdminController implements IAdminController {
 
     @Override
     public ResponseEntity<AdminResponse> modifyPassword(String idAdmin, AdminRequestPassword request) throws AdminException {
-        AdminResponse response = service.modifyPassword(idAdmin, request);
-        return new ResponseEntity<>(response, HttpStatus.OK);
+        service.modifyPassword(idAdmin, request);
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 
     @Override
@@ -90,14 +90,14 @@ public class AdminController implements IAdminController {
     }
 
     @Override
-    public ResponseEntity<AdminResponse> addFileToAdmin(String idAdmin, MultipartFile file) throws AdminException, FileException {
-        service.addFileToAdmin(idAdmin, file);
+    public ResponseEntity<AdminResponse> addFileToAdmin(String idAdmin, MultipartFile image) throws AdminException, ImageException {
+        service.addFileToAdmin(idAdmin, image);
         return ResponseEntity.status(HttpStatus.OK).build();
     }
 
     @Override
-    public ResponseEntity<AdminResponse> removeFileToAdmin(String idAdmin, String idFile) throws FileException, AdminException {
-        service.removeFileToAdmin(idAdmin, idFile);
+    public ResponseEntity<AdminResponse> removeFileToAdmin(String idAdmin, String idImage) throws ImageException, AdminException {
+        service.removeFileToAdmin(idAdmin, idImage);
         return ResponseEntity.status(HttpStatus.OK).build();
     }
 }

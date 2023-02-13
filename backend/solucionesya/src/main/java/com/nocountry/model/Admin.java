@@ -37,7 +37,7 @@ public class Admin extends User implements Serializable {
 
     @OneToOne(mappedBy = "admin", cascade = CascadeType.ALL, orphanRemoval = true)
     @ToString.Exclude
-    private File file;
+    private Image image;
 
     @Override
     public boolean equals(Object o) {

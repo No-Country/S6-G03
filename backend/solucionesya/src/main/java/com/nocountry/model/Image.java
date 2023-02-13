@@ -24,12 +24,12 @@ import java.util.Date;
 import java.util.Objects;
 
 @Entity
-@Table(name = "file")
+@Table(name = "images")
 @Getter
 @Setter
 @ToString(onlyExplicitlyIncluded = true)
 @RequiredArgsConstructor
-public class File implements Serializable {
+public class Image implements Serializable {
 
 	@Serial
 	private static final long serialVersionUID = 1L;
@@ -42,7 +42,7 @@ public class File implements Serializable {
 
 	@CreationTimestamp
 	@Column(name = "creation_date", nullable = false)
-	protected Date creationDate;
+	protected Date creationDate = new Date();
 
 	@UpdateTimestamp
 	@Column(name = "update_date")
@@ -53,8 +53,8 @@ public class File implements Serializable {
 	private String originalName;
 
 	@Basic
-	@Column(name = "file_name")
-	private String fileName;
+	@Column(name = "image_name")
+	private String imageName;
 
 	@Column(name = "path")
 	private String path;
@@ -72,8 +72,8 @@ public class File implements Serializable {
 	public boolean equals(Object o) {
 		if (this == o) return true;
 		if (o == null || Hibernate.getClass(this) != Hibernate.getClass(o)) return false;
-		File file = (File) o;
-		return id != null && Objects.equals(id, file.id);
+		Image image = (Image) o;
+		return id != null && Objects.equals(id, image.id);
 	}
 
 	@Override

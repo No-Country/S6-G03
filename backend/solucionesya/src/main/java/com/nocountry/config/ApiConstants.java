@@ -8,7 +8,7 @@ public interface ApiConstants {
 
     String ADMIN_URI = "/api/admin";
 
-    String FILE_URI = "/api/file";
+    String IMAGE_URI = "/api/file";
 
     int DEFAULT_PAGE = 0;
     int DEFAULT_PAGE_SIZE = 10;
