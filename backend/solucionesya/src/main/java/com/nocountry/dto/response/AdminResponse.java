@@ -12,7 +12,8 @@ public class AdminResponse {
     private String email;
     private String address;
     private String phone;
-    private String profilePhoto;
+    private ImageResponse image;
+    private String pathImage;
     private String creationDate;
     private String updateDate;
     private GeoCode geoCode;

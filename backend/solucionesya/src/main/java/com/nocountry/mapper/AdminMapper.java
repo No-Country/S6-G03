@@ -24,6 +24,7 @@ public class AdminMapper {
     private static final String REQUEST_WRONG_DATA = "{general.request.wrong.data}";
     private final BCryptPasswordEncoder encryptPassword;
     private final IAdminRepository repository;
+    private final ImageMapper imageMapper;
 
     public Admin convertToEntity(Admin entity, AdminRequest request) throws AdminException, EmailAlreadyExistException {
         if (repository.existsByEmail(request.getEmail())) {
@@ -89,7 +90,12 @@ public class AdminMapper {
         response.setEmail(entity.getEmail());
         response.setAddress(entity.getAddress());
         response.setPhone(entity.getPhone());
-        response.setProfilePhoto(entity.getProfilePhoto());
+
+        if (entity.getImage() != null) {
+            response.setImage(imageMapper.convertToResponse(entity.getImage()));
+            response.setPathImage(entity.getImage().getPath());
+        }
+        //response.setProfilePhoto(entity.getProfilePhoto());
         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
         String stringCreationDate = sdf.format(entity.getCreationDate());
         String stringUpdateDate;
