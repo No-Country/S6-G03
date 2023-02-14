@@ -95,7 +95,7 @@ public class AdminMapper {
             response.setImage(imageMapper.convertToResponse(entity.getImage()));
             response.setPathImage(entity.getImage().getPath());
         }
-        //response.setProfilePhoto(entity.getProfilePhoto());
+
         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
         String stringCreationDate = sdf.format(entity.getCreationDate());
         String stringUpdateDate;
