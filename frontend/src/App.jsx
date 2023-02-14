@@ -1,10 +1,13 @@
 import { BrowserRouter, Route, Routes, Navigate } from "react-router-dom";
+import Navbar from "./components/Navbar/Navbar"
+import ProfesionalByCategory from "./components/Category/ProfesionalByCategory"
+
 import Login from "./components/Login/Login";
-import Navbar from "./components/Navbar/Navbar";
 
 const App = () => {
   return (
     <>
+
       <BrowserRouter>
         <Navbar />
         <Routes>
@@ -29,10 +32,7 @@ const App = () => {
             path="categorias-profesionales"
             element={<h1>Categorias de Profesionales</h1>}
           />
-          <Route
-            path="profesionales/:categoria"
-            element={<h1>Lista de Profesionales</h1>}
-          />
+          <Route path="profesionales/:categoria" element={<ProfesionalByCategory/>} />
           <Route
             path="detalle-profesional/:id"
             element={<h1>Detalle de un solo Profesional</h1>}
