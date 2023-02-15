@@ -1,6 +1,7 @@
 import { BrowserRouter, Route, Routes, Navigate } from "react-router-dom";
 import Footer from "./Components/Footer/Footer";
 import Home from "./Components/Home/Home";
+import MiPerfil from "./Components/MiPerfil/MiPerfil";
 
 const App = () => {
   return (
@@ -25,7 +26,7 @@ const App = () => {
     {/* Rutas del Panel de Usuario */}
     <Route
             path="perfil-usuario"
-            element={/*user ? <UserPanel /> : <Navigate to="/login" replace />*/ <h1>Perfil de usuario</h1>}
+            element={/*user ? <UserPanel /> : <Navigate to="/login" replace />*/ <MiPerfil />}
           >
             <Route index element={<h1>Perfil usuario</h1>} />
             <Route path="editar" element={<h1>Editar perfil</h1>} />
