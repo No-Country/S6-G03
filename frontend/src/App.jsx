@@ -1,6 +1,7 @@
 import { BrowserRouter, Route, Routes, Navigate } from "react-router-dom";
 import Navbar from "./components/Navbar/Navbar"
 import ProfesionalByCategory from "./components/Category/ProfesionalByCategory"
+import ServiceList from "./components/ServiceList/ServiceList";
 
 import Login from "./components/Login/Login";
 
@@ -30,7 +31,7 @@ const App = () => {
           {/* Rutas de Busqueda de profesional */}
           <Route
             path="categorias-profesionales"
-            element={<h1>Categorias de Profesionales</h1>}
+            element={<ServiceList/>}
           />
           <Route path="profesionales/:categoria" element={<ProfesionalByCategory/>} />
           <Route

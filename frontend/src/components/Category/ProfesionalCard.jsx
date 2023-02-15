@@ -4,7 +4,7 @@ import { AiFillStar } from "react-icons/ai";
 const ProfesionalCard = () => {
   return (
     <>
-      <div className=" bg-blue-primary border p-[25px] border-black lg:w-[504px] lg:h-[184.8px] rounded-lg flex gap-3">
+      <div className=" bg-blue-primary border p-[25px] border-black lg:w-[504px] lg:h-[184.8px] rounded-lg flex gap-3 ">
         <div className="md:w-[92.2px] md:h-[135.63px]  ">
           <div className="md:w-[92.2px] md:h-[92.2px] bg-green-secondary rounded-lg"></div>
           <div className="flex px-1">
