@@ -2,13 +2,17 @@ package com.nocountry.list;
 
 public enum EPathUpload {
 
-    CREATE_FILE_FOLDER("./uploadImages/admin/images"),
+    CREATE_FILE_FOLDER("./uploadImages/images"),
 
-    PATH_FILE_IMAGE("/uploadImages/files/"),
+    PATH_FILE_IMAGE("/uploadImages/images/"),
 
-    CREATE_ADMIN_FOLDER("./uploadImages/admin"),
+    CREATE_ADMIN_FOLDER("/uploadImages/admin"),
 
-    PATH_ADMIN_IMAGE("/uploadImages/admin/");
+    PATH_ADMIN_IMAGE("/uploadImages/admin/"),
+
+    CREATE_PROVISION_FOLDER("./uploadImages/provision"),
+
+    PATH_PROVISION_IMAGE("/uploadImages/provision/");
 
     private final String pathFileUploadString;
 

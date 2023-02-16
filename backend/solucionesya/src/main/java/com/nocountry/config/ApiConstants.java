@@ -7,8 +7,8 @@ import java.util.function.Function;
 public interface ApiConstants {
 
     String ADMIN_URI = "/api/admin";
-
-    String IMAGE_URI = "/api/file";
+    String IMAGE_URI = "/api/image";
+    String SERVICES_URI = "/api/services";
 
     int DEFAULT_PAGE = 0;
     int DEFAULT_PAGE_SIZE = 10;

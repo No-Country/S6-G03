@@ -15,8 +15,6 @@ import lombok.Setter;
 import lombok.ToString;
 import org.hibernate.Hibernate;
 
-import java.io.Serial;
-import java.io.Serializable;
 import java.util.Objects;
 
 @Entity
@@ -25,16 +23,14 @@ import java.util.Objects;
 @Setter
 @RequiredArgsConstructor
 @ToString(onlyExplicitlyIncluded = true)
-@AttributeOverride(name="id", column=@Column(name="admin_id"))
-public class Admin extends User implements Serializable {
-
-    @Serial
-    private static final long serialVersionUID = 1L;
+@AttributeOverride(name = "id", column = @Column(name = "admin_id"))
+public class Admin extends User {
 
     @Column(name = "role", nullable = false)
     @Enumerated(EnumType.STRING)
     private ERoleName role = ERoleName.ROLE_ADMIN;
 
+    // RELATION ADMIN --> IMAGE
     @OneToOne(mappedBy = "admin", cascade = CascadeType.ALL, orphanRemoval = true)
     @ToString.Exclude
     private Image image;

@@ -17,7 +17,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 
-@Tag(name = "FILE CONTROLLER")
+@Tag(name = "IMAGE CONTROLLER")
 @Validated
 public interface IImageController {
 
