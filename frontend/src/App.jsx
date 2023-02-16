@@ -2,6 +2,8 @@ import { BrowserRouter, Route, Routes, Navigate } from "react-router-dom";
 import Footer from "./Components/Footer/Footer";
 import Home from "./Components/Home/Home";
 import MiPerfil from "./Components/MiPerfil/MiPerfil";
+import Direcciones from "./Components/Direcciones/Direcciones";
+import 'flowbite';
 
 const App = () => {
   return (
@@ -28,7 +30,8 @@ const App = () => {
             path="perfil-usuario"
             element={/*user ? <UserPanel /> : <Navigate to="/login" replace />*/ <MiPerfil />}
           >
-            <Route index element={<h1>Perfil usuario</h1>} />
+            <Route index element={<MiPerfil />} />
+            <Route path="editar-direcciones" element={<Direcciones />} />
             <Route path="editar" element={<h1>Editar perfil</h1>} />
             <Route path="contratos" element={<h1>Contratos</h1>} />
             <Route path="change-password" element={<h3>Cambiar pass</h3>} />
