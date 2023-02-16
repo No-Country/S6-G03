@@ -3,7 +3,7 @@ import React from "react";
 const Navbar = () => {
   return (
     <>
-      <nav className=" flex justify-around bg-blue-primary py-3 items-center  ">
+      <nav className=" flex justify-around bg-blue-primary py-3 items-center text-white  ">
         <div className=" flex md:mx-auto">
           <img  src="/brand-logo.svg" alt="Logo" />
         </div>
@@ -18,10 +18,10 @@ const Navbar = () => {
           </div>
 
           <div className="flex  gap-1  flex-col">
-            <a href="/login-usuario"><button className="w-28 border border-black rounded-md">
+            <a href="/login-usuario"><button className="w-28 border border-green-secondary rounded-md">
               Iniciar Sesion
             </button></a>
-            <a href="/registro-usuario"><button className="w-28 border border-black rounded-md">
+            <a href="/registro-usuario"><button className="w-28 border border-green-secondary rounded-md bg-green-secondary">
               Registrarme
             </button></a>
             
