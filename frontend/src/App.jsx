@@ -5,7 +5,7 @@ import ProfesionalByCategory from "./components/Category/ProfesionalByCategory"
 import Login from "./components/Login/Login";
 
 const App = () => {
-  return (
+  return ( 
     <>
 
       <BrowserRouter>
