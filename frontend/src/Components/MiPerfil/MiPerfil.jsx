@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, Outlet } from "react-router-dom";
 
 function MiPerfil(){
 
@@ -203,8 +203,7 @@ function MiPerfil(){
                                 </ul>
                             </div>
 
-
-                        <Link to="/editar-direcciones">
+                        <Link to="editar-direcciones">
                             <button  
                             className="flex flex-row justify-between items-center w-full bg-[#B6B8B8] hover:bg-gray-400 font-[700] text-[20px] rounded-[10px] px-4 py-1.5 text-center"
                             type="button">
