@@ -26,17 +26,16 @@ const App = () => {
     
     
     {/* Rutas del Panel de Usuario */}
-    <Route
-            path="perfil-usuario"
-            element={/*user ? <UserPanel /> : <Navigate to="/login" replace />*/ <MiPerfil />}
-          >
-            <Route index element={<MiPerfil />} />
-            <Route path="editar-direcciones" element={<Direcciones />} />
+    <Route index element={<MiPerfil />} />
+          <Route path="perfil-usuario" element={/*user ? <UserPanel /> : <Navigate to="/login" replace />*/ <MiPerfil />}>
+  
             <Route path="editar" element={<h1>Editar perfil</h1>} />
             <Route path="contratos" element={<h1>Contratos</h1>} />
             <Route path="change-password" element={<h3>Cambiar pass</h3>} />
             <Route path="mensajes" element={<h3>Mis Mensajes</h3>} />
           </Route>
+          <Route path="perfil-usuario/editar-direcciones" element={<Direcciones />} />
+  
     {/* Rutas del Panel de Profesional */}
     <Route
             path="perfil-profesional"
