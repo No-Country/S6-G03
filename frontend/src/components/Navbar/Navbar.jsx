@@ -3,7 +3,7 @@ import React from "react";
 const Navbar = () => {
   return (
     <>
-      <nav className=" flex justify-around bg-blue-primary;  py-3 items-center  ">
+      <nav className=" flex justify-around bg-blue-primary py-3 items-center  ">
         <div className=" flex md:mx-auto">
           <img  src="/brand-logo.svg" alt="Logo" />
         </div>
