@@ -5,7 +5,7 @@ const Navbar = () => {
     <>
       <nav className=" flex justify-around bg-slate-300  py-3 items-center  ">
         <div className=" flex md:mx-auto">
-          <img src="/brand-logo.svg" alt="Logo" />
+          <img className="text-black" src="/brand-logo.svg" alt="Logo" />
         </div>
         <a href="" className="flex md:mr-60">
           Inicio
