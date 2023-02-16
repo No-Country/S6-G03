@@ -10,13 +10,13 @@ function SearchBar() {
             </input> */}
 
             <form>
-                <label class="relative block">
+                <label className="relative block">
                     <input
-                        class="w-[856px] h-[65px] bg-[#D1E0FD] text-[24px] placeholder:font-italitc placeholder:text-[24px] border-4 border-[#275ECD] rounded-[20px] focus:outline-none"
+                        className="w-[856px] h-[65px] bg-[#D1E0FD] text-[24px] placeholder:font-italitc placeholder:text-[24px] border-4 border-[#275ECD] rounded-[20px] focus:outline-none"
                         placeholder="Electricista, Plomero, Albañil, Gasista, Etc" 
                         type="text" />
 
-                    <span class="absolute inset-y-0 right-0 flex items-center pr-3">
+                    <span className="absolute inset-y-0 right-0 flex items-center pr-3">
                         <img src="../../../src/Images/Search.png" alt="" />
                     </span>
                 </label>
