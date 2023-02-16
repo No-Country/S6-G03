@@ -1,7 +1,7 @@
 .professional-card{
-    display: flex;
+    /* display: flex;
 flex-direction: row;
-align-items: flex-start;
+align-items: flex-start; */
 padding: 24px 32px;
 gap: 24px;
 
@@ -15,9 +15,9 @@ border-radius: 24px;
 
 /* Inside auto layout */
 
-flex: none;
+/* flex: none;
 order: 1;
-flex-grow: 0;
+flex-grow: 0; */
 
 /*Fonts style*/
 font-family: 'Roboto';
@@ -27,12 +27,12 @@ font-size: 23px;
 line-height: 28px;
 }
 
-.pf-img{
+.pf-image{
     width: 216px;
 height: 216px;
-border-radius: 0.25rem;
+border-radius: 7rem;
 
-background: #D9D9D9;
+/* background: #D9D9D9; */
 
 /* Inside auto layout */
 

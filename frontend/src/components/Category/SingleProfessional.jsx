@@ -6,6 +6,7 @@ import "./SingleProfessional.css";
 import {professionals} from "./dummyDB.js";
 
 
+
 const SingleProfessional = () => {
   const { id } = useParams();
   const [professional, setProfessional] = useState(professionals[0]);
@@ -27,18 +28,21 @@ const SingleProfessional = () => {
   return (
   <>
     <div></div>
-    <div className="flex professional-card mx-auto my-5 grid-cols-2 text-white" >
-    <div className="col-1 flex-auto flex-col  place-content-evenly">
-        <div className="pf-img rounded"></div>
-        <div className="my-"></div>
+    <div className="flex w-100  professional-card mx-auto my-5  text-white" >
+    <div className=" text-center   gap-7 w-1/4">
+        <div className="object-top rounded"><img className="pf-image mx-auto" src="/pf-image.jpg" alt="" /></div>
+        <div className="py-32 flex"></div>
+        <div className=" my-5">
         <h5 className="card-title">{professional.firstName} {professional.lastName}</h5>
         <p className="card-text">(rating)({professional.reviews.length?professional.reviews.length:0})</p>
         <a href="#" className="btn btn-primary">Ver Reseñas</a>
+        </div>
+        
     </div>
-    <div className="col-2">
+    <div className="col-2 w-3/4 gap-7">
         <div className="text-white">{professional.description}</div>
         <div>Otros servicios que presta:</div>
-        <h3 className="">Valor Presupuesto: {professional.budget}</h3>
+        <h3 className="my-5 text-5xl">Valor Presupuesto: $ {professional.budget}</h3>
         <div class="flex space-x-2 justify-center">
         <button
             type="button"

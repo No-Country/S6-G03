@@ -4,7 +4,7 @@ export const professionals= [
             lastName:"Paez",
             skills:["Plomeria", "Gasista"],
             profileImg:"image url",
-            description:"!Hola Comunidad! Soy beto, soy plomero y gasista matriculado... lorem ipsum dolor",
+            description: "!Hola Comunidad! Soy beto soy plomero y gasista matriculado... Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris placerat accumsan justo, at luctus nulla. Fusce luctus felis eget laoreet efficitur.",
             budget:1000,
             zone:"Lanús",
             reviews:[{
