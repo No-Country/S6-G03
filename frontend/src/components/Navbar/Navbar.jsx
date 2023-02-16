@@ -18,12 +18,13 @@ const Navbar = () => {
           </div>
 
           <div className="flex  gap-1  flex-col">
-            <button className="w-28 border border-black rounded-md">
+            <a href="/login-usuario"><button className="w-28 border border-black rounded-md">
               Iniciar Sesion
-            </button>
-            <button className="w-28 border border-black rounded-md">
+            </button></a>
+            <a href="/registro-usuario"><button className="w-28 border border-black rounded-md">
               Registrarme
-            </button>
+            </button></a>
+            
           </div>
         </div>
       </nav>
