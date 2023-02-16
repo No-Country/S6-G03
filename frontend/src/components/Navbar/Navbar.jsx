@@ -3,9 +3,9 @@ import React from "react";
 const Navbar = () => {
   return (
     <>
-      <nav className=" flex justify-around bg-slate-300  py-3 items-center  ">
+      <nav className=" flex justify-around bg-blue-primary;  py-3 items-center  ">
         <div className=" flex md:mx-auto">
-          <img className="text-black" src="/brand-logo.svg" alt="Logo" />
+          <img  src="/brand-logo.svg" alt="Logo" />
         </div>
         <a href="" className="flex md:mr-60">
           Inicio
