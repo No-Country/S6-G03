@@ -1,0 +1,43 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter&family=Roboto:wght@400;700&display=swap");
+
+* {
+  margin: 0;
+  box-sizing: border-box;
+}
+body {
+  background-color: white;
+  color: #000000;
+  font-family: "Roboto", sans-serif;
+}
+
+label {
+  background-color: white;
+  color: #000000;
+  display: block;
+  font-weight: bold;
+}
+input {
+  border: 2px solid;
+  color: black;
+  margin: 0;
+  background: white;
+  padding: 5px;
+  border-radius: 10px;
+  width: 100%;
+}
+.sesion {
+  line-height: 64px;
+  font-size: 45px;
+}
+.correo {
+  font-size: 32px;
+  line-height: 36px;
+}
+.olvidar {
+  font-size: 25px;
+  line-height: 32px;
+}
+.cuenta {
+  font-size: 23px;
+  line-height: 28px;
+}

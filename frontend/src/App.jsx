@@ -4,6 +4,7 @@ import ProfesionalByCategory from "./components/Category/ProfesionalByCategory"
 import ServiceList from "./components/ServiceList/ServiceList";
 
 import Login from "./components/Login/Login";
+import UserRegister from "./components/Register/UserRegister";
 
 const App = () => {
 
@@ -23,7 +24,7 @@ const App = () => {
           {/* Rutas de Registro */}
           <Route
             path="registro-usuario"
-            element={<h1>Registro de Profesional</h1>}
+            element={<UserRegister/>}
           />
           <Route
             path="registro-profesional"
