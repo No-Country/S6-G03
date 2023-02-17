@@ -14,11 +14,12 @@ const Login = () => {
   let errorMessage="";
   let fakeLogin=true;
 
+
   useEffect(() => {
-    console.log("user es "+email);
-    console.log("pwd es "+password);
-    console.log("local user es "+localStorage.getItem("user"));
-    console.log("local pwd es "+localStorage.getItem("password"));
+    // console.log("user es "+email);
+    // console.log("pwd es "+password);
+    // console.log("local user es "+localStorage.getItem("user"));
+    // console.log("local pwd es "+localStorage.getItem("pwd"));
 
   }, [])
 
@@ -30,7 +31,8 @@ const Login = () => {
       Swal.fire('Todos los campos son obligatorios', errorMessage, 'error');}
       if(fakeLogin=true){
         localStorage.setItem("user", email);
-        localStorage.setItem("auth", password);
+        localStorage.setItem("pwd", password);
+        
         await Swal.fire(
           "¡Exito!",
           `¡Bienvenido ${email} !`,
@@ -38,8 +40,10 @@ const Login = () => {
         ).then((result)=>{
           console.log("awainting to redirect");
           if(result.isDismissed=true){
+            localStorage.setItem("auth", true);
             console.log("redirecting...");
             navigate("/");
+            //history.replace("/");
           }
           
         });
@@ -47,7 +51,7 @@ const Login = () => {
        
       }
     
-    //gestionar checkout
+    
   };
   
   return (

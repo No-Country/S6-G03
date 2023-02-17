@@ -1,11 +1,9 @@
 import { BrowserRouter, Route, Routes, Navigate } from "react-router-dom";
 import Navbar from "./components/Navbar/Navbar"
 import ProfesionalByCategory from "./components/Category/ProfesionalByCategory"
-
 import Login from "./components/Login/Login";
 
 const App = () => {
-  let user='';
 
   return ( 
     <>

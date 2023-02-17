@@ -4,28 +4,39 @@ import { Navigate, useNavigate, Link } from "react-router-dom";
 
 const Navbar = () => {
   const navigate = useNavigate();
-  let user = '';
-  if(localStorage.getItem("user")==null){
-    user=''
-  }else{
-   user= localStorage.getItem("user");
-  }
-  //Object.keys(auth.user).length > 0 ? (user = auth.user) : (user = null);
-   const handleClick = () => {
+  const [user, setUser] = useState(localStorage.getItem("user"));
+  const [auth, setAuth] = useState(false);
+
+  useEffect(() => {
+
+  setAuth(localStorage.getItem("auth"));
+  setUser(localStorage.getItem("user"));
+  
+
+  }, [localStorage.getItem("user")]);
+  
+  //  const handleClick = () => {
       
-    };
+  //   };
   
     const handleLogin = () => {
-      user? localStorage.removeItem("user"): navigate("/login-usuario") ;
+     if(auth){
+      console.log("Cerrando sesion... "+auth);
+      localStorage.removeItem("user");
+      localStorage.removeItem("pwd");
+      localStorage.setItem("auth", false);
+      setUser("");
+      setAuth(false);
+     } 
+    //  else{
+    //   navigate("/login-usuario") ;
+    //   setUser("");
+    //   localStorage.setItem("auth", false);
+    //  } 
       
     };
 
-    useEffect(() => {
-      
-      
-
-  
-    }, [user]);
+    
 
   return (
     <>
