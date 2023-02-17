@@ -4,11 +4,6 @@ import ProfesionalByCategory from "./components/Category/ProfesionalByCategory"
 import ServiceList from "./components/ServiceList/ServiceList";
 
 import Login from "./components/Login/Login";
-import Footer from "./Components/Footer/Footer";
-import Home from "./Components/Home/Home";
-import MiPerfil from "./Components/MiPerfil/MiPerfil";
-import Direcciones from "./Components/Direcciones/Direcciones";
-import 'flowbite';
 
 const App = () => {
 
@@ -62,10 +57,8 @@ const App = () => {
             <Route path="change-password" element={<h3>Cambiar pass</h3>} />
             <Route path="mensajes" element={<h3>Mis Mensajes</h3>} />
           </Route>
-          <Route path="perfil-usuario/editar-direcciones" element={<Direcciones />} />
-  
-    {/* Rutas del Panel de Profesional */}
-    <Route
+          {/* Rutas del Panel de Profesional */}
+          <Route
             path="perfil-profesional"
             element={
               /*user ? <UserPanel /> : <Navigate to="/login" replace />*/ <h1>
