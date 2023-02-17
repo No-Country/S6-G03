@@ -4,6 +4,7 @@ import com.nocountry.dto.request.ProvisionRequest;
 import com.nocountry.dto.request.ProvisionRequestModify;
 import com.nocountry.dto.response.AdminResponseList;
 import com.nocountry.dto.response.ProvisionResponse;
+import com.nocountry.dto.response.ProvisionResponseList;
 import com.nocountry.exception.ImageException;
 import com.nocountry.exception.ProvisionException;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -48,8 +49,8 @@ public interface IProvisionController {
     ResponseEntity<List<ProvisionResponse>> getAll() throws ProvisionException;
 
     @GetMapping(path = "/get-all-provision-for-pages", produces = MediaType.APPLICATION_JSON_VALUE)
-    ResponseEntity<AdminResponseList> getAllxPages(@RequestParam Optional<Integer> page,
-                                                   @RequestParam Optional<Integer> size) throws ProvisionException;
+    ResponseEntity<ProvisionResponseList> getAllxPages(@RequestParam Optional<Integer> page,
+                                                       @RequestParam Optional<Integer> size) throws ProvisionException;
 
     @GetMapping(path = "/get-provision-for-value", produces = MediaType.APPLICATION_JSON_VALUE)
     ResponseEntity<List<ProvisionResponse>> getByValue(@RequestParam(required = false) String value) throws ProvisionException;

@@ -6,7 +6,7 @@ public enum EPathUpload {
 
     PATH_FILE_IMAGE("/uploadImages/images/"),
 
-    CREATE_ADMIN_FOLDER("/uploadImages/admin"),
+    CREATE_ADMIN_FOLDER("./uploadImages/admin"),
 
     PATH_ADMIN_IMAGE("/uploadImages/admin/"),
 
