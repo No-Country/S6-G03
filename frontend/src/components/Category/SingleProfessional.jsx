@@ -81,8 +81,8 @@ getSkills(professional);
     </div>
     </div>
         
-          <div className="flex align-middle items-center mb-5 text-black text-3xl font-bold">Trabajos Realizados</div>
-          <div className="flex gap-10" id="pastJobs">
+          <div className="flex w-[1032px] mx-auto align-middle items-center mb-5 text-black text-3xl font-bold">Trabajos Realizados</div>
+          <div className="flex gap-10 w-[1032px] mx-auto" id="pastJobs">
          {professional? (professional.jobs.map((job)=>{
           return(
            <div class="block rounded-[16px] shadow-lg bg-neutral-60 max-w-sm text-center" id="jobCard">
