@@ -6,7 +6,7 @@ padding: 24px 32px;
 gap: 24px;
 
 width: 1032px;
-height: 628px;
+min-height: 628px; 
 
 /* Users Background Target */
 
@@ -41,7 +41,3 @@ order: 0;
 flex-grow: 0;
 }
 
-#jobCard{
-   flex: auto; /* width: 504px; */
-/* height: 677px; */
-}

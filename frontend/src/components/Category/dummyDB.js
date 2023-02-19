@@ -28,33 +28,38 @@ export const professionals= [
                 title:"Reemplazo de Cañeria",
                 date:"29/12/2022",
                 zone:"Gerli",
+                jobImg: "https://mdbootstrap.com/img/new/standard/nature/182.jpg",
                 client:"Susana Villagraña",
                 review:"Estoy confirme con el servicio que me brindo beto. ademas dejo todo muy limpio",
                 reviewID:"001"
             },
             {
                 title:"Instalación de inodoro",
-                "date":"03/01/2023",
-                "zone":"Lanús",
-                "client":"Stella Peris",
-                "review":"Estoy conforme con el servicio que me brindo beto. ademas dejo todo muy limpio",
-                "reviewID":"002"
+                date:"03/01/2023",
+                zone:"Lanús",
+                jobImg: "https://mdbootstrap.com/img/new/standard/nature/182.jpg",
+                client:"Stella Peris",
+                review:"Estoy conforme con el servicio que me brindo beto. ademas dejo todo muy limpio",
+                reviewID:"002"
             },
             {
-                title:"Instalación de Calentador",
-                "date":"20/01/2023",
-                "zone":"Mendoza",
-                "client":"Jorge Ramos",
-                "review":"Estoy conforme con el servicio que me brindo beto. ademas dejo todo muy limpio",
-                "reviewID":"003"
+                title:"Reemplazo de Cañeria",
+                date:"29/12/2022",
+                zone:"Gerli",
+                jobImg: "https://mdbootstrap.com/img/new/standard/nature/182.jpg",
+                client:"Susana Villagraña",
+                review:"Estoy confirme con el servicio que me brindo beto. ademas dejo todo muy limpio",
+                reviewID:"001"
             },
             {
-                title:"Instalación de Calentador",
-                "date":"20/01/2023",
-                "zone":"Mendoza",
-                "client":"Jorge Ramos",
-                "review":"Estoy conforme con el servicio que me brindo beto. ademas dejo todo muy limpio",
-                "reviewID":"003"
-            }]
+                title:"Instalación de inodoro",
+                date:"03/01/2023",
+                zone:"Lanús",
+                jobImg: "https://mdbootstrap.com/img/new/standard/nature/182.jpg",
+                client:"Stella Peris",
+                review:"Estoy conforme con el servicio que me brindo beto. ademas dejo todo muy limpio",
+                reviewID:"002"
+            },
+            ]
         },
     ]

@@ -12,6 +12,12 @@ const SingleProfessional = () => {
   const { id } = useParams();
   const [professional, setProfessional] = useState(professionals[0]);
   let reviewsCount = 0;
+  const getRating= ()=>{
+    let prom= professional.reviews.reduce((partialSum, a) => partialSum + a.rating, 0);
+    
+    return (prom/professional.reviews.length);
+    
+  }
 
   const getSkills = (p)=>{
     console.log(p.skills);
@@ -50,14 +56,20 @@ getSkills(professional);
 
 
 
-    <div className="flex w-100  professional-card mx-auto my-5  text-white" >
+    <div className="flex flex-auto w-100  professional-card mx-auto my-5  text-white" >
     <div className=" text-center   gap-7 w-1/4">
         <div className="object-top rounded"><img className="pf-image mx-auto" src="/pf-image.jpg" alt="" /></div>
-        <div className="py-32 flex"></div>
+        <div className="py-24 flex"></div>
         <div className=" my-5">
         <h5 className="card-title">{professional.firstName} {professional.lastName}</h5>
-        <p className="card-text">(rating)({professional.reviews.length?professional.reviews.length:0})</p>
-        <a href="#" className="btn btn-primary">Ver Reseñas</a>
+        <p className="card-text">(rating)</p>
+        {getRating((rating)=>{
+          console.log("rating is..."+rating)
+        })}
+        
+        <div class="flex space-x-2  justify-center">
+          <button type="button" class="inline-block px-6 py-2.5 bg-green-secondary-70 text-white text-sm font-medium  leading-tight uppercase rounded shadow-md hover:bg-green-secondary-80 hover:shadow-lg focus:green-secondary-80 focus:shadow-lg focus:outline-none focus:ring-0  active:shadow-lg transition duration-150 ease-in-out">Ver Reseñas ({professional.reviews.length?professional.reviews.length:0})</button>
+        </div>
         </div>
         
     </div>
@@ -86,9 +98,9 @@ getSkills(professional);
          {professional? (professional.jobs.map((job)=>{
           return(
            <div class="block h-100 w-100 rounded-[16px] shadow-lg bg-neutral-60  text-center mb-10" id="jobCard">
-           <div class="flex  justify-between  py-3 px-6 ">
-           <div className="mt-3"><span className="font-bold">{job.title+" "}</span><span className="text-xs">({job.date})</span></div>
-           <div className="flex mt-3"><span class="bg-neutral-30  text-sm font-bold  inline-flex items-center px-3 py-1 rounded-3xl">
+           <div class="flex  justify-between  py-6 px-6 ">
+           <div className=""><span className="font-bold">{job.title+" "}</span><span className="text-xs">({job.date})</span></div>
+           <div className="flex mt"><span class="bg-neutral-30  text-sm font-bold  inline-flex items-center px-3 py-1 rounded-3xl">
              {/* <svg aria-hidden="true" class="w-3 h-3 mr-1" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z" clip-rule="evenodd"></path></svg> */}
              <BsFillGeoAltFill className=" mr-1"/>
              {job.zone}
@@ -96,7 +108,7 @@ getSkills(professional);
            </div>
            <div class="p-3">
            <a href="#!" data-mdb-ripple="true" data-mdb-ripple-color="light">
-             <img class="rounded-t-lg" src="https://mdbootstrap.com/img/new/standard/nature/182.jpg" alt=""/>
+             <img class="rounded" src={job.jobImg} alt=""/>
            </a>
            <div id="jobReview" class="py-5 px-5  mt-5 rounded-[16px] bg-neutral-80 text-black text-n">
             <div className="flex justify-start"><strong>{job.client}</strong>{" "}  - Cliente</div>
