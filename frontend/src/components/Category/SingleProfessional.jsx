@@ -82,26 +82,28 @@ getSkills(professional);
     </div>
         
           <div className="flex w-[1032px] mx-auto align-middle items-center mb-5 text-black text-3xl font-bold">Trabajos Realizados</div>
-          <div className="flex gap-10 w-[1032px] mx-auto" id="pastJobs">
+          <div className="flex-initial  w-[1032px] mx-auto justify-center  columns-2" id="pastJobs">
          {professional? (professional.jobs.map((job)=>{
           return(
-           <div class="block rounded-[16px] shadow-lg bg-neutral-60 max-w-sm text-center" id="jobCard">
-           <div class="flex w-100 justify-between py-3 px-6 ">
-           <div className=" "><span className="font-bold">{job.title+" "}</span><span className="text-xs">({job.date})</span></div><div className="flex"><span class="bg-neutral-30  text-sm font-bold  inline-flex items-center px-3 py-1 rounded-3xl">
+           <div class="block h-100 w-100 rounded-[16px] shadow-lg bg-neutral-60  text-center mb-10" id="jobCard">
+           <div class="flex  justify-between  py-3 px-6 ">
+           <div className="mt-3"><span className="font-bold">{job.title+" "}</span><span className="text-xs">({job.date})</span></div>
+           <div className="flex mt-3"><span class="bg-neutral-30  text-sm font-bold  inline-flex items-center px-3 py-1 rounded-3xl">
              {/* <svg aria-hidden="true" class="w-3 h-3 mr-1" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z" clip-rule="evenodd"></path></svg> */}
              <BsFillGeoAltFill className=" mr-1"/>
              {job.zone}
              </span></div>
            </div>
-           <div class="p-6">
+           <div class="p-3">
            <a href="#!" data-mdb-ripple="true" data-mdb-ripple-color="light">
              <img class="rounded-t-lg" src="https://mdbootstrap.com/img/new/standard/nature/182.jpg" alt=""/>
            </a>
-           </div>
-           <div id="jobReview" class="py-3 px-6 m-5 rounded-[16px] bg-neutral-80 text-black text-n">
+           <div id="jobReview" class="py-5 px-5  mt-5 rounded-[16px] bg-neutral-80 text-black text-n">
             <div className="flex justify-start"><strong>{job.client}</strong>{" "}  - Cliente</div>
             <div className="flex text-justify ">{`"${job.review}"`}</div>
            </div>
+           </div>
+           
          </div>)
          })):"No hay trabajos para mostrar"
         }

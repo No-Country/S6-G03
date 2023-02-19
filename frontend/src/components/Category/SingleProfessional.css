@@ -42,6 +42,6 @@ flex-grow: 0;
 }
 
 #jobCard{
-    width: 504px;
+   flex: auto; /* width: 504px; */
 /* height: 677px; */
 }

@@ -39,6 +39,22 @@ export const professionals= [
                 "client":"Stella Peris",
                 "review":"Estoy conforme con el servicio que me brindo beto. ademas dejo todo muy limpio",
                 "reviewID":"002"
+            },
+            {
+                title:"Instalación de Calentador",
+                "date":"20/01/2023",
+                "zone":"Mendoza",
+                "client":"Jorge Ramos",
+                "review":"Estoy conforme con el servicio que me brindo beto. ademas dejo todo muy limpio",
+                "reviewID":"003"
+            },
+            {
+                title:"Instalación de Calentador",
+                "date":"20/01/2023",
+                "zone":"Mendoza",
+                "client":"Jorge Ramos",
+                "review":"Estoy conforme con el servicio que me brindo beto. ademas dejo todo muy limpio",
+                "reviewID":"003"
             }]
         },
     ]
