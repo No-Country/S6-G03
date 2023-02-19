@@ -9,27 +9,31 @@ export const professionals= [
             budget:1000,
             zone:"Lanús",
             reviews:[{
+                id:"001",
                 "title":"Excelente trabajo",
                 "rating":5
+
             },
             {
+                id:"002",
                 "title":"buen trabajo 2",
                 "rating":4
             },
             {
-                "title":"regular trabajo ",
-                "rating":3
+                id:"003",
+                title:"regular trabajo ",
+                rating:3
             }],
             jobs:[{
-                "title":"Reemplazo de Cañeria",
-                "date":"29/12/2022",
-                "zone":"Gerli",
-                "client":"Susana Villagraña",
-                "review":"Estoy confirme con el servicio que me brindo beto. ademas dejo todo muy limpio",
-                "reviewID":"001"
+                title:"Reemplazo de Cañeria",
+                date:"29/12/2022",
+                zone:"Gerli",
+                client:"Susana Villagraña",
+                review:"Estoy confirme con el servicio que me brindo beto. ademas dejo todo muy limpio",
+                reviewID:"001"
             },
             {
-                "title":"Instalación de inodoro",
+                title:"Instalación de inodoro",
                 "date":"03/01/2023",
                 "zone":"Lanús",
                 "client":"Stella Peris",

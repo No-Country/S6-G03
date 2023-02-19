@@ -15,7 +15,7 @@ module.exports = {
         "green-secondary-80":"#1E9E69",
         "neutral-30":"#5F6060",
         "neutral-60":"#B6B8B8",
-        "neutral-60":"#DEDFDF",
+        "neutral-80":"#DEDFDF",
                  
       }
     },
