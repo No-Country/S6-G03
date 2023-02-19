@@ -17,7 +17,7 @@ export const professionals= [
             {
                 id:"002",
                 "title":"buen trabajo 2",
-                "rating":4
+                "rating":5
             },
             {
                 id:"003",

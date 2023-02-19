@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import "./SingleProfessional.css";
 import {professionals} from "./dummyDB.js";
 import { BsFillGeoAltFill, BsChevronLeft} from "react-icons/bs";
+import StarRating from "./StarRating";
 
 
 
@@ -14,7 +15,8 @@ const SingleProfessional = () => {
   let reviewsCount = 0;
   const getRating= ()=>{
     let prom= professional.reviews.reduce((partialSum, a) => partialSum + a.rating, 0);
-    
+    // console.log("rating is");
+    // console.log((prom/professional.reviews.length));
     return (prom/professional.reviews.length);
     
   }
@@ -47,7 +49,7 @@ getSkills(professional);
     
     <div className="flex w-[1032px] mx-auto my-5  justify-between">
       <div className="flex align-middle items-center text-black text-3xl font-bold"><span className="text-3xl font-black mr-5 "><Link><BsChevronLeft stroke-width="1"/></Link></span>{professional.title}</div>
-      <div className=""><span class="bg-[#89F0C5]  text-xl font-bold  inline-flex items-center px-5 py-3 rounded-3xl">
+      <div className="items-center align-middle justify-center "><span class="bg-[#89F0C5]  text-xl font-bold  inline-flex items-center px-5 py-3 rounded-3xl">
       {/* <svg aria-hidden="true" class="w-3 h-3 mr-1" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z" clip-rule="evenodd"></path></svg> */}
       <BsFillGeoAltFill className=" mr-1"/>
       {professional.zone}
@@ -63,9 +65,8 @@ getSkills(professional);
         <div className=" my-5">
         <h5 className="card-title">{professional.firstName} {professional.lastName}</h5>
         <p className="card-text">(rating)</p>
-        {getRating((rating)=>{
-          console.log("rating is..."+rating)
-        })}
+        {getRating()}
+        <StarRating rating={getRating()}/>
         
         <div class="flex space-x-2  justify-center">
           <button type="button" class="inline-block px-6 py-2.5 bg-green-secondary-70 text-white text-sm font-medium  leading-tight uppercase rounded shadow-md hover:bg-green-secondary-80 hover:shadow-lg focus:green-secondary-80 focus:shadow-lg focus:outline-none focus:ring-0  active:shadow-lg transition duration-150 ease-in-out">Ver Reseñas ({professional.reviews.length?professional.reviews.length:0})</button>
