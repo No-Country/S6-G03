@@ -52,7 +52,7 @@ public class Provision {
     @Column(name = "price")
     private String price;
 
-    // RELATION SERVICE --> IMAGE
+    // RELATION PROVISION --> IMAGE
     @OneToOne(mappedBy = "provision", cascade = CascadeType.ALL, orphanRemoval = true)
     @ToString.Exclude
     private Image image;

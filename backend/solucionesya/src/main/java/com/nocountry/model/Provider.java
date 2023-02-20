@@ -8,6 +8,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
 import jakarta.persistence.OneToMany;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
@@ -41,6 +42,11 @@ public class Provider extends User {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "provider")
     @ToString.Exclude
     private List<Provision> provisions;
+
+    // RELATION PROVIDER --> IMAGE
+    @OneToOne(mappedBy = "provider", cascade = CascadeType.ALL, orphanRemoval = true)
+    @ToString.Exclude
+    private Image image;
 
     @Override
     public boolean equals(Object o) {

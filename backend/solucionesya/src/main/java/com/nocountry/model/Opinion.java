@@ -8,6 +8,8 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
+import jakarta.persistence.Temporal;
+import jakarta.persistence.TemporalType;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
@@ -55,11 +57,15 @@ public class Opinion {
     @ToString.Exclude
     private Client client;
 
-    @CreationTimestamp
-    private Date creationDate;
+    //@CreationTimestamp
+    @Temporal(TemporalType.TIMESTAMP)
+    @Column(name = "creation_date", nullable = false)
+    protected Date creationDate = new Date();
 
-    @UpdateTimestamp
-    private Date updateDate;
+    //@UpdateTimestamp
+    @Temporal(TemporalType.TIMESTAMP)
+    @Column(name = "update_date")
+    protected Date updateDate;
 
     private boolean softDelete = false;
 

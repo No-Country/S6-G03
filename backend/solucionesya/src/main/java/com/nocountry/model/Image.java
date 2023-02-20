@@ -60,9 +60,15 @@ public class Image {
 	@ToString.Exclude
 	private Admin admin;
 
-	// RELATION IMAGE --> SERVICE
+	// RELATION FILE --> PROVIDER
 	@OneToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "service_id")
+	@JoinColumn(name = "provider_id")
+	@ToString.Exclude
+	private Provider provider;
+
+	// RELATION IMAGE --> PROVISION
+	@OneToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "provision_id")
 	@ToString.Exclude
 	private Provision provision;
 
