@@ -1,12 +1,15 @@
 import { BrowserRouter, Route, Routes, Navigate } from "react-router-dom";
 import Navbar from "./components/Navbar/Navbar";
-import ProfesionalByCategory from "./components/Category/ProfesionalByCategory";
-
 import Login from "./components/Login/Login";
+import ProfesionalByCategory from "./components/Category/ProfesionalByCategory";
 import SingleProfessional from "./components/Category/SingleProfessional";
+import ServiceList from "./components/ServiceList/ServiceList";
+import UserRegister from "./components/Register/UserRegister";
+
 
 const App = () => {
-  return (
+
+  return ( 
     <>
       <BrowserRouter>
         <Navbar />
@@ -21,7 +24,7 @@ const App = () => {
           {/* Rutas de Registro */}
           <Route
             path="registro-usuario"
-            element={<h1>Registro de Profesional</h1>}
+            element={<UserRegister/>}
           />
           <Route
             path="registro-profesional"
@@ -30,7 +33,7 @@ const App = () => {
           {/* Rutas de Busqueda de profesional */}
           <Route
             path="categorias-profesionales"
-            element={<h1>Categorias de Profesionales</h1>}
+            element={<ServiceList/>}
           />
           <Route
             path="profesionales/:categoria"
