@@ -10,6 +10,7 @@ import com.nocountry.dto.response.ProviderResponseList;
 import com.nocountry.exception.EmailAlreadyExistException;
 import com.nocountry.exception.ImageException;
 import com.nocountry.exception.ProviderException;
+import com.nocountry.exception.ProvisionException;
 import com.nocountry.service.IProviderService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.PageRequest;
@@ -52,7 +53,7 @@ public class ProviderController implements IProviderController {
     }
 
     @Override
-    public ResponseEntity<ProviderResponse> delete(String idProvider) throws ProviderException {
+    public ResponseEntity<ProviderResponse> delete(String idProvider) throws ProviderException, ProvisionException {
         service.delete(idProvider);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }

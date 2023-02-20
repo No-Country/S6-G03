@@ -6,6 +6,7 @@ import com.nocountry.dto.request.ProvisionRequestModify;
 import com.nocountry.dto.response.ProvisionResponse;
 import com.nocountry.dto.response.ProvisionResponseList;
 import com.nocountry.exception.ImageException;
+import com.nocountry.exception.ProviderException;
 import com.nocountry.exception.ProvisionException;
 import com.nocountry.list.EPathUpload;
 import com.nocountry.mapper.ProvisionMapper;
@@ -41,7 +42,7 @@ public class ProvisionServiceImpl implements IProvisionService {
     private final IImageRepository imageRepository;
 
     @Override
-    public ProvisionResponse save(ProvisionRequest request) throws ProvisionException {
+    public ProvisionResponse save(ProvisionRequest request) throws ProvisionException, ProviderException {
         Provision entity = new Provision();
         Provision entityForConvert = mapper.convertToEntity(entity, request);
         Provision entityForSave = repository.save(entityForConvert);
@@ -49,7 +50,7 @@ public class ProvisionServiceImpl implements IProvisionService {
     }
 
     @Override
-    public ProvisionResponse modify(String idProvision, ProvisionRequestModify request) throws ProvisionException {
+    public ProvisionResponse modify(String idProvision, ProvisionRequestModify request) throws ProvisionException, ProviderException {
         Optional<Provision> optionalProvision = repository.findById(idProvision);
         if (optionalProvision.isPresent()) {
             Provision provision = optionalProvision.get();

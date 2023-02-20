@@ -7,6 +7,7 @@ import com.nocountry.dto.request.ProvisionRequestModify;
 import com.nocountry.dto.response.ProvisionResponse;
 import com.nocountry.dto.response.ProvisionResponseList;
 import com.nocountry.exception.ImageException;
+import com.nocountry.exception.ProviderException;
 import com.nocountry.exception.ProvisionException;
 import com.nocountry.service.IProvisionService;
 import lombok.RequiredArgsConstructor;
@@ -32,13 +33,13 @@ public class ProvisionController implements IProvisionController {
     private final IProvisionService service;
 
     @Override
-    public ResponseEntity<ProvisionResponse> create(ProvisionRequest request) throws ProvisionException {
+    public ResponseEntity<ProvisionResponse> create(ProvisionRequest request) throws ProvisionException, ProviderException {
         ProvisionResponse response = service.save(request);
         return new ResponseEntity<>(response, HttpStatus.CREATED);
     }
 
     @Override
-    public ResponseEntity<ProvisionResponse> modify(String idProvision, ProvisionRequestModify request) throws ProvisionException {
+    public ResponseEntity<ProvisionResponse> modify(String idProvision, ProvisionRequestModify request) throws ProvisionException, ProviderException {
         ProvisionResponse response = service.modify(idProvision, request);
         return new ResponseEntity<>(response, HttpStatus.OK);
     }

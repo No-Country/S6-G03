@@ -9,36 +9,44 @@ import com.nocountry.dto.response.ProviderResponseList;
 import com.nocountry.exception.EmailAlreadyExistException;
 import com.nocountry.exception.ImageException;
 import com.nocountry.exception.ProviderException;
+import com.nocountry.exception.ProvisionException;
 import com.nocountry.list.EPathUpload;
 import com.nocountry.mapper.ProviderMapper;
 import com.nocountry.model.Image;
 import com.nocountry.model.Provider;
 import com.nocountry.model.ProviderList;
+import com.nocountry.model.Provision;
 import com.nocountry.repository.IImageRepository;
 import com.nocountry.repository.IProviderRepository;
+import com.nocountry.repository.IProvisionRepository;
 import com.nocountry.service.IImageService;
 import com.nocountry.service.IProviderService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.context.MessageSource;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
 public class ProviderServiceImpl implements IProviderService {
 
-    private static final String PROVIDER_NOT_FOUND = "{provider.not.found}";
+    private static final String PROVIDER_NOT_FOUND = "provider.not.found";
+    private final MessageSource messageSource;
     private final Path pathFolderUpload = Paths.get(EPathUpload.CREATE_PROVIDER_FOLDER.toString());
     private final String pathFileUpload = EPathUpload.PATH_PROVIDER_IMAGE.toString();
     private final ProviderMapper mapper;
     private final IProviderRepository repository;
+    private final IProvisionRepository provisionRepository;
     private final IImageService imageService;
     private final IImageRepository imageRepository;
 
@@ -60,7 +68,7 @@ public class ProviderServiceImpl implements IProviderService {
             Provider adminForSave = repository.save(adminForConvert);
             return mapper.convertToResponse(adminForSave);
         } else {
-            throw new ProviderException(PROVIDER_NOT_FOUND);
+            throw new ProviderException(messageSource.getMessage(PROVIDER_NOT_FOUND, null, Locale.ENGLISH));
         }
     }
 
@@ -73,20 +81,33 @@ public class ProviderServiceImpl implements IProviderService {
             Provider entityForSave = repository.save(entityForConvert);
             return mapper.convertToResponse(entityForSave);
         } else {
-            throw new ProviderException(PROVIDER_NOT_FOUND);
+            throw new ProviderException(messageSource.getMessage(PROVIDER_NOT_FOUND, null, Locale.ENGLISH));
         }
     }
 
     @Override
-    public void delete(String idProvider) throws ProviderException {
-        Optional<Provider> optionalAdmin = repository.findById(idProvider);
-        if (optionalAdmin.isPresent()) {
-            Provider provider = optionalAdmin.get();
+    public void delete(String idProvider) throws ProviderException, ProvisionException {
+        Optional<Provider> optionalProvider = repository.findById(idProvider);
+        if (optionalProvider.isPresent()) {
+            Provider provider = optionalProvider.get();
             provider.setSoftDelete(!provider.isSoftDelete());
             provider.setUpdateDate(new Date());
+            // REMOVE LIST OF PROVISIONS
+            removeListOfProvisions(idProvider, provider);
             repository.save(provider);
         } else {
-            throw new ProviderException(PROVIDER_NOT_FOUND);
+            throw new ProviderException(messageSource.getMessage(PROVIDER_NOT_FOUND, null, Locale.ENGLISH));
+        }
+    }
+
+    private void removeListOfProvisions(String idProvider, Provider provider) throws ProvisionException, ProviderException {
+        List<Provision> provisionList = provider.getProvisions();
+        if (!provisionList.isEmpty()) {
+            int i = 0;
+            while (i < provisionList.size()) {
+                Provision provision = provisionList.get(i);
+                removeProvision(idProvider, provision.getId());
+            }
         }
     }
 
@@ -96,7 +117,7 @@ public class ProviderServiceImpl implements IProviderService {
             Provider provider = repository.getReferenceById(idProvider);
             return mapper.convertToResponse(provider);
         } else {
-            throw new ProviderException(PROVIDER_NOT_FOUND);
+            throw new ProviderException(messageSource.getMessage(PROVIDER_NOT_FOUND, null, Locale.ENGLISH));
         }
     }
 
@@ -106,7 +127,7 @@ public class ProviderServiceImpl implements IProviderService {
         if (!(providerList.isEmpty())) {
             return mapper.convertToResponseList(providerList);
         } else {
-            throw new ProviderException("{provider.error.displaying.all.provider}");
+            throw new ProviderException(messageSource.getMessage("provider.error.displaying.all.provider", null, Locale.ENGLISH));
         }
     }
 
@@ -117,7 +138,7 @@ public class ProviderServiceImpl implements IProviderService {
             ProviderList providerList = new ProviderList(providerPage.getContent(), request, providerPage.getTotalElements());
             return getProviderResponseList(providerList);
         } else {
-            throw new ProviderException("{provider.error.displaying.all.provider}");
+            throw new ProviderException(messageSource.getMessage("provider.error.displaying.all.provider", null, Locale.ENGLISH));
         }
     }
 
@@ -147,7 +168,7 @@ public class ProviderServiceImpl implements IProviderService {
         if (!(providerList.isEmpty())) {
             return mapper.convertToResponseList(providerList);
         } else {
-            throw new ProviderException(PROVIDER_NOT_FOUND);
+            throw new ProviderException(messageSource.getMessage(PROVIDER_NOT_FOUND, null, Locale.ENGLISH));
         }
     }
 
@@ -156,7 +177,7 @@ public class ProviderServiceImpl implements IProviderService {
         List<Provider> providerList = repository.searchByHigh();
         if (providerList != null) return mapper.convertToResponseList(providerList);
         else {
-            throw new ProviderException("{provider.error.displaying.provider.active}");
+            throw new ProviderException(messageSource.getMessage("provider.error.displaying.provider.active", null, Locale.ENGLISH));
         }
     }
 
@@ -166,7 +187,7 @@ public class ProviderServiceImpl implements IProviderService {
         if (optionalProvider.isPresent()) {
             Provider provider = repository.getReferenceById(idProvider);
             if (provider.getImage() != null) {
-                throw new ProviderException("{provider.already.contains.image}");
+                throw new ProviderException(messageSource.getMessage("provider.already.contains.image", null, Locale.ENGLISH));
             } else {
                 Image image = imageService.saveFile(multipartFile, pathFolderUpload, pathFileUpload);
                 image.setProvider(provider);
@@ -174,7 +195,7 @@ public class ProviderServiceImpl implements IProviderService {
                 repository.save(provider);
             }
         } else {
-            throw new ProviderException(PROVIDER_NOT_FOUND);
+            throw new ProviderException(messageSource.getMessage(PROVIDER_NOT_FOUND, null, Locale.ENGLISH));
         }
     }
 
@@ -191,10 +212,29 @@ public class ProviderServiceImpl implements IProviderService {
                 imageService.deleteFileById(idImage, pathFolderUpload);
                 repository.save(provider);
             } else {
-                throw new ImageException("{image.not.found}");
+                throw new ImageException(messageSource.getMessage("image.not.found", null, Locale.ENGLISH));
             }
         } else {
-            throw new ProviderException(PROVIDER_NOT_FOUND);
+            throw new ProviderException(messageSource.getMessage(PROVIDER_NOT_FOUND, null, Locale.ENGLISH));
+        }
+    }
+
+    @Transactional
+    public void removeProvision(String idProvider, String idProvision) throws ProvisionException, ProviderException {
+        Optional<Provider> optionalProvider = repository.findById(idProvider);
+        if (optionalProvider.isPresent()) {
+            Provider provider = optionalProvider.get();
+            Optional<Provision> optionalProvision = provisionRepository.findById(idProvision);
+            if (optionalProvision.isPresent()) {
+                Provision provision = optionalProvision.get();
+                List<Provision> provisionList = provider.getProvisions();
+                provisionList.remove(provision);
+                repository.save(provider);
+            } else {
+                throw new ProvisionException(messageSource.getMessage("provision.not.found", null, Locale.ENGLISH));
+            }
+        } else {
+            throw new ProviderException(messageSource.getMessage(PROVIDER_NOT_FOUND, null, Locale.ENGLISH));
         }
     }
 }

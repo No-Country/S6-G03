@@ -4,9 +4,11 @@ import com.nocountry.dto.request.ProviderRequest;
 import com.nocountry.dto.request.ProviderRequestModify;
 import com.nocountry.dto.request.ProviderRequestPassword;
 import com.nocountry.dto.response.ProviderResponse;
+import com.nocountry.dto.response.ProvisionResponse;
 import com.nocountry.exception.EmailAlreadyExistException;
 import com.nocountry.exception.ProviderException;
 import com.nocountry.model.Provider;
+import com.nocountry.model.Provision;
 import com.nocountry.repository.IProviderRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.MessageSource;
@@ -28,6 +30,7 @@ public class ProviderMapper {
     private final IProviderRepository repository;
     private final MessageSource messageSource;
     private final ImageMapper imageMapper;
+    private final ProvisionMapper provisionMapper;
 
 
     public Provider convertToEntity(Provider entity, ProviderRequest request) throws EmailAlreadyExistException, ProviderException {
@@ -99,7 +102,15 @@ public class ProviderMapper {
             response.setPathImage(entity.getImage().getPath());
         }
 
-        // --> AGREGAR AL RESPONSE LA LISTA DE OPINIONES Y DE SERVICIOS
+        // LIST OF PROVISIONS
+        List<Provision> provisionList = entity.getProvisions();
+        // ORDER OF THE LIST
+        provisionList.sort((o1, o2) -> CharSequence.compare(o1.getName(), o2.getName()));
+        List<ProvisionResponse> provisionResponseList = provisionMapper.convertToResponseList(provisionList);
+        response.setProvisionResponseList(provisionResponseList);
+
+        // LIST OF OPINIONS
+        // ORDER OF THE LIST
 
         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
         String stringCreationDate = sdf.format(entity.getCreationDate());

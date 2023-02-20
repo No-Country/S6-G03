@@ -8,6 +8,7 @@ import com.nocountry.dto.response.ProviderResponseList;
 import com.nocountry.exception.EmailAlreadyExistException;
 import com.nocountry.exception.ImageException;
 import com.nocountry.exception.ProviderException;
+import com.nocountry.exception.ProvisionException;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotNull;
@@ -42,7 +43,7 @@ public interface IProviderController {
                                                     @Valid @RequestBody ProviderRequestPassword request) throws ProviderException;
 
     @DeleteMapping(path = "/delete-provider/{id-provider}", produces = MediaType.APPLICATION_JSON_VALUE)
-    ResponseEntity<ProviderResponse> delete(@NotNull @PathVariable("id-provider") String idProvider) throws ProviderException;
+    ResponseEntity<ProviderResponse> delete(@NotNull @PathVariable("id-provider") String idProvider) throws ProviderException, ProvisionException;
 
     @GetMapping(path = "/get-provider-by-id/{id-provider}", produces = MediaType.APPLICATION_JSON_VALUE)
     ResponseEntity<ProviderResponse> getById(@NotNull @PathVariable("id-provider") String idProvider) throws ProviderException;

@@ -13,7 +13,7 @@ public class ProvisionResponse {
     private String price;
     private ImageResponse image;
     private String pathImage;
-    //private ProviderResponse providerResponse;
+    private String provider;
     private String creationDate;
     private String updateDate;
     private boolean softDelete;
