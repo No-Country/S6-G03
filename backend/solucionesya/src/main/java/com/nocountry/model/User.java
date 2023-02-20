@@ -78,6 +78,10 @@ public class User  {
     @Column(name = "soft_delete", nullable = false)
     protected boolean softDelete = Boolean.FALSE;
 
+    public String getFullName() {
+        return this.getFirstName() + " " + this.getLastName();
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

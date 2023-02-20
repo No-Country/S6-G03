@@ -90,6 +90,7 @@ public class AdminMapper {
         response.setId(entity.getId());
         response.setFirstName(entity.getFirstName());
         response.setLastName(entity.getLastName());
+        response.setFullName(entity.getFullName());
         response.setEmail(entity.getEmail());
         response.setAddress(entity.getAddress());
         response.setPhone(entity.getPhone());
