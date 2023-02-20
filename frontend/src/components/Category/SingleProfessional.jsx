@@ -10,15 +10,37 @@ import StarRating from "./StarRating";
 
 
 const SingleProfessional = () => {
-  const { id } = useParams();
+   //const { id } = useParams();
   const [professional, setProfessional] = useState(professionals[0]);
+  // const [professional, setProfessional] = useState([]);
+ // console.log(id);
 
+  useEffect(() => {
+//     const url = `${import.meta.env.VITE_BACKEND_URL}/api/profesional/${id}`;
+
+// const getProfessional= (()=>{
+//   setProfessional(professionals[0]);
+// })
+// getProfessional();
+console.log(professional);
+getSkills(professional);
+getRating();
+//     axios
+//       .get(url)
+//       .then((res) => setOneProduct(res.data))
+//       .catch((err) => console.log(err));
+
+ 
+
+
+  }, []);
+  
   const getRating= ()=>{
     let prom= professional.reviews.reduce((partialSum, a) => partialSum + a.rating, 0);
     // console.log("rating is");
     // console.log((prom/professional.reviews.length));
     return ((prom/professional.reviews.length).toFixed(2));
-    ;
+    
     
   }
 
@@ -27,20 +49,7 @@ const SingleProfessional = () => {
     p.skills.map((i)=>{
       console.log(i);})
   } 
-  useEffect(() => {
-//     const url = `${import.meta.env.VITE_BACKEND_URL}/api/profesional/${id}`;
-getSkills(professional);
-getRating();
-//     axios
-//       .get(url)
-//       .then((res) => setOneProduct(res.data))
-//       .catch((err) => console.log(err));
- //setProfessional(professionals[0]);
- 
-
-
-  }, []);
-  console.log(professional.reviews.length);
+  //console.log(professional.reviews.length);
 
   return (
   <>
