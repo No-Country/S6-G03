@@ -11,7 +11,7 @@ export const professionals= [
             reviews:[{
                 id:"001",
                 "title":"Excelente trabajo",
-                "rating":5
+                "rating":4
 
             },
             {
@@ -22,7 +22,7 @@ export const professionals= [
             {
                 id:"003",
                 title:"regular trabajo ",
-                rating:3
+                rating:4
             }],
             jobs:[{
                 title:"Reemplazo de Cañeria",

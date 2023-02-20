@@ -1,14 +1,14 @@
 import React from 'react'
 import { useState } from 'react';
 import { useEffect } from 'react';
-const StarRating = ({rating}) => {
+const StarRating = ({rating, reviews}) => {
     
     console.log("rating is");
     console.log((rating));
      const intStars= parseInt(rating);
      const partStars= rating - intStars;
      const [starArray, setStarArray]= useState([0,0,0,0,0]);
-   
+     let miniRating= false;
  
    
      useEffect(() => {
@@ -17,7 +17,7 @@ const StarRating = ({rating}) => {
     //   setStarArray(starArray.splice((intStars),1,(partStars*100)));
     //   console.log(starArray);
     setStarArray(getStars());
-    setInterval(getStars)
+    //setInterval(getStars)
      
       
      }, [])
@@ -31,6 +31,7 @@ const StarRating = ({rating}) => {
                starArray[index]=partStars*100;
             }
         })
+        console.log("a");
         console.log(starArray);
         return [...starArray];
     }
@@ -49,7 +50,7 @@ const StarRating = ({rating}) => {
         <path fill={`url(#grad-${p})`} d="M20.388,10.918L32,12.118l-8.735,7.749L25.914,31.4l-9.893-6.088L6.127,31.4l2.695-11.533L0,12.118
       l11.547-1.2L16.026,0.6L20.388,10.918z"/>
       </svg>)
-    })}
+    })} {miniRating?<span className='text-xs'>({rating})</span>:<span className='text-xs'>({reviews})</span>}
     </div>
     
     </>

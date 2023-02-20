@@ -12,12 +12,13 @@ import StarRating from "./StarRating";
 const SingleProfessional = () => {
   const { id } = useParams();
   const [professional, setProfessional] = useState(professionals[0]);
-  let reviewsCount = 0;
+
   const getRating= ()=>{
     let prom= professional.reviews.reduce((partialSum, a) => partialSum + a.rating, 0);
     // console.log("rating is");
     // console.log((prom/professional.reviews.length));
-    return (prom/professional.reviews.length);
+    return ((prom/professional.reviews.length).toFixed(2));
+    ;
     
   }
 
@@ -29,6 +30,7 @@ const SingleProfessional = () => {
   useEffect(() => {
 //     const url = `${import.meta.env.VITE_BACKEND_URL}/api/profesional/${id}`;
 getSkills(professional);
+getRating();
 //     axios
 //       .get(url)
 //       .then((res) => setOneProduct(res.data))
@@ -44,7 +46,7 @@ getSkills(professional);
   <>
     
 
-    <div className="flex-row container justify-center mx-auto max-w-sm: py-5">
+    <div className="flex-row container justify-center mx-auto py-5">
 
     
     <div className="flex w-[1032px] mx-auto my-5  justify-between">
@@ -61,15 +63,13 @@ getSkills(professional);
     <div className="flex flex-auto w-100  professional-card mx-auto my-5  text-white" >
     <div className=" text-center   gap-7 w-1/4">
         <div className="object-top rounded"><img className="pf-image mx-auto" src="/pf-image.jpg" alt="" /></div>
-        <div className="py-24 flex"></div>
+        {/* <div className="py-24 flex"></div> */}
         <div className=" my-5">
         <h5 className="card-title">{professional.firstName} {professional.lastName}</h5>
-        <p className="card-text">(rating)</p>
-        {getRating()}
-        <StarRating rating={getRating()}/>
-        
+        {/* <div className="flex"><StarRating rating={getRating()}/><p className="text-xs">{getRating()}</p></div> */}
+        <StarRating rating={getRating()} reviews={professional.reviews.length?professional.reviews.length:0}/>
         <div class="flex space-x-2  justify-center">
-          <button type="button" class="inline-block px-6 py-2.5 bg-green-secondary-70 text-white text-sm font-medium  leading-tight uppercase rounded shadow-md hover:bg-green-secondary-80 hover:shadow-lg focus:green-secondary-80 focus:shadow-lg focus:outline-none focus:ring-0  active:shadow-lg transition duration-150 ease-in-out">Ver Reseñas ({professional.reviews.length?professional.reviews.length:0})</button>
+          <button type="button" class="inline-block px-6 py-2.5 bg-green-secondary-70 text-white text-base font-bold  leading-tight uppercase rounded shadow-md hover:bg-green-secondary-80 hover:shadow-lg focus:green-secondary-80 focus:shadow-lg focus:outline-none focus:ring-0  active:shadow-lg transition duration-150 ease-in-out">Ver Reseñas</button>
         </div>
         </div>
         
@@ -77,17 +77,17 @@ getSkills(professional);
     <div className="col-2 w-3/4 gap-7">
         <div className="text-white">{professional.description}</div>
         <div className="pt-4"><span className="mt-1">Otros servicios que presta:</span>  {professional.skills.map((item)=>{ return(
-          <span class="bg-blue-100 text-black text-sm  font-semibold mr-2 px-3 py-1  rounded ">{item}</span>
+          <span class="bg-blue-100 text-black text-sm  font-normal  mr-2 px-3 py-1  rounded ">{item}</span>
         )
           
         })}</div>
-        <h3 className="my-5 text-5xl">Valor Presupuesto: $ {professional.budget}</h3>
+        <h3 className="mt-10 mb-6 text-[45px] font-bold">Valor Presupuesto: $ {professional.budget}</h3>
         <div class="flex space-x-2 justify-center">
         <button
             type="button"
             data-mdb-ripple="true"
             data-mdb-ripple-color="light"
-            class="inline-block w-full px-6 py-4 bg-green-secondary text-white font-bold text-lg leading-tight uppercase rounded shadow-md hover:bg-green-secondary/60 hover:shadow-lg focus:bg-green-secondary/60 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out"
+            class="inline-block w-full px-6 py-4 bg-green-secondary-70 text-white font-bold text-[45px] leading-[64px] uppercase rounded-[16px] shadow-md hover:bg-green-secondary/60 hover:shadow-lg focus:bg-green-secondary/60 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out"
         >Contratar</button>
         </div>
         <p className="pt-4">La Contratacion Incluye: Visita al domicilio y presupuesto del servicio</p>
