@@ -8,6 +8,7 @@ public interface ApiConstants {
 
     String ADMIN_URI = "/api/admin";
     String IMAGE_URI = "/api/image";
+    String PROVIDER_URI = "/api/provider";
     String PROVISION_URI = "/api/provision";
 
     int DEFAULT_PAGE = 0;

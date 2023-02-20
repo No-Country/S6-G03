@@ -34,7 +34,7 @@ import java.util.Optional;
 @RequiredArgsConstructor
 public class AdminServiceImpl implements IAdminService {
 
-    private static final String ADMIN_NOT_FOUND = "{admin.notFound}";
+    private static final String ADMIN_NOT_FOUND = "{admin.not.found}";
     private final Path pathFolderUpload = Paths.get(EPathUpload.CREATE_ADMIN_FOLDER.toString());
     private final String pathFileUpload = EPathUpload.PATH_ADMIN_IMAGE.toString();
     private final IAdminRepository repository;
@@ -67,8 +67,8 @@ public class AdminServiceImpl implements IAdminService {
     public AdminResponse modifyPassword(String id, AdminRequestPassword request) throws AdminException {
         Optional<Admin> adminOptional = repository.findById(id);
         if (adminOptional.isPresent()) {
-            Admin internal = adminOptional.get();
-            Admin entityForConvert = mapper.convertToEntityModifyPassword(internal, request);
+            Admin admin = adminOptional.get();
+            Admin entityForConvert = mapper.convertToEntityModifyPassword(admin, request);
             Admin entityForSave = repository.save(entityForConvert);
             return mapper.convertToResponse(entityForSave);
         } else {
