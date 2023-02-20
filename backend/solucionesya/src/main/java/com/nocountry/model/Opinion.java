@@ -60,12 +60,12 @@ public class Opinion {
     //@CreationTimestamp
     @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "creation_date", nullable = false)
-    protected Date creationDate = new Date();
+    private Date creationDate = new Date();
 
     //@UpdateTimestamp
     @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "update_date")
-    protected Date updateDate;
+    private Date updateDate;
 
     private boolean softDelete = false;
 
