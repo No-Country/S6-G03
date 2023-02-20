@@ -39,8 +39,8 @@ public class AdminServiceImpl implements IAdminService {
     private final String pathFileUpload = EPathUpload.PATH_ADMIN_IMAGE.toString();
     private final IAdminRepository repository;
     private final AdminMapper mapper;
-    private final IImageService fileService;
-    private final IImageRepository fileRepository;
+    private final IImageService imageService;
+    private final IImageRepository imageRepository;
 
     @Override
     public AdminResponse save(AdminRequest request) throws AdminException, EmailAlreadyExistException {
@@ -167,7 +167,7 @@ public class AdminServiceImpl implements IAdminService {
             if (admin.getImage() != null) {
                 throw new AdminException("{admin.alreadyContains.image}");
             } else {
-                Image image = fileService.saveFile(multipartFile, pathFolderUpload, pathFileUpload);
+                Image image = imageService.saveFile(multipartFile, pathFolderUpload, pathFileUpload);
                 image.setAdmin(admin);
                 admin.setImage(image);
                 repository.save(admin);
@@ -182,15 +182,15 @@ public class AdminServiceImpl implements IAdminService {
         Optional<Admin> optionalAdmin = repository.findById(idAdmin);
         if (optionalAdmin.isPresent()) {
             Admin admin = repository.getReferenceById(idAdmin);
-            Optional<Image> optionalFile = fileRepository.findById(idImage);
+            Optional<Image> optionalFile = imageRepository.findById(idImage);
             if (optionalFile.isPresent()) {
-                Image image = fileRepository.getReferenceById(idImage);
+                Image image = imageRepository.getReferenceById(idImage);
                 image.setAdmin(null);
                 admin.setImage(null);
-                fileService.deleteFileById(idImage, pathFolderUpload);
+                imageService.deleteFileById(idImage, pathFolderUpload);
                 repository.save(admin);
             } else {
-                throw new ImageException("{file.notFound}");
+                throw new ImageException("{image.not.found}");
             }
         } else {
             throw new AdminException(ADMIN_NOT_FOUND);

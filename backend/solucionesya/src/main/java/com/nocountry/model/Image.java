@@ -18,8 +18,6 @@ import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.UpdateTimestamp;
 
-import java.io.Serial;
-import java.io.Serializable;
 import java.util.Date;
 import java.util.Objects;
 
@@ -29,24 +27,13 @@ import java.util.Objects;
 @Setter
 @ToString(onlyExplicitlyIncluded = true)
 @RequiredArgsConstructor
-public class Image implements Serializable {
-
-	@Serial
-	private static final long serialVersionUID = 1L;
+public class Image {
 
 	@Id
 	@GeneratedValue(generator = "uuid")
 	@GenericGenerator(name = "uuid", strategy = "uuid2")
 	@Column(unique = true, name = "id")
 	private String id;
-
-	@CreationTimestamp
-	@Column(name = "creation_date", nullable = false)
-	protected Date creationDate = new Date();
-
-	@UpdateTimestamp
-	@Column(name = "update_date")
-	protected Date updateDate;
 
 	@Basic
 	@Column(name = "original_name")
@@ -59,11 +46,31 @@ public class Image implements Serializable {
 	@Column(name = "path")
 	private String path;
 
+	@CreationTimestamp
+	@Column(name = "creation_date", nullable = false)
+	protected Date creationDate = new Date();
+
+	@UpdateTimestamp
+	@Column(name = "update_date")
+	protected Date updateDate;
+
 	// RELATION FILE --> ADMIN
 	@OneToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "admin_id")
 	@ToString.Exclude
 	private Admin admin;
+
+	// RELATION FILE --> PROVIDER
+	@OneToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "provider_id")
+	@ToString.Exclude
+	private Provider provider;
+
+	// RELATION IMAGE --> PROVISION
+	@OneToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "provision_id")
+	@ToString.Exclude
+	private Provision provision;
 
 	@Column(name = "soft_delete", nullable = false)
 	private boolean softDelete = Boolean.FALSE;

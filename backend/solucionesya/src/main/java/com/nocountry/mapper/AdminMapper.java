@@ -9,6 +9,7 @@ import com.nocountry.exception.EmailAlreadyExistException;
 import com.nocountry.model.Admin;
 import com.nocountry.repository.IAdminRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.context.MessageSource;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Component;
 
@@ -16,6 +17,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 @Component
 @RequiredArgsConstructor
@@ -25,10 +27,11 @@ public class AdminMapper {
     private final BCryptPasswordEncoder encryptPassword;
     private final IAdminRepository repository;
     private final ImageMapper imageMapper;
+    private final MessageSource messageSource;
 
     public Admin convertToEntity(Admin entity, AdminRequest request) throws AdminException, EmailAlreadyExistException {
         if (repository.existsByEmail(request.getEmail())) {
-            throw new EmailAlreadyExistException("{general.email.already.exists}");
+            throw new EmailAlreadyExistException(messageSource.getMessage("general.email.already.exists", null, Locale.ENGLISH));
         }
         validateRequestCreate(request);
         entity.setFirstName(request.getFirstName());
@@ -39,7 +42,7 @@ public class AdminMapper {
             String encryptedPassword = encryptPassword.encode(request.getPassword());
             entity.setPassword(encryptedPassword);
         } else {
-            throw new AdminException("{general.passwords.do.not.match}");
+            throw new AdminException(messageSource.getMessage("general.passwords.do.not.match", null, Locale.ENGLISH));
         }
         entity.setAddress(request.getAddress());
         entity.setPhone(request.getPhone());
@@ -87,6 +90,7 @@ public class AdminMapper {
         response.setId(entity.getId());
         response.setFirstName(entity.getFirstName());
         response.setLastName(entity.getLastName());
+        response.setFullName(entity.getFullName());
         response.setEmail(entity.getEmail());
         response.setAddress(entity.getAddress());
         response.setPhone(entity.getPhone());

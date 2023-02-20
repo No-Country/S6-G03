@@ -24,7 +24,7 @@ import java.util.Objects;
 @Setter
 @RequiredArgsConstructor
 @ToString(onlyExplicitlyIncluded = true)
-@AttributeOverride(name="id", column=@Column(name="client_id"))
+@AttributeOverride(name = "id", column = @Column(name = "client_id"))
 public class Client extends User {
 
     @Column(name = "role", nullable = false)

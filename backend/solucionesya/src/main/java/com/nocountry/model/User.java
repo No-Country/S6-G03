@@ -17,9 +17,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 import org.hibernate.Hibernate;
-import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.GenericGenerator;
-import org.hibernate.annotations.UpdateTimestamp;
 
 import java.util.Date;
 import java.util.Objects;
@@ -29,7 +27,7 @@ import java.util.Objects;
 @ToString
 @RequiredArgsConstructor
 @MappedSuperclass
-public class User {
+public class User  {
 
     @Id
     @Column(name = "user_id")
@@ -79,6 +77,10 @@ public class User {
 
     @Column(name = "soft_delete", nullable = false)
     protected boolean softDelete = Boolean.FALSE;
+
+    public String getFullName() {
+        return this.getFirstName() + " " + this.getLastName();
+    }
 
     @Override
     public boolean equals(Object o) {

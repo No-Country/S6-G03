@@ -4,20 +4,17 @@ import com.nocountry.model.GeoCode;
 import lombok.Data;
 
 @Data
-public class AdminResponse {
+public class ProvisionResponse {
 
     private String id;
-    private String firstName;
-    private String lastName;
-    private String fullName;
-    private String email;
-    private String address;
-    private String phone;
+    private String name;
+    private String category;
+    private String description;
+    private String price;
     private ImageResponse image;
     private String pathImage;
+    //private ProviderResponse providerResponse;
     private String creationDate;
     private String updateDate;
-    private GeoCode geoCode;
-    private boolean isBanned;
     private boolean softDelete;
 }
