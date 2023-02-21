@@ -1,5 +1,12 @@
 import React from "react";
 import SearchBar from "../SearchBar/Searchbar";
+import LocationImg from '../../../src/assets/images/Location.png';
+import SOSImg from "../../../src/assets/images/SOS.png"
+import StarImg from "../../../src/assets/images/Star.png";
+import PlomeriaImg from "../../../src/assets/images/Plomeria.png";
+import CerrajeriaImg from "../../../src/assets/images/cerrajeria.jpg";
+import ElectricistaImg from "../../../src/assets/images/Electricista.png";
+import GasistaImg from "../../../src/assets/images/gasista.jpg";
 
 function Home(){
     return(
@@ -26,20 +33,20 @@ function Home(){
 
                     <div className="flex flex-row justify-around items-center w-full" >
                         <div className="flex flex-col justify-around items-center bg-[#1E9E69] w-[280px] h-[200px] border-4 border-[#9CD5BE] rounded-[40px]">
-                            <img src="../../../src/assets/images/Location.png" alt="location" />
+                            <img src={LocationImg} alt="location" />
                             <span className="font-[400] text-[23px] leading-28 text-[#FFFFFF] text-center">Podes contactar al profesional más cercano</span>
                         </div>
                         <div className="flex flex-col justify-around items-center bg-[#1E9E69] w-[280px] h-[200px] border-4 border-[#9CD5BE] rounded-[40px]">
-                            <img src="../../../src/assets/images/SOS.png" alt="location" />
+                            <img src={SOSImg} alt="location" />
                             <span className="font-[400] text-[23px] leading-28 text-[#FFFFFF] text-center">Podes encontrar servicios las 24hs del dia</span>
                         </div>
                         <div className="flex flex-col justify-around items-center bg-[#1E9E69] w-[280px] h-[200px] border-4 border-[#9CD5BE] rounded-[40px]">
                             <div className="flex flex-row">
-                                <img src="../../../src/assets/images/Star.png" alt="location" />
-                                <img src="../../../src/assets/images/Star.png" alt="location" />
-                                <img src="../../../src/assets/images/Star.png" alt="location" />
-                                <img src="../../../src/assets/images/Star.png" alt="location" />
-                                <img src="../../../src/assets/images/Star.png" alt="location" />
+                                <img src={StarImg} alt="location" />
+                                <img src={StarImg} alt="location" />
+                                <img src={StarImg} alt="location" />
+                                <img src={StarImg} alt="location" />
+                                <img src={StarImg} alt="location" />
                             </div>
                             <span className="font-[400] text-[23px] leading-28 text-[#FFFFFF] text-center">Podes mirar las opiniones de clientes anteriores</span>
                         </div>
@@ -50,22 +57,22 @@ function Home(){
                     <div><span className="font-[400] text-[43px] leading-56">Servicios más buscados</span></div>
                     <div className="flex flex-row items-center justify-around w-full">
                         <div>
-                            <img src="../../../src/assets/images/Plomeria.png" alt="" className="w-[261px] h-[250px] rounded-[40px]"/>
+                            <img src={PlomeriaImg} alt="" className="w-[261px] h-[250px] rounded-[40px]"/>
                             <span className="font-[400] text-[24px] leading-40">Plomeria</span>
                         </div>
                      
                         <div>
-                            <img src="../../../src/assets/images/cerrajeria.jpg" alt="" className="w-[261px] h-[250px] rounded-[40px]"/>
+                            <img src={CerrajeriaImg} alt="" className="w-[261px] h-[250px] rounded-[40px]"/>
                             <span className="font-[400] text-[24px] leading-40">Cerrajeria</span>
                         </div>
           
                         <div>
-                            <img src="../../../src/assets/images/Electricista.png" alt="" className="w-[261px] h-[250px] rounded-[40px]"/>
+                            <img src={ElectricistaImg} alt="" className="w-[261px] h-[250px] rounded-[40px]"/>
                             <span className="font-[400] text-[24px] leading-40">Electricidad</span>
                         </div>
 
                         <div>
-                            <img src="../../../src/assets/images/gasista.jpg" alt="" className="w-[261px] h-[250px] rounded-[40px]"/>
+                            <img src={GasistaImg} alt="" className="w-[261px] h-[250px] rounded-[40px]"/>
                             <span className="font-[400] text-[24px] leading-40">Gasista</span>
                         </div>
                     </div>
