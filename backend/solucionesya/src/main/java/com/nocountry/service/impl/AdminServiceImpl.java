@@ -9,6 +9,7 @@ import com.nocountry.dto.response.AdminResponseList;
 import com.nocountry.exception.AdminException;
 import com.nocountry.exception.EmailAlreadyExistException;
 import com.nocountry.exception.ImageException;
+import com.nocountry.list.EExceptionMessage;
 import com.nocountry.list.EPathUpload;
 import com.nocountry.mapper.AdminMapper;
 import com.nocountry.model.Admin;
@@ -19,7 +20,6 @@ import com.nocountry.repository.IImageRepository;
 import com.nocountry.service.IAdminService;
 import com.nocountry.service.IImageService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.context.MessageSource;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
@@ -29,21 +29,18 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Date;
 import java.util.List;
-import java.util.Locale;
 import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
 public class AdminServiceImpl implements IAdminService {
 
-    private static final String ADMIN_NOT_FOUND = "admin.not.found";
     private final Path pathFolderUpload = Paths.get(EPathUpload.CREATE_ADMIN_FOLDER.toString());
     private final String pathFileUpload = EPathUpload.PATH_ADMIN_IMAGE.toString();
     private final IAdminRepository repository;
     private final AdminMapper mapper;
     private final IImageService imageService;
     private final IImageRepository imageRepository;
-    private final MessageSource messageSource;
 
     @Override
     public AdminResponse save(AdminRequest request) throws AdminException, EmailAlreadyExistException {
@@ -62,7 +59,7 @@ public class AdminServiceImpl implements IAdminService {
             Admin adminForSave = repository.save(adminForConvert);
             return mapper.convertToResponse(adminForSave);
         } else {
-            throw new AdminException(messageSource.getMessage(ADMIN_NOT_FOUND, null, Locale.ENGLISH));
+            throw new AdminException(EExceptionMessage.ADMIN_NOT_FOUND.getMessage());
         }
     }
 
@@ -75,7 +72,7 @@ public class AdminServiceImpl implements IAdminService {
             Admin entityForSave = repository.save(entityForConvert);
             return mapper.convertToResponse(entityForSave);
         } else {
-            throw new AdminException(messageSource.getMessage(ADMIN_NOT_FOUND, null, Locale.ENGLISH));
+            throw new AdminException(EExceptionMessage.ADMIN_NOT_FOUND.getMessage());
         }
     }
 
@@ -88,7 +85,7 @@ public class AdminServiceImpl implements IAdminService {
             admin.setUpdateDate(new Date());
             repository.save(admin);
         } else {
-            throw new AdminException(messageSource.getMessage(ADMIN_NOT_FOUND, null, Locale.ENGLISH));
+            throw new AdminException(EExceptionMessage.ADMIN_NOT_FOUND.getMessage());
         }
     }
 
@@ -98,7 +95,7 @@ public class AdminServiceImpl implements IAdminService {
             Admin admin = repository.getReferenceById(idAdmin);
             return mapper.convertToResponse(admin);
         } else {
-            throw new AdminException(messageSource.getMessage(ADMIN_NOT_FOUND, null, Locale.ENGLISH));
+            throw new AdminException(EExceptionMessage.ADMIN_NOT_FOUND.getMessage());
         }
     }
 
@@ -108,7 +105,7 @@ public class AdminServiceImpl implements IAdminService {
         if (!(adminList.isEmpty())) {
             return mapper.convertToResponseList(adminList);
         } else {
-            throw new AdminException(messageSource.getMessage("admin.error.displaying.all.admin", null, Locale.ENGLISH));
+            throw new AdminException(EExceptionMessage.ERROR_DISPLAYING_ALL_ADMIN.getMessage());
         }
     }
 
@@ -119,7 +116,7 @@ public class AdminServiceImpl implements IAdminService {
             AdminList adminList = new AdminList(adminPage.getContent(), request, adminPage.getTotalElements());
             return getAdminResponseList(adminList);
         } else {
-            throw new AdminException(messageSource.getMessage("admin.error.displaying.all.admin", null, Locale.ENGLISH));
+            throw new AdminException(EExceptionMessage.ERROR_DISPLAYING_ALL_ADMIN.getMessage());
         }
     }
 
@@ -149,7 +146,7 @@ public class AdminServiceImpl implements IAdminService {
         if (!(adminList.isEmpty())) {
             return mapper.convertToResponseList(adminList);
         } else {
-            throw new AdminException(messageSource.getMessage(ADMIN_NOT_FOUND, null, Locale.ENGLISH));
+            throw new AdminException(EExceptionMessage.ADMIN_NOT_FOUND.getMessage());
         }
     }
 
@@ -158,7 +155,7 @@ public class AdminServiceImpl implements IAdminService {
         List<Admin> adminList = repository.searchByHigh();
         if (adminList != null) return mapper.convertToResponseList(adminList);
         else {
-            throw new AdminException(messageSource.getMessage("admin.error.displaying.admin.active", null, Locale.ENGLISH));
+            throw new AdminException(EExceptionMessage.ERROR_DISPLAYING_ADMIN_ACTIVE.getMessage());
         }
     }
 
@@ -168,7 +165,7 @@ public class AdminServiceImpl implements IAdminService {
         if (optionalAdmin.isPresent()) {
             Admin admin = repository.getReferenceById(idAdmin);
             if (admin.getImage() != null) {
-                throw new AdminException(messageSource.getMessage("admin.already.contains.image", null, Locale.ENGLISH));
+                throw new AdminException(EExceptionMessage.THE_ADMIN_ALREADY_CONTAINS_IMAGE.getMessage());
             } else {
                 Image image = imageService.saveFile(multipartFile, pathFolderUpload, pathFileUpload);
                 image.setAdmin(admin);
@@ -176,7 +173,7 @@ public class AdminServiceImpl implements IAdminService {
                 repository.save(admin);
             }
         } else {
-            throw new AdminException(messageSource.getMessage(ADMIN_NOT_FOUND, null, Locale.ENGLISH));
+            throw new AdminException(EExceptionMessage.ADMIN_NOT_FOUND.getMessage());
         }
     }
 
@@ -193,10 +190,10 @@ public class AdminServiceImpl implements IAdminService {
                 imageService.deleteFileById(idImage, pathFolderUpload);
                 repository.save(admin);
             } else {
-                throw new AdminException(messageSource.getMessage("image.not.found", null, Locale.ENGLISH));
+                throw new ImageException(EExceptionMessage.IMAGE_NOT_FOUND.getMessage());
             }
         } else {
-            throw new AdminException(messageSource.getMessage(ADMIN_NOT_FOUND, null, Locale.ENGLISH));
+            throw new AdminException(EExceptionMessage.ADMIN_NOT_FOUND.getMessage());
         }
     }
 }

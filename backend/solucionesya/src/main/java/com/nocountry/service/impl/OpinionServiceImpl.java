@@ -7,28 +7,25 @@ import com.nocountry.dto.response.OpinionResponseList;
 import com.nocountry.exception.ClientException;
 import com.nocountry.exception.OpinionException;
 import com.nocountry.exception.ProvisionException;
+import com.nocountry.list.EExceptionMessage;
 import com.nocountry.mapper.OpinionMapper;
 import com.nocountry.model.Opinion;
 import com.nocountry.model.OpinionList;
 import com.nocountry.repository.IOpinionRepository;
 import com.nocountry.service.IOpinionService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.context.MessageSource;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
 import java.util.List;
-import java.util.Locale;
 import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
 public class OpinionServiceImpl implements IOpinionService {
 
-    private static final String OPINION_NOT_FOUND = "{opinion.not.found}";
-    private final MessageSource messageSource;
     private final IOpinionRepository repository;
     private final OpinionMapper mapper;
 
@@ -50,7 +47,7 @@ public class OpinionServiceImpl implements IOpinionService {
             Opinion opinionForSave = repository.save(opinionForConvert);
             return mapper.convertToResponse(opinionForSave);
         } else {
-            throw new OpinionException(messageSource.getMessage(OPINION_NOT_FOUND, null, Locale.ENGLISH));
+            throw new OpinionException(EExceptionMessage.OPINION_NOT_FOUND.getMessage());
         }
     }
 
@@ -63,7 +60,7 @@ public class OpinionServiceImpl implements IOpinionService {
             opinion.setUpdateDate(new Date());
             repository.save(opinion);
         } else {
-            throw new OpinionException(messageSource.getMessage(OPINION_NOT_FOUND, null, Locale.ENGLISH));
+            throw new OpinionException(EExceptionMessage.OPINION_NOT_FOUND.getMessage());
         }
     }
 
@@ -73,7 +70,7 @@ public class OpinionServiceImpl implements IOpinionService {
             Opinion opinion = repository.getReferenceById(idOpinion);
             return mapper.convertToResponse(opinion);
         } else {
-            throw new OpinionException(messageSource.getMessage(OPINION_NOT_FOUND, null, Locale.ENGLISH));
+            throw new OpinionException(EExceptionMessage.OPINION_NOT_FOUND.getMessage());
         }
     }
 
@@ -83,7 +80,7 @@ public class OpinionServiceImpl implements IOpinionService {
         if (!(opinionList.isEmpty())) {
             return mapper.convertToResponseList(opinionList);
         } else {
-            throw new OpinionException(messageSource.getMessage("opinion.error.displaying.all.opinion", null, Locale.ENGLISH));
+            throw new OpinionException(EExceptionMessage.ERROR_DISPLAYING_ALL_OPINION.getMessage());
         }
     }
 
@@ -94,7 +91,7 @@ public class OpinionServiceImpl implements IOpinionService {
             OpinionList opinionList = new OpinionList(opinionPage.getContent(), request, opinionPage.getTotalElements());
             return getOpinionResponseList(opinionList);
         } else {
-            throw new OpinionException(messageSource.getMessage("opinion.error.displaying.all.opinion", null, Locale.ENGLISH));
+            throw new OpinionException(EExceptionMessage.ERROR_DISPLAYING_ALL_OPINION.getMessage());
         }
     }
 
@@ -124,7 +121,7 @@ public class OpinionServiceImpl implements IOpinionService {
         if (!(opinionList.isEmpty())) {
             return mapper.convertToResponseList(opinionList);
         } else {
-            throw new OpinionException(messageSource.getMessage(OPINION_NOT_FOUND, null, Locale.ENGLISH));
+            throw new OpinionException(EExceptionMessage.OPINION_NOT_FOUND.getMessage());
         }
     }
 
@@ -133,7 +130,7 @@ public class OpinionServiceImpl implements IOpinionService {
         List<Opinion> opinionList = repository.searchByHigh();
         if (opinionList != null) return mapper.convertToResponseList(opinionList);
         else {
-            throw new OpinionException(messageSource.getMessage("opinion.error.displaying.opinion.active", null, Locale.ENGLISH));
+            throw new OpinionException(EExceptionMessage.ERROR_DISPLAYING_OPINION_ACTIVE.getMessage());
         }
     }
 }

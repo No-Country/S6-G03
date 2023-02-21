@@ -7,11 +7,11 @@ import com.nocountry.dto.response.ProviderResponse;
 import com.nocountry.dto.response.ProvisionResponse;
 import com.nocountry.exception.EmailAlreadyExistException;
 import com.nocountry.exception.ProviderException;
+import com.nocountry.list.EExceptionMessage;
 import com.nocountry.model.Provider;
 import com.nocountry.model.Provision;
 import com.nocountry.repository.IProviderRepository;
 import lombok.RequiredArgsConstructor;
-import org.springframework.context.MessageSource;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Component;
 
@@ -19,23 +19,19 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import java.util.Locale;
 
 @Component
 @RequiredArgsConstructor
 public class ProviderMapper {
 
-    private static final String REQUEST_WRONG_DATA = "{general.request.wrong.data}";
     private final BCryptPasswordEncoder encryptPassword;
     private final IProviderRepository repository;
-    private final MessageSource messageSource;
     private final ImageMapper imageMapper;
     private final ProvisionMapper provisionMapper;
 
-
     public Provider convertToEntity(Provider entity, ProviderRequest request) throws EmailAlreadyExistException, ProviderException {
         if (repository.existsByEmail(request.getEmail())) {
-            throw new EmailAlreadyExistException(messageSource.getMessage("general.email.already.exists", null, Locale.ENGLISH));
+            throw new EmailAlreadyExistException(EExceptionMessage.EMAIL_ALREADY_EXISTS.getMessage(request.getEmail()));
         }
         validateRequestCreate(request);
         entity.setFirstName(request.getFirstName());
@@ -46,7 +42,7 @@ public class ProviderMapper {
             String encryptedPassword = encryptPassword.encode(request.getPassword());
             entity.setPassword(encryptedPassword);
         } else {
-            throw new ProviderException(messageSource.getMessage("general.passwords.do.not.match", null, Locale.ENGLISH));
+            throw new ProviderException(EExceptionMessage.PASSWORD_DO_NOT_MATCH.getMessage());
         }
         entity.setAddress(request.getAddress());
         entity.setPhone(request.getPhone());
@@ -61,14 +57,14 @@ public class ProviderMapper {
         if (existMail && requestEmail.equals(entityEmail)) {
             extractedForConvertToEntityModifyBasic(entity, request);
         } else if (existMail) {
-            throw new EmailAlreadyExistException("{general.email.already.exists}");
+            throw new EmailAlreadyExistException(EExceptionMessage.EMAIL_ALREADY_EXISTS.getMessage(request.getEmail()));
         } else {
             extractedForConvertToEntityModifyFull(entity, request);
         }
         return entity;
     }
 
-    private static void extractedForConvertToEntityModifyBasic(Provider entity, ProviderRequestModify request) throws ProviderException {
+    private void extractedForConvertToEntityModifyBasic(Provider entity, ProviderRequestModify request) throws ProviderException {
         validateRequestModifyBasic(request);
         entity.setFirstName(request.getFirstName());
         entity.setLastName(request.getLastName());
@@ -77,7 +73,7 @@ public class ProviderMapper {
         entity.setUpdateDate(new Date());
     }
 
-    private static void extractedForConvertToEntityModifyFull(Provider entity, ProviderRequestModify request) throws ProviderException {
+    private void extractedForConvertToEntityModifyFull(Provider entity, ProviderRequestModify request) throws ProviderException {
         validateRequestModifyFull(request);
         entity.setFirstName(request.getFirstName());
         entity.setLastName(request.getLastName());
@@ -141,11 +137,11 @@ public class ProviderMapper {
                 if (request.getConfirmNewPassword() != null && request.getConfirmNewPassword().equals(request.getNewPassword())) {
                     entity.setPassword(encryptPassword.encode(request.getNewPassword()));
                 } else {
-                    throw new ProviderException("{general.passwords.do.not.match}");
+                    throw new ProviderException(EExceptionMessage.PASSWORD_DO_NOT_MATCH.getMessage());
                 }
             }
         } else {
-            throw new ProviderException("{general.wrong.password}");
+            throw new ProviderException(EExceptionMessage.WRONG_PASSWORD.getMessage());
         }
         return entity;
     }
@@ -154,20 +150,20 @@ public class ProviderMapper {
         if (request.getFirstName() == null || request.getLastName() == null || request.getEmail() == null ||
                 request.getPassword() == null || request.getAddress() == null || request.getPhone() == null ||
                 request.getConfirmPassword() == null) {
-            throw new ProviderException(REQUEST_WRONG_DATA);
+            throw new ProviderException(EExceptionMessage.REQUEST_WRONG_DATA.getMessage());
         }
     }
 
     private static void validateRequestModifyBasic(ProviderRequestModify request) throws ProviderException {
         if (request.getFirstName() == null || request.getLastName() == null || request.getAddress() == null || request.getPhone() == null) {
-            throw new ProviderException(REQUEST_WRONG_DATA);
+            throw new ProviderException(EExceptionMessage.REQUEST_WRONG_DATA.getMessage());
         }
     }
 
     private static void validateRequestModifyFull(ProviderRequestModify request) throws ProviderException {
         if (request.getFirstName() == null || request.getLastName() == null || request.getEmail() == null ||
                 request.getAddress() == null || request.getPhone() == null) {
-            throw new ProviderException(REQUEST_WRONG_DATA);
+            throw new ProviderException(EExceptionMessage.REQUEST_WRONG_DATA.getMessage());
         }
     }
 }

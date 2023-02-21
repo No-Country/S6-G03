@@ -10,6 +10,7 @@ import com.nocountry.exception.EmailAlreadyExistException;
 import com.nocountry.exception.ImageException;
 import com.nocountry.exception.ProviderException;
 import com.nocountry.exception.ProvisionException;
+import com.nocountry.list.EExceptionMessage;
 import com.nocountry.list.EPathUpload;
 import com.nocountry.mapper.ProviderMapper;
 import com.nocountry.model.Image;
@@ -22,7 +23,6 @@ import com.nocountry.repository.IProvisionRepository;
 import com.nocountry.service.IImageService;
 import com.nocountry.service.IProviderService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.context.MessageSource;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
@@ -33,15 +33,12 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Date;
 import java.util.List;
-import java.util.Locale;
 import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
 public class ProviderServiceImpl implements IProviderService {
 
-    private static final String PROVIDER_NOT_FOUND = "provider.not.found";
-    private final MessageSource messageSource;
     private final Path pathFolderUpload = Paths.get(EPathUpload.CREATE_PROVIDER_FOLDER.toString());
     private final String pathFileUpload = EPathUpload.PATH_PROVIDER_IMAGE.toString();
     private final ProviderMapper mapper;
@@ -49,7 +46,6 @@ public class ProviderServiceImpl implements IProviderService {
     private final IProvisionRepository provisionRepository;
     private final IImageService imageService;
     private final IImageRepository imageRepository;
-
 
     @Override
     public ProviderResponse save(ProviderRequest request) throws ProviderException, EmailAlreadyExistException {
@@ -68,7 +64,7 @@ public class ProviderServiceImpl implements IProviderService {
             Provider providerForSave = repository.save(providerForConvert);
             return mapper.convertToResponse(providerForSave);
         } else {
-            throw new ProviderException(messageSource.getMessage(PROVIDER_NOT_FOUND, null, Locale.ENGLISH));
+            throw new ProviderException(EExceptionMessage.PROVIDER_NOT_FOUND.getMessage());
         }
     }
 
@@ -81,7 +77,7 @@ public class ProviderServiceImpl implements IProviderService {
             Provider entityForSave = repository.save(entityForConvert);
             return mapper.convertToResponse(entityForSave);
         } else {
-            throw new ProviderException(messageSource.getMessage(PROVIDER_NOT_FOUND, null, Locale.ENGLISH));
+            throw new ProviderException(EExceptionMessage.PROVIDER_NOT_FOUND.getMessage());
         }
     }
 
@@ -96,7 +92,7 @@ public class ProviderServiceImpl implements IProviderService {
             removeListOfProvisions(idProvider, provider);
             repository.save(provider);
         } else {
-            throw new ProviderException(messageSource.getMessage(PROVIDER_NOT_FOUND, null, Locale.ENGLISH));
+            throw new ProviderException(EExceptionMessage.PROVIDER_NOT_FOUND.getMessage());
         }
     }
 
@@ -117,7 +113,7 @@ public class ProviderServiceImpl implements IProviderService {
             Provider provider = repository.getReferenceById(idProvider);
             return mapper.convertToResponse(provider);
         } else {
-            throw new ProviderException(messageSource.getMessage(PROVIDER_NOT_FOUND, null, Locale.ENGLISH));
+            throw new ProviderException(EExceptionMessage.PROVIDER_NOT_FOUND.getMessage());
         }
     }
 
@@ -127,7 +123,7 @@ public class ProviderServiceImpl implements IProviderService {
         if (!(providerList.isEmpty())) {
             return mapper.convertToResponseList(providerList);
         } else {
-            throw new ProviderException(messageSource.getMessage("provider.error.displaying.all.provider", null, Locale.ENGLISH));
+            throw new ProviderException(EExceptionMessage.ERROR_DISPLAYING_ALL_PROVIDER.getMessage());
         }
     }
 
@@ -138,7 +134,7 @@ public class ProviderServiceImpl implements IProviderService {
             ProviderList providerList = new ProviderList(providerPage.getContent(), request, providerPage.getTotalElements());
             return getProviderResponseList(providerList);
         } else {
-            throw new ProviderException(messageSource.getMessage("provider.error.displaying.all.provider", null, Locale.ENGLISH));
+            throw new ProviderException(EExceptionMessage.ERROR_DISPLAYING_ALL_PROVIDER.getMessage());
         }
     }
 
@@ -168,7 +164,7 @@ public class ProviderServiceImpl implements IProviderService {
         if (!(providerList.isEmpty())) {
             return mapper.convertToResponseList(providerList);
         } else {
-            throw new ProviderException(messageSource.getMessage(PROVIDER_NOT_FOUND, null, Locale.ENGLISH));
+            throw new ProviderException(EExceptionMessage.PROVIDER_NOT_FOUND.getMessage());
         }
     }
 
@@ -177,7 +173,7 @@ public class ProviderServiceImpl implements IProviderService {
         List<Provider> providerList = repository.searchByHigh();
         if (providerList != null) return mapper.convertToResponseList(providerList);
         else {
-            throw new ProviderException(messageSource.getMessage("provider.error.displaying.provider.active", null, Locale.ENGLISH));
+            throw new ProviderException(EExceptionMessage.ERROR_WHEN_DISPLAYING_ACTIVE_PROVIDERS.getMessage());
         }
     }
 
@@ -187,7 +183,7 @@ public class ProviderServiceImpl implements IProviderService {
         if (optionalProvider.isPresent()) {
             Provider provider = repository.getReferenceById(idProvider);
             if (provider.getImage() != null) {
-                throw new ProviderException(messageSource.getMessage("provider.already.contains.image", null, Locale.ENGLISH));
+                throw new ProviderException(EExceptionMessage.THE_PROVIDER_ALREADY_CONTAINS_IMAGE.getMessage());
             } else {
                 Image image = imageService.saveFile(multipartFile, pathFolderUpload, pathFileUpload);
                 image.setProvider(provider);
@@ -195,7 +191,7 @@ public class ProviderServiceImpl implements IProviderService {
                 repository.save(provider);
             }
         } else {
-            throw new ProviderException(messageSource.getMessage(PROVIDER_NOT_FOUND, null, Locale.ENGLISH));
+            throw new ProviderException(EExceptionMessage.PROVIDER_NOT_FOUND.getMessage());
         }
     }
 
@@ -212,10 +208,10 @@ public class ProviderServiceImpl implements IProviderService {
                 imageService.deleteFileById(idImage, pathFolderUpload);
                 repository.save(provider);
             } else {
-                throw new ImageException(messageSource.getMessage("image.not.found", null, Locale.ENGLISH));
+                throw new ImageException(EExceptionMessage.IMAGE_NOT_FOUND.getMessage());
             }
         } else {
-            throw new ProviderException(messageSource.getMessage(PROVIDER_NOT_FOUND, null, Locale.ENGLISH));
+            throw new ProviderException(EExceptionMessage.PROVIDER_NOT_FOUND.getMessage());
         }
     }
 
@@ -231,10 +227,10 @@ public class ProviderServiceImpl implements IProviderService {
                 provisionList.remove(provision);
                 repository.save(provider);
             } else {
-                throw new ProvisionException(messageSource.getMessage("provision.not.found", null, Locale.ENGLISH));
+                throw new ProvisionException(EExceptionMessage.PROVISION_NOT_FOUND.getMessage());
             }
         } else {
-            throw new ProviderException(messageSource.getMessage(PROVIDER_NOT_FOUND, null, Locale.ENGLISH));
+            throw new ProviderException(EExceptionMessage.PROVIDER_NOT_FOUND.getMessage());
         }
     }
 }

@@ -6,10 +6,10 @@ import com.nocountry.dto.request.AdminRequestPassword;
 import com.nocountry.dto.response.AdminResponse;
 import com.nocountry.exception.AdminException;
 import com.nocountry.exception.EmailAlreadyExistException;
+import com.nocountry.list.EExceptionMessage;
 import com.nocountry.model.Admin;
 import com.nocountry.repository.IAdminRepository;
 import lombok.RequiredArgsConstructor;
-import org.springframework.context.MessageSource;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Component;
 
@@ -17,21 +17,18 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import java.util.Locale;
 
 @Component
 @RequiredArgsConstructor
 public class AdminMapper {
 
-    private static final String REQUEST_WRONG_DATA = "{general.request.wrong.data}";
     private final BCryptPasswordEncoder encryptPassword;
     private final IAdminRepository repository;
     private final ImageMapper imageMapper;
-    private final MessageSource messageSource;
 
     public Admin convertToEntity(Admin entity, AdminRequest request) throws AdminException, EmailAlreadyExistException {
         if (repository.existsByEmail(request.getEmail())) {
-            throw new EmailAlreadyExistException(messageSource.getMessage("general.email.already.exists", null, Locale.ENGLISH));
+            throw new EmailAlreadyExistException(EExceptionMessage.EMAIL_ALREADY_EXISTS.getMessage(request.getEmail()));
         }
         validateRequestCreate(request);
         entity.setFirstName(request.getFirstName());
@@ -42,31 +39,28 @@ public class AdminMapper {
             String encryptedPassword = encryptPassword.encode(request.getPassword());
             entity.setPassword(encryptedPassword);
         } else {
-            throw new AdminException(messageSource.getMessage("general.passwords.do.not.match", null, Locale.ENGLISH));
+            throw new AdminException(EExceptionMessage.PASSWORD_DO_NOT_MATCH.getMessage());
         }
         entity.setAddress(request.getAddress());
         entity.setPhone(request.getPhone());
         return entity;
     }
 
-    public Admin convertToEntityModify(Admin entity, AdminRequestModify request)
-            throws EmailAlreadyExistException, AdminException {
-
+    public Admin convertToEntityModify(Admin entity, AdminRequestModify request) throws EmailAlreadyExistException, AdminException {
         String requestEmail = request.getEmail();
         String entityEmail = entity.getEmail();
         boolean existMail = repository.existsByEmail(requestEmail);
-
         if (existMail && requestEmail.equals(entityEmail)) {
             extractedForConvertToEntityModifyBasic(entity, request);
         } else if (existMail) {
-            throw new EmailAlreadyExistException("{general.email.already.exists}");
+            throw new EmailAlreadyExistException(EExceptionMessage.EMAIL_ALREADY_EXISTS.getMessage());
         } else {
             extractedForConvertToEntityModifyFull(entity, request);
         }
         return entity;
     }
 
-    private static void extractedForConvertToEntityModifyBasic(Admin entity, AdminRequestModify request) throws AdminException {
+    private void extractedForConvertToEntityModifyBasic(Admin entity, AdminRequestModify request) throws AdminException {
         validateRequestModifyBasic(request);
         entity.setFirstName(request.getFirstName());
         entity.setLastName(request.getLastName());
@@ -75,7 +69,7 @@ public class AdminMapper {
         entity.setUpdateDate(new Date());
     }
 
-    private static void extractedForConvertToEntityModifyFull(Admin entity, AdminRequestModify request) throws AdminException {
+    private void extractedForConvertToEntityModifyFull(Admin entity, AdminRequestModify request) throws AdminException {
         validateRequestModifyFull(request);
         entity.setFirstName(request.getFirstName());
         entity.setLastName(request.getLastName());
@@ -133,11 +127,11 @@ public class AdminMapper {
                 if (request.getConfirmNewPassword() != null && request.getConfirmNewPassword().equals(request.getNewPassword())) {
                     entity.setPassword(encryptPassword.encode(request.getNewPassword()));
                 } else {
-                    throw new AdminException("{general.passwords.do.not.match}");
+                    throw new AdminException(EExceptionMessage.PASSWORD_DO_NOT_MATCH.getMessage());
                 }
             }
         } else {
-            throw new AdminException("{general.wrong.password}");
+            throw new AdminException(EExceptionMessage.WRONG_PASSWORD.getMessage());
         }
         return entity;
     }
@@ -146,20 +140,20 @@ public class AdminMapper {
         if (request.getFirstName() == null || request.getLastName() == null || request.getEmail() == null ||
                 request.getPassword() == null || request.getAddress() == null || request.getPhone() == null ||
                 request.getConfirmPassword() == null) {
-            throw new AdminException(REQUEST_WRONG_DATA);
+            throw new AdminException(EExceptionMessage.REQUEST_WRONG_DATA.getMessage());
         }
     }
 
     private static void validateRequestModifyBasic(AdminRequestModify request) throws AdminException {
         if (request.getFirstName() == null || request.getLastName() == null || request.getAddress() == null || request.getPhone() == null) {
-            throw new AdminException(REQUEST_WRONG_DATA);
+            throw new AdminException(EExceptionMessage.REQUEST_WRONG_DATA.getMessage());
         }
     }
 
     private static void validateRequestModifyFull(AdminRequestModify request) throws AdminException {
         if (request.getFirstName() == null || request.getLastName() == null || request.getEmail() == null ||
                 request.getAddress() == null || request.getPhone() == null) {
-            throw new AdminException(REQUEST_WRONG_DATA);
+            throw new AdminException(EExceptionMessage.REQUEST_WRONG_DATA.getMessage());
         }
     }
 }

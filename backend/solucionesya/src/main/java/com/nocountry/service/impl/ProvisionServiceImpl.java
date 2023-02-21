@@ -8,6 +8,7 @@ import com.nocountry.dto.response.ProvisionResponseList;
 import com.nocountry.exception.ImageException;
 import com.nocountry.exception.ProviderException;
 import com.nocountry.exception.ProvisionException;
+import com.nocountry.list.EExceptionMessage;
 import com.nocountry.list.EPathUpload;
 import com.nocountry.mapper.ProvisionMapper;
 import com.nocountry.model.Image;
@@ -35,7 +36,6 @@ public class ProvisionServiceImpl implements IProvisionService {
 
     private final Path pathFolderUpload = Paths.get(EPathUpload.CREATE_PROVISION_FOLDER.toString());
     private final String pathFileUpload = EPathUpload.PATH_PROVISION_IMAGE.toString();
-    private static final String PROVISION_NOT_FOUND = "{provision.notFound}";
     private final ProvisionMapper mapper;
     private final IProvisionRepository repository;
     private final IImageService imageService;
@@ -58,7 +58,7 @@ public class ProvisionServiceImpl implements IProvisionService {
             Provision provisionForSave = repository.save(provisionForConvert);
             return mapper.convertToResponse(provisionForSave);
         } else {
-            throw new ProvisionException(PROVISION_NOT_FOUND);
+            throw new ProvisionException(EExceptionMessage.PROVISION_NOT_FOUND.getMessage());
         }
     }
 
@@ -71,7 +71,7 @@ public class ProvisionServiceImpl implements IProvisionService {
             provision.setUpdateDate(new Date());
             repository.save(provision);
         } else {
-            throw new ProvisionException(PROVISION_NOT_FOUND);
+            throw new ProvisionException(EExceptionMessage.PROVISION_NOT_FOUND.getMessage());
         }
     }
 
@@ -81,7 +81,7 @@ public class ProvisionServiceImpl implements IProvisionService {
             Provision provision = repository.getReferenceById(idProvision);
             return mapper.convertToResponse(provision);
         } else {
-            throw new ProvisionException(PROVISION_NOT_FOUND);
+            throw new ProvisionException(EExceptionMessage.PROVISION_NOT_FOUND.getMessage());
         }
     }
 
@@ -91,7 +91,7 @@ public class ProvisionServiceImpl implements IProvisionService {
         if (!(provisionList.isEmpty())) {
             return mapper.convertToResponseList(provisionList);
         } else {
-            throw new ProvisionException("{provision.errorDisplaying.all.provision}");
+            throw new ProvisionException(EExceptionMessage.ERROR_DISPLAYING_ALL_PROVISION.getMessage());
         }
     }
 
@@ -102,7 +102,7 @@ public class ProvisionServiceImpl implements IProvisionService {
             ProvisionList provisionList = new ProvisionList(provisionPage.getContent(), request, provisionPage.getTotalElements());
             return getProvisionResponseList(provisionList);
         } else {
-            throw new ProvisionException("{provision.errorDisplaying.all.provision}");
+            throw new ProvisionException(EExceptionMessage.ERROR_DISPLAYING_ALL_PROVISION.getMessage());
         }
     }
 
@@ -132,7 +132,7 @@ public class ProvisionServiceImpl implements IProvisionService {
         if (!(provisionList.isEmpty())) {
             return mapper.convertToResponseList(provisionList);
         } else {
-            throw new ProvisionException(PROVISION_NOT_FOUND);
+            throw new ProvisionException(EExceptionMessage.PROVISION_NOT_FOUND.getMessage());
         }
     }
 
@@ -141,7 +141,7 @@ public class ProvisionServiceImpl implements IProvisionService {
         List<Provision> provisionList = repository.searchByHigh();
         if (provisionList != null) return mapper.convertToResponseList(provisionList);
         else {
-            throw new ProvisionException("{provision.error.displaying.admin.active}");
+            throw new ProvisionException(EExceptionMessage.ERROR_DISPLAYING_PROVISION_ACTIVE.getMessage());
         }
     }
 
@@ -151,7 +151,7 @@ public class ProvisionServiceImpl implements IProvisionService {
         if (optionalProvision.isPresent()) {
             Provision provision = repository.getReferenceById(idProvision);
             if (provision.getImage() != null) {
-                throw new ProvisionException("{provision.already.contains.image}");
+                throw new ProvisionException(EExceptionMessage.THE_PROVISION_ALREADY_CONTAINS_IMAGE.getMessage());
             } else {
                 Image image = imageService.saveFile(multipartFile, pathFolderUpload, pathFileUpload);
                 image.setProvision(provision);
@@ -159,7 +159,7 @@ public class ProvisionServiceImpl implements IProvisionService {
                 repository.save(provision);
             }
         } else {
-            throw new ProvisionException(PROVISION_NOT_FOUND);
+            throw new ProvisionException(EExceptionMessage.PROVISION_NOT_FOUND.getMessage());
         }
     }
 
@@ -176,10 +176,10 @@ public class ProvisionServiceImpl implements IProvisionService {
                 imageService.deleteFileById(idImage, pathFolderUpload);
                 repository.save(provision);
             } else {
-                throw new ImageException("{image.not.found}");
+                throw new ImageException(EExceptionMessage.IMAGE_NOT_FOUND.getMessage());
             }
         } else {
-            throw new ProvisionException(PROVISION_NOT_FOUND);
+            throw new ProvisionException(EExceptionMessage.PROVISION_NOT_FOUND.getMessage());
         }
     }
 }

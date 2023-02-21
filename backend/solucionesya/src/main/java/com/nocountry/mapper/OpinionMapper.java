@@ -4,28 +4,25 @@ import com.nocountry.dto.request.OpinionRequest;
 import com.nocountry.dto.response.OpinionResponse;
 import com.nocountry.exception.ClientException;
 import com.nocountry.exception.ProvisionException;
+import com.nocountry.list.EExceptionMessage;
 import com.nocountry.model.Client;
 import com.nocountry.model.Opinion;
 import com.nocountry.model.Provision;
 import com.nocountry.repository.IClientRepository;
 import com.nocountry.repository.IProvisionRepository;
 import lombok.RequiredArgsConstructor;
-import org.springframework.context.MessageSource;
 import org.springframework.stereotype.Component;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import java.util.Locale;
 import java.util.Optional;
 
 @Component
 @RequiredArgsConstructor
 public class OpinionMapper {
 
-    private static final String REQUEST_WRONG_DATA = "{general.request.wrong.data}";
-    private final MessageSource messageSource;
     private final IProvisionRepository provisionRepository;
     private final IClientRepository clientRepository;
 
@@ -44,10 +41,10 @@ public class OpinionMapper {
                 entity.setClient(client);
                 return entity;
             } else {
-                throw new ClientException(messageSource.getMessage("client.not.found", null, Locale.ENGLISH));
+                throw new ClientException(EExceptionMessage.CLIENT_NOT_FOUND.getMessage());
             }
         } else {
-            throw new ProvisionException(messageSource.getMessage("provision.not.found", null, Locale.ENGLISH));
+            throw new ProvisionException(EExceptionMessage.PROVISION_NOT_FOUND.getMessage());
         }
     }
 
@@ -67,10 +64,10 @@ public class OpinionMapper {
                 entity.setUpdateDate(new Date());
                 return entity;
             } else {
-                throw new ClientException(messageSource.getMessage("client.not.found", null, Locale.ENGLISH));
+                throw new ClientException(EExceptionMessage.CLIENT_NOT_FOUND.getMessage());
             }
         } else {
-            throw new ProvisionException(messageSource.getMessage("provision.not.found", null, Locale.ENGLISH));
+            throw new ProvisionException(EExceptionMessage.PROVISION_NOT_FOUND.getMessage());
         }
     }
 
@@ -109,7 +106,7 @@ public class OpinionMapper {
     private static void validateRequest(OpinionRequest request) throws ProvisionException {
         if (request.getTitle() == null || request.getDescription() == null || request.getRating() == null ||
                 request.getIdProvision() == null || request.getIdClient() == null) {
-            throw new ProvisionException(REQUEST_WRONG_DATA);
+            throw new ProvisionException(EExceptionMessage.REQUEST_WRONG_DATA.getMessage());
         }
     }
 }
