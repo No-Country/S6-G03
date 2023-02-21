@@ -1,7 +1,7 @@
 import React from "react";
 import { Outlet } from "react-router-dom";
 
-function Direcciones() {
+function Addresses() {
     return (
         <div className="flex flex-col items-center justify-center">
 
@@ -98,4 +98,4 @@ function Direcciones() {
     )
 }
 
-export default Direcciones;
+export default Addresses;

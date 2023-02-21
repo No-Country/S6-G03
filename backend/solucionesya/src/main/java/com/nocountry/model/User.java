@@ -8,6 +8,8 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.MappedSuperclass;
+import jakarta.persistence.Temporal;
+import jakarta.persistence.TemporalType;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotEmpty;
 import lombok.Getter;
@@ -15,9 +17,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 import org.hibernate.Hibernate;
-import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.GenericGenerator;
-import org.hibernate.annotations.UpdateTimestamp;
 
 import java.util.Date;
 import java.util.Objects;
@@ -27,7 +27,7 @@ import java.util.Objects;
 @ToString
 @RequiredArgsConstructor
 @MappedSuperclass
-public class User {
+public class User  {
 
     @Id
     @Column(name = "user_id")
@@ -58,11 +58,13 @@ public class User {
     @Column(name = "profile_photo")
     protected String profilePhoto;
 
-    @CreationTimestamp
+    //@CreationTimestamp
+    @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "creation_date", nullable = false)
-    protected Date creationDate;
+    protected Date creationDate = new Date();
 
-    @UpdateTimestamp
+    //@UpdateTimestamp
+    @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "update_date")
     protected Date updateDate;
 
@@ -75,6 +77,10 @@ public class User {
 
     @Column(name = "soft_delete", nullable = false)
     protected boolean softDelete = Boolean.FALSE;
+
+    public String getFullName() {
+        return this.getFirstName() + " " + this.getLastName();
+    }
 
     @Override
     public boolean equals(Object o) {

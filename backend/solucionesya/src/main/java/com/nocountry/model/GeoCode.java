@@ -5,6 +5,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import jakarta.persistence.Temporal;
+import jakarta.persistence.TemporalType;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
@@ -12,6 +14,7 @@ import lombok.ToString;
 import org.hibernate.Hibernate;
 import org.hibernate.annotations.GenericGenerator;
 
+import java.util.Date;
 import java.util.Objects;
 
 @Getter
@@ -21,6 +24,7 @@ import java.util.Objects;
 @Entity
 @Table(name = "geocodes")
 public class GeoCode {
+
     @Id
     @Column(name = "geocode_id")
     @GeneratedValue(generator = "uuid")
@@ -29,6 +33,16 @@ public class GeoCode {
 
     private float latitude;
     private float longitude;
+
+    //@CreationTimestamp
+    @Temporal(TemporalType.TIMESTAMP)
+    @Column(name = "creation_date", nullable = false)
+    private Date creationDate = new Date();
+
+    //@UpdateTimestamp
+    @Temporal(TemporalType.TIMESTAMP)
+    @Column(name = "update_date")
+    private Date updateDate;
 
     @Override
     public boolean equals(Object o) {

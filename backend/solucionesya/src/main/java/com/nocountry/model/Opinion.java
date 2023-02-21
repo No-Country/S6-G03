@@ -7,8 +7,9 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
-import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
+import jakarta.persistence.Temporal;
+import jakarta.persistence.TemporalType;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
@@ -16,9 +17,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 import org.hibernate.Hibernate;
-import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.GenericGenerator;
-import org.hibernate.annotations.UpdateTimestamp;
 
 import java.util.Date;
 import java.util.Objects;
@@ -46,20 +45,26 @@ public class Opinion {
     @NotNull(message = "{rating.opinion.notnull}")
     private Integer rating;
 
+    // RELATION OPINION --> PROVIDER
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "provider_id")
     @ToString.Exclude
     private Provider provider;
 
+    // RELATION OPINION --> CLIENT
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "client_id")
     @ToString.Exclude
     private Client client;
 
-    @CreationTimestamp
-    private Date creationDate;
+    //@CreationTimestamp
+    @Temporal(TemporalType.TIMESTAMP)
+    @Column(name = "creation_date", nullable = false)
+    private Date creationDate = new Date();
 
-    @UpdateTimestamp
+    //@UpdateTimestamp
+    @Temporal(TemporalType.TIMESTAMP)
+    @Column(name = "update_date")
     private Date updateDate;
 
     private boolean softDelete = false;
