@@ -45,11 +45,11 @@ public class Opinion {
     @NotNull(message = "{rating.opinion.notnull}")
     private Integer rating;
 
-    // RELATION OPINION --> PROVISION
+    // RELATION OPINION --> PROVIDER
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "provision_id")
+    @JoinColumn(name = "provider_id")
     @ToString.Exclude
-    private Provision provision;
+    private Provider provider;
 
     // RELATION OPINION --> CLIENT
     @ManyToOne(fetch = FetchType.LAZY)

@@ -6,6 +6,7 @@ import com.nocountry.dto.response.OpinionResponse;
 import com.nocountry.dto.response.OpinionResponseList;
 import com.nocountry.exception.ClientException;
 import com.nocountry.exception.OpinionException;
+import com.nocountry.exception.ProviderException;
 import com.nocountry.exception.ProvisionException;
 import com.nocountry.list.EExceptionMessage;
 import com.nocountry.mapper.OpinionMapper;
@@ -31,7 +32,7 @@ public class OpinionServiceImpl implements IOpinionService {
 
 
     @Override
-    public OpinionResponse save(OpinionRequest request) throws OpinionException, ProvisionException, ClientException {
+    public OpinionResponse save(OpinionRequest request) throws OpinionException, ProviderException, ClientException {
         Opinion entity = new Opinion();
         Opinion entityForConvert = mapper.convertToEntity(entity, request);
         Opinion entityForSave = repository.save(entityForConvert);
@@ -39,7 +40,7 @@ public class OpinionServiceImpl implements IOpinionService {
     }
 
     @Override
-    public OpinionResponse modify(String idOpinion, OpinionRequest request) throws OpinionException, ProvisionException, ClientException {
+    public OpinionResponse modify(String idOpinion, OpinionRequest request) throws OpinionException, ProviderException, ClientException {
         Optional<Opinion> optionalOpinion = repository.findById(idOpinion);
         if (optionalOpinion.isPresent()) {
             Opinion opinion = optionalOpinion.get();

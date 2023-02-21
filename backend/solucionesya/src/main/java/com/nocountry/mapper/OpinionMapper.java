@@ -3,13 +3,14 @@ package com.nocountry.mapper;
 import com.nocountry.dto.request.OpinionRequest;
 import com.nocountry.dto.response.OpinionResponse;
 import com.nocountry.exception.ClientException;
-import com.nocountry.exception.ProvisionException;
+import com.nocountry.exception.OpinionException;
+import com.nocountry.exception.ProviderException;
 import com.nocountry.list.EExceptionMessage;
 import com.nocountry.model.Client;
 import com.nocountry.model.Opinion;
-import com.nocountry.model.Provision;
+import com.nocountry.model.Provider;
 import com.nocountry.repository.IClientRepository;
-import com.nocountry.repository.IProvisionRepository;
+import com.nocountry.repository.IProviderRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
@@ -23,43 +24,43 @@ import java.util.Optional;
 @RequiredArgsConstructor
 public class OpinionMapper {
 
-    private final IProvisionRepository provisionRepository;
+    private final IProviderRepository providerRepository;
     private final IClientRepository clientRepository;
 
-    public Opinion convertToEntity(Opinion entity, OpinionRequest request) throws ProvisionException, ClientException {
+    public Opinion convertToEntity(Opinion entity, OpinionRequest request) throws ClientException, ProviderException, OpinionException {
         validateRequest(request);
-        Optional<Provision> optionalProvision = provisionRepository.findById(request.getIdProvision());
-        if (optionalProvision.isPresent()) {
+        Optional<Provider> optionalProvider = providerRepository.findById(request.getIdProvider());
+        if (optionalProvider.isPresent()) {
             Optional<Client> optionalClient = clientRepository.findById(request.getIdClient());
             if (optionalClient.isPresent()) {
                 Client client = optionalClient.get();
-                Provision provision = optionalProvision.get();
+                Provider provider = optionalProvider.get();
                 entity.setTitle(request.getTitle());
                 entity.setDescription(request.getDescription());
                 entity.setRating(request.getRating());
-                entity.setProvision(provision);
+                entity.setProvider(provider);
                 entity.setClient(client);
                 return entity;
             } else {
                 throw new ClientException(EExceptionMessage.CLIENT_NOT_FOUND.getMessage());
             }
         } else {
-            throw new ProvisionException(EExceptionMessage.PROVISION_NOT_FOUND.getMessage());
+            throw new ProviderException(EExceptionMessage.PROVIDER_NOT_FOUND.getMessage());
         }
     }
 
-    public Opinion convertToEntityModify(Opinion entity, OpinionRequest request) throws ProvisionException, ClientException {
+    public Opinion convertToEntityModify(Opinion entity, OpinionRequest request) throws OpinionException, ClientException, ProviderException {
         validateRequest(request);
-        Optional<Provision> optionalProvision = provisionRepository.findById(request.getIdProvision());
-        if (optionalProvision.isPresent()) {
+        Optional<Provider> optionalProvider = providerRepository.findById(request.getIdProvider());
+        if (optionalProvider.isPresent()) {
             Optional<Client> optionalClient = clientRepository.findById(request.getIdClient());
             if (optionalClient.isPresent()) {
                 Client client = optionalClient.get();
-                Provision provision = optionalProvision.get();
+                Provider provider = optionalProvider.get();
                 entity.setTitle(request.getTitle());
                 entity.setDescription(request.getDescription());
                 entity.setRating(request.getRating());
-                entity.setProvision(provision);
+                entity.setProvider(provider);
                 entity.setClient(client);
                 entity.setUpdateDate(new Date());
                 return entity;
@@ -67,7 +68,7 @@ public class OpinionMapper {
                 throw new ClientException(EExceptionMessage.CLIENT_NOT_FOUND.getMessage());
             }
         } else {
-            throw new ProvisionException(EExceptionMessage.PROVISION_NOT_FOUND.getMessage());
+            throw new ProviderException(EExceptionMessage.PROVIDER_NOT_FOUND.getMessage());
         }
     }
 
@@ -77,8 +78,10 @@ public class OpinionMapper {
         response.setId(entity.getId());
         response.setTitle(entity.getTitle());
         response.setDescription(entity.getDescription());
-        response.setRating(entity.getRating());
-        response.setProvision(entity.getProvision().getName());
+
+        response.setRating(getRating(entity.getRating())); // DEVUELVE ESTRELLAS
+
+        response.setProvider(entity.getProvider().getFullName());
         response.setClient(entity.getClient().getFullName());
 
         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
@@ -103,10 +106,22 @@ public class OpinionMapper {
         return opinionResponseList;
     }
 
-    private static void validateRequest(OpinionRequest request) throws ProvisionException {
+    private static void validateRequest(OpinionRequest request) throws OpinionException {
         if (request.getTitle() == null || request.getDescription() == null || request.getRating() == null ||
-                request.getIdProvision() == null || request.getIdClient() == null) {
-            throw new ProvisionException(EExceptionMessage.REQUEST_WRONG_DATA.getMessage());
+                request.getIdProvider() == null || request.getIdClient() == null) {
+            throw new OpinionException(EExceptionMessage.REQUEST_WRONG_DATA.getMessage());
         }
+    }
+
+    public static String getRating(int rating) {
+        StringBuilder stars = new StringBuilder();
+        for (int i = 1; i <= 5; i++) {
+            if (i <= rating) {
+                stars.append("★");
+            } else {
+                stars.append("☆");
+            }
+        }
+        return stars.toString();
     }
 }

@@ -5,6 +5,7 @@ import com.nocountry.dto.response.OpinionResponse;
 import com.nocountry.dto.response.OpinionResponseList;
 import com.nocountry.exception.ClientException;
 import com.nocountry.exception.OpinionException;
+import com.nocountry.exception.ProviderException;
 import com.nocountry.exception.ProvisionException;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
@@ -28,11 +29,11 @@ import java.util.Optional;
 public interface IOpinionController {
 
     @PostMapping(path = "/create-opinion", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-    ResponseEntity<OpinionResponse> create(@Valid @RequestBody OpinionRequest request) throws OpinionException, ProvisionException, ClientException;
+    ResponseEntity<OpinionResponse> create(@Valid @RequestBody OpinionRequest request) throws OpinionException, ProvisionException, ClientException, ProviderException;
 
     @PutMapping(path = "/modify-opinion/{id-opinion}", consumes = MediaType.APPLICATION_JSON_VALUE)
     ResponseEntity<OpinionResponse> modify(@NotNull @PathVariable("id-opinion") String idOpinion,
-                                           @Valid @RequestBody OpinionRequest request) throws OpinionException, ProvisionException, ClientException;
+                                           @Valid @RequestBody OpinionRequest request) throws OpinionException, ClientException, ProviderException;
 
     @DeleteMapping(path = "/delete-opinion/{id-opinion}", produces = MediaType.APPLICATION_JSON_VALUE)
     ResponseEntity<OpinionResponse> delete(@NotNull @PathVariable("id-opinion") String idOpinion) throws OpinionException;

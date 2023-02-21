@@ -38,6 +38,11 @@ public class Provider extends User {
     @ToString.Exclude
     private List<Provision> provisions;
 
+    // RELATION PROVIDER --> OPINION
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "provider")
+    @ToString.Exclude
+    private List<Opinion> opinions;
+
     // RELATION PROVIDER --> IMAGE
     @OneToOne(mappedBy = "provider", cascade = CascadeType.ALL, orphanRemoval = true)
     @ToString.Exclude

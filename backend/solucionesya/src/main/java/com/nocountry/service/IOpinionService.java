@@ -5,6 +5,7 @@ import com.nocountry.dto.response.OpinionResponse;
 import com.nocountry.dto.response.OpinionResponseList;
 import com.nocountry.exception.ClientException;
 import com.nocountry.exception.OpinionException;
+import com.nocountry.exception.ProviderException;
 import com.nocountry.exception.ProvisionException;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
@@ -16,10 +17,10 @@ import java.util.List;
 public interface IOpinionService {
 
     @Transactional
-    OpinionResponse save(OpinionRequest request) throws OpinionException, ProvisionException, ClientException;
+    OpinionResponse save(OpinionRequest request) throws OpinionException, ProviderException, ClientException;
 
     @Transactional
-    OpinionResponse modify(String idOpinion, OpinionRequest request) throws OpinionException, ProvisionException, ClientException;
+    OpinionResponse modify(String idOpinion, OpinionRequest request) throws OpinionException, ProviderException, ClientException;
 
     @Transactional
     void delete(String idOpinion) throws OpinionException;

@@ -7,7 +7,7 @@ import com.nocountry.dto.response.OpinionResponse;
 import com.nocountry.dto.response.OpinionResponseList;
 import com.nocountry.exception.ClientException;
 import com.nocountry.exception.OpinionException;
-import com.nocountry.exception.ProvisionException;
+import com.nocountry.exception.ProviderException;
 import com.nocountry.service.IOpinionService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.PageRequest;
@@ -31,13 +31,13 @@ public class OpinionController implements IOpinionController {
     private final IOpinionService service;
 
     @Override
-    public ResponseEntity<OpinionResponse> create(OpinionRequest request) throws OpinionException, ProvisionException, ClientException {
+    public ResponseEntity<OpinionResponse> create(OpinionRequest request) throws OpinionException, ClientException, ProviderException {
         OpinionResponse response = service.save(request);
         return new ResponseEntity<>(response, HttpStatus.CREATED);
     }
 
     @Override
-    public ResponseEntity<OpinionResponse> modify(String idOpinion, OpinionRequest request) throws OpinionException, ProvisionException, ClientException {
+    public ResponseEntity<OpinionResponse> modify(String idOpinion, OpinionRequest request) throws OpinionException, ClientException, ProviderException {
         OpinionResponse response = service.modify(idOpinion, request);
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
