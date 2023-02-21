@@ -33,11 +33,6 @@ public class Provider extends User {
     @Enumerated(EnumType.STRING)
     private ERoleName role = ERoleName.ROLE_PROVIDER;
 
-    // RELATION PROVIDER --> OPINION
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "provider")
-    @ToString.Exclude
-    private List<Opinion> opinions;
-
     // RELATION PROVIDER --> PROVISION
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "provider")
     @ToString.Exclude

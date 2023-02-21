@@ -18,7 +18,6 @@ public class ProviderResponse {
     private String phone;
     private ImageResponse image;
     private String pathImage;
-    private List<OpinionResponse> opinionResponseList;
     private List<ProvisionResponse> provisionResponseList;
     private String creationDate;
     private String updateDate;

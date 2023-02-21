@@ -11,6 +11,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import jakarta.persistence.Temporal;
@@ -23,6 +24,7 @@ import org.hibernate.Hibernate;
 import org.hibernate.annotations.GenericGenerator;
 
 import java.util.Date;
+import java.util.List;
 import java.util.Objects;
 
 @Getter
@@ -62,6 +64,11 @@ public class Provision {
     @JoinColumn(name = "provider_id")
     @ToString.Exclude
     private Provider provider;
+
+    // RELATION PROVIDER --> OPINION
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "provision")
+    @ToString.Exclude
+    private List<Opinion> opinions;
 
     //@CreationTimestamp
     @Temporal(TemporalType.TIMESTAMP)

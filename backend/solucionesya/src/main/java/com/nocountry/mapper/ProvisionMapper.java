@@ -86,6 +86,10 @@ public class ProvisionMapper {
         } else {
             stringUpdateDate = " - ";
         }
+
+        //! TODO --> LIST OF OPINIONS
+        //? TODO -->ORDER OF THE LIST
+
         response.setCreationDate(stringCreationDate);
         response.setUpdateDate(stringUpdateDate);
         response.setSoftDelete(provision.isSoftDelete());

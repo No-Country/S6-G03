@@ -10,6 +10,7 @@ public interface ApiConstants {
     String IMAGE_URI = "/api/image";
     String PROVIDER_URI = "/api/provider";
     String PROVISION_URI = "/api/provision";
+    String OPINION_URI = "/api/opinion";
 
     int DEFAULT_PAGE = 0;
     int DEFAULT_PAGE_SIZE = 10;

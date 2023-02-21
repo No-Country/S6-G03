@@ -17,9 +17,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 import org.hibernate.Hibernate;
-import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.GenericGenerator;
-import org.hibernate.annotations.UpdateTimestamp;
 
 import java.util.Date;
 import java.util.Objects;
@@ -47,11 +45,13 @@ public class Opinion {
     @NotNull(message = "{rating.opinion.notnull}")
     private Integer rating;
 
+    // RELATION OPINION --> PROVISION
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "provider_id")
+    @JoinColumn(name = "provision_id")
     @ToString.Exclude
-    private Provider provider;
+    private Provision provision;
 
+    // RELATION OPINION --> CLIENT
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "client_id")
     @ToString.Exclude

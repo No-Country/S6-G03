@@ -109,9 +109,6 @@ public class ProviderMapper {
         List<ProvisionResponse> provisionResponseList = provisionMapper.convertToResponseList(provisionList);
         response.setProvisionResponseList(provisionResponseList);
 
-        // LIST OF OPINIONS
-        // ORDER OF THE LIST
-
         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
         String stringCreationDate = sdf.format(entity.getCreationDate());
         String stringUpdateDate;

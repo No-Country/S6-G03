@@ -64,9 +64,9 @@ public class ProviderServiceImpl implements IProviderService {
         Optional<Provider> optionalProvider = repository.findById(idProvider);
         if (optionalProvider.isPresent()) {
             Provider provider = optionalProvider.get();
-            Provider adminForConvert = mapper.convertToEntityModify(provider, request);
-            Provider adminForSave = repository.save(adminForConvert);
-            return mapper.convertToResponse(adminForSave);
+            Provider providerForConvert = mapper.convertToEntityModify(provider, request);
+            Provider providerForSave = repository.save(providerForConvert);
+            return mapper.convertToResponse(providerForSave);
         } else {
             throw new ProviderException(messageSource.getMessage(PROVIDER_NOT_FOUND, null, Locale.ENGLISH));
         }
