@@ -1,5 +1,8 @@
 import React from "react";
 import { Outlet } from "react-router-dom";
+import BackArrowIcon from "../../../src/assets/images/BackArrow.png";
+import HouseIcon from "../../../src/assets/images/House.png";
+import SuitcaseIcon from "../../../src/assets/images/Suitcase.png";
 
 function Addresses() {
     return (
@@ -10,7 +13,7 @@ function Addresses() {
                     <ul className="flex flex-row -mb-px">
                         <li className="mr-2 flex flex-col justify-center">
                             <a href="#" className="border-b-4 border-transparent rounded-t-lg hover:border-blue-700 dark:hover:text-gray-300">
-                                <img src="../../../src/assets/images/BackArrow.png" alt="back" />
+                                <img src={BackArrowIcon} alt="back" />
                             </a>
                         </li>
                     </ul>
@@ -66,12 +69,12 @@ function Addresses() {
                             <div className="flex flex-row w-full justify-between">
                                 <div className="flex flex-row items-center justify-evenly">
                                     <button type="radio" className="mx-2 border-4 border-[#9C9D9D] h-[25px] w-[25px]"></button>  
-                                    <img src="../../../src/assets/images/House.png" alt="back" width="25" height="25" className="mx-1"/>
+                                    <img src={HouseIcon} alt="back" width="25" height="25" className="mx-1"/>
                                     <label className="font-[400] text-[20px]">Domicilio Personal</label>
                                 </div>
                                 <div className="flex flex-row items-center">
                                     <button type="radio" className="mx-2 border-4 border-[#9C9D9D] h-[25px] w-[25px]"></button>  
-                                    <img src="../../../src/assets/images/Suitcase.png" alt="back" width="25" height="25" className="mx-1"/>
+                                    <img src={SuitcaseIcon} alt="back" width="25" height="25" className="mx-1"/>
                                     <label className="font-[400] text-[20px]">Domicilio Trabajo</label>
                                 </div>
                             </div>

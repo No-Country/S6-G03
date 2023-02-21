@@ -1,5 +1,5 @@
 import React from "react";
-
+import SearchIcon from "../../../src/assets/images/Search.png";
 
 function SearchBar() {
     return (
@@ -17,7 +17,7 @@ function SearchBar() {
                         type="text" />
 
                     <span className="absolute inset-y-0 right-0 flex items-center pr-3">
-                        <img src="../../../src/assets/images/Search.png" alt="" />
+                        <img src={SearchIcon} alt="" />
                     </span>
                 </label>
             </form>
