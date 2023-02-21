@@ -1,7 +1,8 @@
 package com.nocountry.dto.response;
 
-import com.nocountry.model.GeoCode;
 import lombok.Data;
+
+import java.util.List;
 
 @Data
 public class ProvisionResponse {
@@ -13,7 +14,8 @@ public class ProvisionResponse {
     private String price;
     private ImageResponse image;
     private String pathImage;
-    //private ProviderResponse providerResponse;
+    private String provider;
+    private List<OpinionResponse> opinionResponseList;
     private String creationDate;
     private String updateDate;
     private boolean softDelete;

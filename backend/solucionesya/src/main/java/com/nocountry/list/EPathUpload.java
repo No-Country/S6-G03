@@ -10,6 +10,10 @@ public enum EPathUpload {
 
     PATH_ADMIN_IMAGE("/uploadImages/admin/"),
 
+    CREATE_PROVIDER_FOLDER("./uploadImages/provider"),
+
+    PATH_PROVIDER_IMAGE("/uploadImages/provider/"),
+
     CREATE_PROVISION_FOLDER("./uploadImages/provision"),
 
     PATH_PROVISION_IMAGE("/uploadImages/provision/");

@@ -6,6 +6,7 @@ import com.nocountry.dto.response.AdminResponseList;
 import com.nocountry.dto.response.ProvisionResponse;
 import com.nocountry.dto.response.ProvisionResponseList;
 import com.nocountry.exception.ImageException;
+import com.nocountry.exception.ProviderException;
 import com.nocountry.exception.ProvisionException;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
@@ -31,11 +32,11 @@ public interface IProvisionController {
 
 
     @PostMapping(path = "/create-provision", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-    ResponseEntity<ProvisionResponse> create(@Valid @RequestBody ProvisionRequest request) throws ProvisionException;
+    ResponseEntity<ProvisionResponse> create(@Valid @RequestBody ProvisionRequest request) throws ProvisionException, ProviderException;
 
     @PutMapping(path = "/modify-provision/{id-provision}", consumes = MediaType.APPLICATION_JSON_VALUE)
     ResponseEntity<ProvisionResponse> modify(@NotNull @PathVariable("id-provision") String idProvision,
-                                             @Valid @RequestBody ProvisionRequestModify request) throws ProvisionException;
+                                             @Valid @RequestBody ProvisionRequestModify request) throws ProvisionException, ProviderException;
 
     @DeleteMapping(path = "/delete-provision/{id-provision}", produces = MediaType.APPLICATION_JSON_VALUE)
     ResponseEntity<ProvisionResponse> delete(@NotNull @PathVariable("id-provision") String idProvision) throws ProvisionException;

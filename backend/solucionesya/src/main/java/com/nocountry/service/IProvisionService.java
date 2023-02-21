@@ -5,6 +5,7 @@ import com.nocountry.dto.request.ProvisionRequestModify;
 import com.nocountry.dto.response.ProvisionResponse;
 import com.nocountry.dto.response.ProvisionResponseList;
 import com.nocountry.exception.ImageException;
+import com.nocountry.exception.ProviderException;
 import com.nocountry.exception.ProvisionException;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
@@ -17,10 +18,10 @@ import java.util.List;
 public interface IProvisionService {
 
     @Transactional
-    ProvisionResponse save(ProvisionRequest request) throws ProvisionException;
+    ProvisionResponse save(ProvisionRequest request) throws ProvisionException, ProviderException;
 
     @Transactional
-    ProvisionResponse modify(String idProvision, ProvisionRequestModify request) throws ProvisionException;
+    ProvisionResponse modify(String idProvision, ProvisionRequestModify request) throws ProvisionException, ProviderException;
 
     @Transactional
     void delete(String idProvision) throws ProvisionException;

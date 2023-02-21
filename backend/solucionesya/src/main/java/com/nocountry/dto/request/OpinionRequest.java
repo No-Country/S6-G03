@@ -3,11 +3,11 @@ package com.nocountry.dto.request;
 import lombok.Data;
 
 @Data
-public class ProvisionRequest {
+public class OpinionRequest {
 
-    private String name;
-    private String category;
+    private String title;
     private String description;
-    private String price;
+    private Integer rating;
     private String idProvider;
+    private String idClient;
 }
