@@ -79,7 +79,7 @@ public class OpinionMapper {
         response.setTitle(entity.getTitle());
         response.setDescription(entity.getDescription());
 
-        response.setRating(getRating(entity.getRating())); // DEVUELVE ESTRELLAS
+        response.setRating(getRating(entity.getRating())); //? SHOW STARS
 
         response.setProvider(entity.getProvider().getFullName());
         response.setClient(entity.getClient().getFullName());
@@ -113,6 +113,7 @@ public class OpinionMapper {
         }
     }
 
+    //? SHOW STARS
     public static String getRating(int rating) {
         StringBuilder stars = new StringBuilder();
         for (int i = 1; i <= 5; i++) {
