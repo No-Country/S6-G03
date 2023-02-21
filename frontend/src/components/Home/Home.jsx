@@ -30,7 +30,7 @@ function Home(){
                             <span className="font-[400] text-[23px] leading-28 text-[#FFFFFF] text-center">Podes contactar al profesional más cercano</span>
                         </div>
                         <div className="flex flex-col justify-around items-center bg-[#1E9E69] w-[280px] h-[200px] border-4 border-[#9CD5BE] rounded-[40px]">
-                            <img src="../../../src/assets/images/S.O.S..png" alt="location" />
+                            <img src="../../../src/assets/images/SOS.png" alt="location" />
                             <span className="font-[400] text-[23px] leading-28 text-[#FFFFFF] text-center">Podes encontrar servicios las 24hs del dia</span>
                         </div>
                         <div className="flex flex-col justify-around items-center bg-[#1E9E69] w-[280px] h-[200px] border-4 border-[#9CD5BE] rounded-[40px]">
