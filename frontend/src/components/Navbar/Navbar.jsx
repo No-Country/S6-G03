@@ -51,7 +51,7 @@ const Navbar = () => {
         </a> */}
         
         <div className=" flex justify-end">
-          <div className="flex items-center mt-4">
+          <div className="flex items-center mt-4 font-[400] text-[18px] leading-28">
             <a href="" className="md:mr-30 sm:mr-10">
               Quienes Somos
             </a>
@@ -63,7 +63,7 @@ const Navbar = () => {
           
          <div className="flex  gap-1  flex-col">
           
-            <button onClick={handleLogin} className="w-28 mt-3 border border-red-800 rounded-md bg-red-800">
+            <button onClick={handleLogin} className="w-[140px]  h-[40px] font-[400] text-[18px] leading-28  mt-3 border border-red-800 rounded-md bg-red-800">
               Cerrar Sesión
             </button>
             
@@ -71,12 +71,12 @@ const Navbar = () => {
           //Elementos si no hay user logueado 
          <div className="flex  gap-1  flex-col">
           <Link to="/login-usuario">
-          <button className="w-28 border border-green-secondary rounded-md">
+          <button className="w-[140px]  h-[40px] font-[400] text-[18px] leading-28  border border-green-secondary rounded-md">
               Iniciar Sesion
             </button>
           </Link>
             
-            <Link to="/registro-usuario"><button className="w-28 border border-green-secondary rounded-md bg-green-secondary">
+            <Link to="/registro-usuario"><button className="w-[140px]  h-[40px] font-[400] text-[18px] leading-28 border border-green-secondary rounded-md bg-green-secondary">
               Registrarme
             </button></Link>
             
