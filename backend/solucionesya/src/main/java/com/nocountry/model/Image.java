@@ -9,6 +9,8 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
+import jakarta.persistence.Temporal;
+import jakarta.persistence.TemporalType;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
@@ -46,13 +48,15 @@ public class Image {
 	@Column(name = "path")
 	private String path;
 
-	@CreationTimestamp
+	//@CreationTimestamp
+	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name = "creation_date", nullable = false)
-	protected Date creationDate = new Date();
+	private Date creationDate = new Date();
 
-	@UpdateTimestamp
+	//@UpdateTimestamp
+	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name = "update_date")
-	protected Date updateDate;
+	private Date updateDate;
 
 	// RELATION FILE --> ADMIN
 	@OneToOne(fetch = FetchType.LAZY)

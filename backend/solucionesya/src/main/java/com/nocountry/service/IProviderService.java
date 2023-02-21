@@ -1,22 +1,42 @@
 package com.nocountry.service;
 
-import com.nocountry.dto.ProviderRequest;
-import com.nocountry.dto.ProviderResponse;
-import com.nocountry.exception.UserException;
-//import com.nocountry.exception.EmailAlreadyExistException;
+import com.nocountry.dto.request.ProviderRequest;
+import com.nocountry.dto.request.ProviderRequestModify;
+import com.nocountry.dto.request.ProviderRequestPassword;
+import com.nocountry.dto.response.ProviderResponse;
+import com.nocountry.dto.response.ProviderResponseList;
+import com.nocountry.exception.EmailAlreadyExistException;
+import com.nocountry.exception.ImageException;
+import com.nocountry.exception.ProviderException;
+import com.nocountry.exception.ProvisionException;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 
 public interface IProviderService {
 
-    public List<ProviderResponse> getAllProviders() throws UserException;
+    ProviderResponse save(ProviderRequest request) throws ProviderException, EmailAlreadyExistException;
 
-    public ProviderResponse getById(String id) throws UserException;
+    ProviderResponse modify(String idProvider, ProviderRequestModify request) throws ProviderException, EmailAlreadyExistException;
 
-    public ProviderResponse createProvider(ProviderRequest providerRequest) throws UserException;
+    ProviderResponse modifyPassword(String idProvider, ProviderRequestPassword request) throws ProviderException;
 
-    public ProviderResponse modifyProvider(ProviderRequest providerRequest, String id) throws UserException;
+    void delete(String idProvider) throws ProviderException, ProvisionException;
 
-    public void deleteProvider(String id) throws UserException;
+    ProviderResponse getById(String idProvider) throws ProviderException;
 
+    List<ProviderResponse> getAll() throws ProviderException;
+
+    ProviderResponseList getAllxPages(PageRequest request) throws ProviderException;
+
+    List<ProviderResponse> getByValue(String value) throws ProviderException;
+
+    @Transactional(readOnly = true)
+    List<ProviderResponse> getForHigh() throws ProviderException;
+
+    void addFileToProvider(String idProvider, MultipartFile image) throws ProviderException, ImageException;
+
+    void removeFileToProvider(String idProvider, String idImage) throws ImageException, ProviderException;
 }
