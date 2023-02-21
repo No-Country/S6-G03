@@ -28,7 +28,7 @@ const App = () => {
             path="registro-usuario"
             element={<UserRegister/>}
           />
-    <Route path="registro-profesional" element={<h1>Registro de Profesional</h1>} />
+    <Route path="registro-profesional" element={<h1>Registro de  Profesional</h1>} />
     {/* Rutas de Busqueda de profesional */}
     <Route
             path="categorias-profesionales"
