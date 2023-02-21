@@ -1,15 +1,20 @@
 import { BrowserRouter, Route, Routes, Navigate } from "react-router-dom";
-import Navbar from "./components/Navbar/Navbar"
-import ProfesionalByCategory from "./components/Category/ProfesionalByCategory"
+import Navbar from "./components/Navbar/Navbar";
 import Login from "./components/Login/Login";
+import ProfesionalByCategory from "./components/Category/ProfesionalByCategory";
+import SingleProfessional from "./components/Category/SingleProfessional";
+import ServiceList from "./components/ServiceList/ServiceList";
+import UserRegister from "./components/Register/UserRegister";
+import ProfesionalByZone from "./components/Category/ProfesionalByZone";
+
 
 const App = () => {
 
   return ( 
     <>
-
       <BrowserRouter>
         <Navbar />
+        
         <Routes>
           <Route index element={<h1>Inicio</h1>} />
           {/* Rutas de Login */}
@@ -21,7 +26,7 @@ const App = () => {
           {/* Rutas de Registro */}
           <Route
             path="registro-usuario"
-            element={<h1>Registro de Profesional</h1>}
+            element={<UserRegister/>}
           />
           <Route
             path="registro-profesional"
@@ -30,13 +35,17 @@ const App = () => {
           {/* Rutas de Busqueda de profesional */}
           <Route
             path="categorias-profesionales"
-            element={<h1>Categorias de Profesionales</h1>}
+            element={<ServiceList/>}
           />
-          <Route path="profesionales/:categoria" element={<ProfesionalByCategory/>} />
           <Route
-            path="detalle-profesional/:id"
-            element={<h1>Detalle de un solo Profesional</h1>}
+            path="profesionales/:categoria"
+            element={<ProfesionalByCategory />}
           />
+            <Route
+            path="profesionales-zone"
+            element={<ProfesionalByZone />}
+          />
+          <Route path="profesional/:id" element={<SingleProfessional />} />
           {/* Rutas por defecto */}
           <Route path="restringido" element={<h1>No Autorizado</h1>} />
 

@@ -12,7 +12,7 @@ const ProfesionalByCategory = () => {
             <span className="text-[45px] font-bold">Resultados de:</span>
             <p className="   text-[45px] ">  Plomero </p>
           </div>
-          <div className="flex bg-green-secondary rounded-md md:w-[174px] md:h-[44px] text-center items-center gap-4  ml-80">
+          <div className="flex bg-green-secondary rounded-md md:w-[174px] md:h-[44px] text-center items-center gap-4 translate-x-[460px]">
             <span className="flex text-white font-bold text-center ml-4 mr-4">Filtrar por</span>
             <AiOutlineDown className=" w-6 h-6 text-white"/>
           </div>

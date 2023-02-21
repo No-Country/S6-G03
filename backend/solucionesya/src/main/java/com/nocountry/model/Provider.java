@@ -8,6 +8,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
 import jakarta.persistence.OneToMany;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
@@ -15,7 +16,6 @@ import lombok.Setter;
 import lombok.ToString;
 import org.hibernate.Hibernate;
 
-import javax.swing.text.html.Option;
 import java.util.List;
 import java.util.Objects;
 
@@ -25,20 +25,28 @@ import java.util.Objects;
 @Entity
 @RequiredArgsConstructor
 @Table(name = "providers")
-@AttributeOverride(name="id", column=@Column(name="provider_id"))
+@AttributeOverride(name = "id", column = @Column(name = "provider_id"))
 public class Provider extends User {
+
 
     @Column(name = "role", nullable = false)
     @Enumerated(EnumType.STRING)
     private ERoleName role = ERoleName.ROLE_PROVIDER;
 
+    // RELATION PROVIDER --> OPINION
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "provider")
     @ToString.Exclude
     private List<Opinion> opinions;
 
+    // RELATION PROVIDER --> SERVICE
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "provider")
     @ToString.Exclude
-    private List<Service> services;
+    private List<Provision> provisions;
+
+    // RELATION PROVIDER --> IMAGE
+    @OneToOne(mappedBy = "provider", cascade = CascadeType.ALL, orphanRemoval = true)
+    @ToString.Exclude
+    private Image image;
 
     @Override
     public boolean equals(Object o) {
