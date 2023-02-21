@@ -7,6 +7,7 @@ import PlomeriaImg from "../../../src/assets/images/Plomeria.png";
 import CerrajeriaImg from "../../../src/assets/images/cerrajeria.jpg";
 import ElectricistaImg from "../../../src/assets/images/Electricista.png";
 import GasistaImg from "../../../src/assets/images/gasista.jpg";
+import {Link} from "react-router-dom";
 
 function Home(){
     return(
@@ -56,25 +57,34 @@ function Home(){
                 <div className="flex flex-col items-center justify-around p-8 w-full h-[500px]">
                     <div><span className="font-[400] text-[43px] leading-56">Servicios más buscados</span></div>
                     <div className="flex flex-row items-center justify-around w-full">
+                        <Link to="/profesionales/plomeria">
                         <div>
                             <img src={PlomeriaImg} alt="" className="w-[261px] h-[250px] rounded-[40px]"/>
                             <span className="font-[400] text-[24px] leading-40">Plomeria</span>
                         </div>
-                     
+                        </Link>
+                        
+                        <Link to="/profesionales/cerrajeria">
                         <div>
                             <img src={CerrajeriaImg} alt="" className="w-[261px] h-[250px] rounded-[40px]"/>
                             <span className="font-[400] text-[24px] leading-40">Cerrajeria</span>
                         </div>
-          
+                        </Link>
+                        
+                        <Link to="/profesionales/electricista">
                         <div>
                             <img src={ElectricistaImg} alt="" className="w-[261px] h-[250px] rounded-[40px]"/>
                             <span className="font-[400] text-[24px] leading-40">Electricidad</span>
                         </div>
-
+                        </Link>
+                        
+                        <Link to="/profesionales/gasista">
                         <div>
                             <img src={GasistaImg} alt="" className="w-[261px] h-[250px] rounded-[40px]"/>
                             <span className="font-[400] text-[24px] leading-40">Gasista</span>
                         </div>
+                        </Link>
+                        
                     </div>
 
                     <div className="my-[15px]">
