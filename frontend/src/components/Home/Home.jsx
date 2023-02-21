@@ -55,7 +55,7 @@ function Home(){
                         </div>
                      
                         <div>
-                            <img src="../../../src/assets/images/Cerrajeria.png" alt="" className="w-[261px] h-[250px] rounded-[40px]"/>
+                            <img src="../../../src/assets/images/cerrajeria.jpg" alt="" className="w-[261px] h-[250px] rounded-[40px]"/>
                             <span className="font-[400] text-[24px] leading-40">Cerrajeria</span>
                         </div>
           
@@ -65,7 +65,7 @@ function Home(){
                         </div>
 
                         <div>
-                            <img src="../../../src/assets/images/GAsista.png" alt="" className="w-[261px] h-[250px] rounded-[40px]"/>
+                            <img src="../../../src/assets/images/gasista.jpg" alt="" className="w-[261px] h-[250px] rounded-[40px]"/>
                             <span className="font-[400] text-[24px] leading-40">Gasista</span>
                         </div>
                     </div>

@@ -1,5 +1,6 @@
 import { BrowserRouter, Route, Routes, Navigate } from "react-router-dom";
 import Navbar from "./components/Navbar/Navbar";
+
 import Login from "./components/Login/Login";
 import ProfesionalByCategory from "./components/Category/ProfesionalByCategory";
 import SingleProfessional from "./components/Category/SingleProfessional";
@@ -18,6 +19,7 @@ const App = () => {
     <>
     <BrowserRouter>
     <Navbar />
+    
     <Routes>
     <Route index element={<Home />} />
     {/* Rutas de Login */}

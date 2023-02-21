@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-const Navbar = () => {
+const OldNavbar = () => {
   return (
     <>
       <nav className=" flex justify-around py-3 items-center bg-[#275ECD] ">
@@ -32,4 +32,4 @@ const Navbar = () => {
   );
 };
 
-export default Navbar;
+export default OldNavbar;
