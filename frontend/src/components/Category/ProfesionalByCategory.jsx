@@ -22,14 +22,14 @@ const ProfesionalByCategory = (props) => {
         </div>
       </section>
       <section className="grid grid-cols-2 gap-6 mx-auto p-4 w-[80%] ">
-        <ProfesionalCard />
-        <ProfesionalCard />
-        <ProfesionalCard />
-        <ProfesionalCard />
-        <ProfesionalCard />
-        <ProfesionalCard />
-        <ProfesionalCard />
-        <ProfesionalCard />
+       <Link to="/profesional/1"><ProfesionalCard /></Link>
+       <Link to="/profesional/1"><ProfesionalCard /></Link>
+       <Link to="/profesional/1"><ProfesionalCard /></Link>
+       <Link to="/profesional/1"><ProfesionalCard /></Link>
+       <Link to="/profesional/1"><ProfesionalCard /></Link>
+       <Link to="/profesional/1"><ProfesionalCard /></Link>
+       <Link to="/profesional/1"><ProfesionalCard /></Link>
+       <Link to="/profesional/1"><ProfesionalCard /></Link>
       </section>
     </>
   );
