@@ -5,6 +5,7 @@ import ProfesionalByCategory from "./components/Category/ProfesionalByCategory";
 import SingleProfessional from "./components/Category/SingleProfessional";
 import ServiceList from "./components/ServiceList/ServiceList";
 import UserRegister from "./components/Register/UserRegister";
+import ProfesionalByZone from "./components/Category/ProfesionalByZone";
 
 
 const App = () => {
@@ -13,6 +14,7 @@ const App = () => {
     <>
       <BrowserRouter>
         <Navbar />
+        
         <Routes>
           <Route index element={<h1>Inicio</h1>} />
           {/* Rutas de Login */}
@@ -38,6 +40,10 @@ const App = () => {
           <Route
             path="profesionales/:categoria"
             element={<ProfesionalByCategory />}
+          />
+            <Route
+            path="profesionales-zone"
+            element={<ProfesionalByZone />}
           />
           <Route path="profesional/:id" element={<SingleProfessional />} />
           {/* Rutas por defecto */}
