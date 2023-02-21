@@ -3,7 +3,7 @@ import Footer from "./components/Footer/Footer";
 import Home from "./components/Home/Home";
 import UserProfile from "./components/UserProfile/UserProfile";
 import Direcciones from "./components/Addresses/Addresses";
-import Navbar from './components/Navbar/Navbar';
+import Navbar from './components/Navbar-old/Navbar-old';
 
 import 'flowbite';
 

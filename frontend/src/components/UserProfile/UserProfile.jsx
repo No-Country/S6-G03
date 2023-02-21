@@ -51,7 +51,7 @@ function MiPerfil(){
                     <form className="items-center justify-center mb-auto">
                     <label htmlFor="image" className="cursor-pointer">
                         {/* <img src="../../../src/assets/images/+.png" alt="" /> */}
-                        <i className="font-[700] text-[70px] flex flex col justify-center items-center p-0 m-0">+</i>
+                        <i className="font-[700] text-[70px]  flex col justify-center items-center p-0 m-0">+</i>
                     </label>
                         <input 
                         className="hidden"

@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 const Navbar = () => {
   return (
     <>
-      <nav className=" flex justify-around bg-slate-300  py-3 items-center bg-[#275ECD] ">
+      <nav className=" flex justify-around py-3 items-center bg-[#275ECD] ">
         <div className=" flex md:mx-auto">
           <img src="../../../src/assets/images/Logo_SolucionesYa.png" alt="Logo" />
         </div>

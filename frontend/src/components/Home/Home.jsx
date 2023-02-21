@@ -19,7 +19,7 @@ function Home(){
                     <SearchBar />
                 </div>
 
-                <div className="flex flex-col justify-around items-center bg-[#1E9E69] w-[1120px] h-[360px] p-3 rounded-[40px] p-8">
+                <div className="flex flex-col justify-around items-center bg-[#1E9E69] w-[1120px] h-[360px] p-3 rounded-[40px] ">
                     <div>
                         <span className="font-[700] text-[45px] leading-64 text-[#FFFFFF]">Ventajas de usar SolucionesYa!</span>
                     </div>
