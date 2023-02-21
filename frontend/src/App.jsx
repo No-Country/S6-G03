@@ -10,7 +10,7 @@ import Footer from "./components/Footer/Footer";
 import Home from "./components/Home/Home";
 import UserProfile from "./components/UserProfile/UserProfile";
 import Addresses from "./components/Addresses/Addresses";
-import 'flowbite';
+// import 'flowbite'; //PEPE VERIFICAR flowbite
 
 const App = () => {
 
