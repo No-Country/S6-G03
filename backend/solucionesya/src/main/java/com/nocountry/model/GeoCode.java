@@ -21,6 +21,7 @@ import java.util.Objects;
 @Entity
 @Table(name = "geocodes")
 public class GeoCode {
+
     @Id
     @Column(name = "geocode_id")
     @GeneratedValue(generator = "uuid")

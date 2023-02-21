@@ -57,7 +57,7 @@ const Navbar = () => {
             </a>
 
           </div>
-          {user?<div className="text-center mt-3 px-5"> {user}</div>:""}
+          {user?<div className="text-center mt-4 px-5"> {user}</div>:""}
          {user? 
         //  Elementos si esta logueado
           
