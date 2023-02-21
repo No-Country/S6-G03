@@ -9,7 +9,7 @@ import ProfesionalByZone from "./components/Category/ProfesionalByZone";
 import Footer from "./components/Footer/Footer";
 import Home from "./components/Home/Home";
 import UserProfile from "./components/UserProfile/UserProfile";
-import Adresses from "./components/Addresses/Addresses";
+import Addresses from "./components/Addresses/Addresses";
 import 'flowbite';
 
 const App = () => {
@@ -56,7 +56,7 @@ const App = () => {
             <Route path="change-password" element={<h3>Cambiar pass</h3>} />
             <Route path="mensajes" element={<h3>Mis Mensajes</h3>} />
           </Route>
-          <Route path="perfil-usuario/editar-direcciones" element={<Direcciones />} />
+          <Route path="perfil-usuario/editar-direcciones" element={<Addresses />} />
           {/* Rutas del Panel de Profesional */}
           <Route
             path="perfil-profesional"
