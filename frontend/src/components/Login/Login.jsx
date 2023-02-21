@@ -159,12 +159,13 @@ const Login = () => {
                   <button
                     type="submit"
                     form="login"
-                    className="mb-1.5  w-full  font-normal  text-center text-white bg-blue-600 hover:bg-blue-800 px-2 py-1.5 rounded-2xl"
+                    className="mb-1.5 h-16   w-full font-normal  text-center text-white  fondo hover:bg-blue-800 px-2 py-1.5 rounded-2xl"
                   >
                     Ingresar
                   </button>
                   {!provider && !user ? (
                     <LoginSocialGoogle
+                      className="h-16"
                       client_id={
                         "784746710413-13dn5g9q2cc1rr8p1j37u28cvrkfi33m.apps.googleusercontent.com"
                       }
@@ -178,13 +179,14 @@ const Login = () => {
                       }}
                     >
                       <GoogleLoginButton className="google login__button">
-                        <span className="login">Iniciar sesión con Google</span>
+                        <span className="login">Iniciar con Google</span>
                       </GoogleLoginButton>
                     </LoginSocialGoogle>
                   ) : (
                     ""
                   )}
                   <LoginSocialFacebook
+                    className="h-16"
                     appId="923289062026344"
                     onResolve={(response) => {
                       console.log(response);
@@ -194,8 +196,8 @@ const Login = () => {
                       console.log(error);
                     }}
                   >
-                    <FacebookLoginButton className="login__button">
-                      <span className="login">Iniciar sesión con Facebook</span>
+                    <FacebookLoginButton className="login__button ">
+                      <span className="login">Iniciar con Facebook</span>
                     </FacebookLoginButton>
                   </LoginSocialFacebook>
                 </div>

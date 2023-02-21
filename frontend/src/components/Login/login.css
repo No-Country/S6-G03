@@ -48,12 +48,17 @@ input {
   border-radius: 1rem !important;
   margin-bottom: 1rem !important;
 }
+.fondo {
+  background: rgb(39, 94, 205) !important;
+  font-size: 32px;
+}
 .google {
   width: 87%;
   margin-left: 1rem;
 }
 .login {
-  font-size: 20px;
+  font-size: 30px;
+  padding: 24px 10px !important;
 }
 .profile {
   text-align: center;
