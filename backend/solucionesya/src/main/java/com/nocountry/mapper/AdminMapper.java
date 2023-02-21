@@ -60,7 +60,7 @@ public class AdminMapper {
         return entity;
     }
 
-    private void extractedForConvertToEntityModifyBasic(Admin entity, AdminRequestModify request) throws AdminException {
+    private static void extractedForConvertToEntityModifyBasic(Admin entity, AdminRequestModify request) throws AdminException {
         validateRequestModifyBasic(request);
         entity.setFirstName(request.getFirstName());
         entity.setLastName(request.getLastName());
@@ -69,7 +69,7 @@ public class AdminMapper {
         entity.setUpdateDate(new Date());
     }
 
-    private void extractedForConvertToEntityModifyFull(Admin entity, AdminRequestModify request) throws AdminException {
+    private static void extractedForConvertToEntityModifyFull(Admin entity, AdminRequestModify request) throws AdminException {
         validateRequestModifyFull(request);
         entity.setFirstName(request.getFirstName());
         entity.setLastName(request.getLastName());

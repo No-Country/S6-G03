@@ -3,11 +3,13 @@ package com.nocountry.mapper;
 import com.nocountry.dto.request.ProviderRequest;
 import com.nocountry.dto.request.ProviderRequestModify;
 import com.nocountry.dto.request.ProviderRequestPassword;
+import com.nocountry.dto.response.OpinionResponse;
 import com.nocountry.dto.response.ProviderResponse;
 import com.nocountry.dto.response.ProvisionResponse;
 import com.nocountry.exception.EmailAlreadyExistException;
 import com.nocountry.exception.ProviderException;
 import com.nocountry.list.EExceptionMessage;
+import com.nocountry.model.Opinion;
 import com.nocountry.model.Provider;
 import com.nocountry.model.Provision;
 import com.nocountry.repository.IProviderRepository;
@@ -28,6 +30,7 @@ public class ProviderMapper {
     private final IProviderRepository repository;
     private final ImageMapper imageMapper;
     private final ProvisionMapper provisionMapper;
+    private final OpinionMapper opinionMapper;
 
     public Provider convertToEntity(Provider entity, ProviderRequest request) throws EmailAlreadyExistException, ProviderException {
         if (repository.existsByEmail(request.getEmail())) {
@@ -64,7 +67,7 @@ public class ProviderMapper {
         return entity;
     }
 
-    private void extractedForConvertToEntityModifyBasic(Provider entity, ProviderRequestModify request) throws ProviderException {
+    private static void extractedForConvertToEntityModifyBasic(Provider entity, ProviderRequestModify request) throws ProviderException {
         validateRequestModifyBasic(request);
         entity.setFirstName(request.getFirstName());
         entity.setLastName(request.getLastName());
@@ -73,7 +76,7 @@ public class ProviderMapper {
         entity.setUpdateDate(new Date());
     }
 
-    private void extractedForConvertToEntityModifyFull(Provider entity, ProviderRequestModify request) throws ProviderException {
+    private static void extractedForConvertToEntityModifyFull(Provider entity, ProviderRequestModify request) throws ProviderException {
         validateRequestModifyFull(request);
         entity.setFirstName(request.getFirstName());
         entity.setLastName(request.getLastName());
@@ -103,7 +106,14 @@ public class ProviderMapper {
         // ORDER OF THE LIST
         provisionList.sort((o1, o2) -> CharSequence.compare(o1.getName(), o2.getName()));
         List<ProvisionResponse> provisionResponseList = provisionMapper.convertToResponseList(provisionList);
-        response.setProvisionResponseList(provisionResponseList);
+        response.setProvisionList(provisionResponseList);
+
+        // LIST OF OPINIONS
+        List<Opinion> opinionList = entity.getOpinions();
+        // ORDER OF THE LIST
+        opinionList.sort(((o1, o2) -> CharSequence.compare(o1.getTitle(), o2.getTitle())));
+        List<OpinionResponse> opinionResponseList = opinionMapper.convertToResponseList(opinionList);
+        response.setOpinionList(opinionResponseList);
 
         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
         String stringCreationDate = sdf.format(entity.getCreationDate());
