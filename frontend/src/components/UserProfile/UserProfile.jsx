@@ -1,7 +1,11 @@
 import React, { useState } from "react";
 import { Link, Outlet } from "react-router-dom";
+import EditIcon from "../../../src/assets/images/edit.png";
+import DeleteIcon from "../../../src/assets/images/delete.png";
+import BackArrowIcon from "../../../src/assets/images/BackArrow.png";
+import PlusIcon from "../../../src/assets/images/PlusCircle.png";
 
-function MiPerfil(){
+function UserProfile(){
 
     const [input, setInput] = useState({
         username: "",
@@ -24,7 +28,7 @@ function MiPerfil(){
                 <ul className="flex flex-row -mb-px justify-evenly">
                     <li className="mr-2 flex flex-col justify-center">
                         <a href="#" className="border-b-4 border-transparent rounded-t-lg hover:border-blue-700 dark:hover:text-gray-300">
-                            <img src="../../../src/assets/images/BackArrow.png" alt="back" />
+                            <img src={BackArrowIcon} alt="back" />
                         </a>
                     </li>
 
@@ -182,22 +186,22 @@ function MiPerfil(){
                                             <p>Ciudad de Mexico</p>
                                         </div>
                                        <div className="flex flex-row justify-end gap-10">
-                                            <button><img src="../../../src/assets/images/edit.png" alt="add" width="20" height="20"/></button>
-                                            <button><img src="../../../src/assets/images/delete.png" alt="add" width="20" height="20"/></button>
+                                            <button><img src={EditIcon} alt="add" width="20" height="20"/></button>
+                                            <button><img src={DeleteIcon} alt="add" width="20" height="20"/></button>
                                        </div>
                                     </li>
                                     <li className="flex flex-col justify-center">
                                         <span>Calle: Andres Osuna #125</span>
                                        <div className="flex flex-row justify-end gap-10">
-                                            <button><img src="../../../src/assets/images/edit.png" alt="add" width="20" height="20"/></button>
-                                            <button><img src="../../../src/assets/images/delete.png" alt="add" width="20" height="20"/></button>
+                                            <button><img src={EditIcon} alt="add" width="20" height="20"/></button>
+                                            <button><img src={DeleteIcon} alt="add" width="20" height="20"/></button>
                                        </div>
                                     </li>
                                     <li className="flex flex-col justify-center">
                                         <span>Calle: Andres Osuna #125</span>
                                        <div className="flex flex-row justify-end gap-10">
-                                            <button><img src="../../../src/assets/images/edit.png" alt="add" width="20" height="20"/></button>
-                                            <button><img src="../../../src/assets/images/delete.png" alt="add" width="20" height="20"/></button>
+                                            <button><img src={EditIcon} alt="add" width="20" height="20"/></button>
+                                            <button><img src={DeleteIcon} alt="add" width="20" height="20"/></button>
                                        </div>
                                     </li>
                                 </ul>
@@ -208,7 +212,7 @@ function MiPerfil(){
                             className="flex flex-row justify-between items-center w-full bg-[#B6B8B8] hover:bg-gray-400 font-[700] text-[20px] rounded-[10px] px-4 py-1.5 text-center"
                             type="button">
                             Agregar Direccion 
-                            <img src="../../../src/assets/images/PlusCircle.png" alt="add" width="20" height="20"/>
+                            <img src={PlusIcon} alt="add" width="20" height="20"/>
                             </button>
                         </Link>
                     </div>
@@ -218,4 +222,4 @@ function MiPerfil(){
     )
 };
 
-export default MiPerfil;
+export default UserProfile;

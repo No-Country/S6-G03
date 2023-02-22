@@ -37,7 +37,7 @@ const App = () => {
             element={<ServiceList/>}
           />
     <Route
-            path="profesionales/:categoria"
+            path="profesionales/:category"
             element={<ProfesionalByCategory />}
           />
             <Route
