@@ -25,21 +25,26 @@ input {
   border-radius: 10px;
   width: 100%;
 }
-.sesion {
-  line-height: 64px;
-  font-size: 45px;
-}
-.correo {
+.inicio {
+  line-height: 28px;
   font-size: 32px;
-  line-height: 36px;
 }
-.olvidar {
-  font-size: 25px;
+.email {
+  font-size: 16px;
+  line-height: 16px;
+}
+.forgot {
+  font-size: 16px;
   line-height: 32px;
 }
-.cuenta {
-  font-size: 23px;
+.account {
+  font-size: 16px;
   line-height: 28px;
+}
+.register {
+  font-size: 16px;
+  line-height: 28px;
+  font-weight: bold;
 }
 .facebook {
   margin-bottom: 1rem !important;
@@ -50,26 +55,26 @@ input {
 }
 .fondo {
   background: rgb(39, 94, 205) !important;
-  font-size: 32px;
+  font-size: 20px;
 }
 .google {
   width: 87%;
   margin-left: 1rem;
 }
-.login {
-  font-size: 30px;
+.login__google {
+  font-size: 20px;
   padding: 24px 10px !important;
 }
 .profile {
   text-align: center;
-  font-size: 32px;
+  font-size: 20px;
 }
 .picture {
   width: 100%;
   max-width: 7rem;
   margin: 0 auto;
   object-fit: cover;
-  margin-bottom: 2rem;
+  margin-bottom: 1rem;
 }
 .logout {
   box-shadow: 0px 0px 0px 2px #9fb4f2;
@@ -85,6 +90,7 @@ input {
   padding: 12px 37px;
   text-decoration: none;
   text-shadow: 0px 1px 0px #283966;
+  margin-bottom: 1rem;
 }
 .logout:hover {
   background: linear-gradient(to bottom, #476e9e 5%, #7892c2 100%);

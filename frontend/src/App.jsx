@@ -14,51 +14,53 @@ import Addresses from "./components/Addresses/Addresses";
 // import 'flowbite'; //PEPE VERIFICAR flowbite
 
 const App = () => {
-
-  return ( 
+  return (
     <>
-    <BrowserRouter>
-    <Navbar />
-    
-    <Routes>
-    <Route index element={<Home />} />
-    {/* Rutas de Login */}
-    <Route path="login-usuario" element={<Login />} />
-    <Route path="login-profesional" element={<h1>Login de Profesional</h1>} />
-    {/* Rutas de Registro */}
-    <Route
-            path="registro-usuario"
-            element={<UserRegister/>}
+      <BrowserRouter>
+        <Navbar />
+
+        <Routes>
+          <Route index element={<Home />} />
+          {/* Rutas de Login */}
+          <Route path="login-usuario" element={<Login />} />
+          <Route
+            path="login-profesional"
+            element={<h1>Login de Profesional</h1>}
           />
-    <Route path="registro-profesional" element={<h1>Registro de  Profesional</h1>} />
-    {/* Rutas de Busqueda de profesional */}
-    <Route
-            path="categorias-profesionales"
-            element={<ServiceList/>}
+          {/* Rutas de Registro */}
+          <Route path="registro-usuario" element={<UserRegister />} />
+          <Route
+            path="registro-profesional"
+            element={<h1>Registro de Profesional</h1>}
           />
-    <Route
+          {/* Rutas de Busqueda de profesional */}
+          <Route path="categorias-profesionales" element={<ServiceList />} />
+          <Route
             path="profesionales/:category"
             element={<ProfesionalByCategory />}
           />
-            <Route
-            path="profesionales-zone"
-            element={<ProfesionalByZone />}
-          />
-    <Route path="profesional/:id" element={<SingleProfessional />} />
-    {/* Rutas por defecto */}
-    <Route path="restringido" element={<h1>No Autorizado</h1>} />
-    
-    
-    {/* Rutas del Panel de Usuario */}
-    <Route index element={<UserProfile />} />
-          <Route path="perfil-usuario" element={/*user ? <UserPanel /> : <Navigate to="/login" replace />*/ <UserProfile />}>
-  
+          <Route path="profesionales-zone" element={<ProfesionalByZone />} />
+          <Route path="profesional/:id" element={<SingleProfessional />} />
+          {/* Rutas por defecto */}
+          <Route path="restringido" element={<h1>No Autorizado</h1>} />
+
+          {/* Rutas del Panel de Usuario */}
+          <Route index element={<UserProfile />} />
+          <Route
+            path="perfil-usuario"
+            element={
+              /*user ? <UserPanel /> : <Navigate to="/login" replace />*/ <UserProfile />
+            }
+          >
             <Route path="editar" element={<h1>Editar perfil</h1>} />
             <Route path="contratos" element={<h1>Contratos</h1>} />
             <Route path="change-password" element={<h3>Cambiar pass</h3>} />
             <Route path="mensajes" element={<h3>Mis Mensajes</h3>} />
           </Route>
-          <Route path="perfil-usuario/editar-direcciones" element={<Addresses />} />
+          <Route
+            path="perfil-usuario/editar-direcciones"
+            element={<Addresses />}
+          />
           {/* Rutas del Panel de Profesional */}
           <Route
             path="perfil-profesional"

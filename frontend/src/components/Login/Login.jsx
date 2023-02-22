@@ -17,7 +17,7 @@ const Login = () => {
   const [password, setPassword] = useState("");
   const [alerta, setAlerta] = useState();
   const [profile, setProfile] = useState(null);
-  const [user, setUser] = useState(null);
+  const [showUser, setShowUser] = useState(null);
   const [provider, setProvider] = useState("");
   const [showPwd, setShowPwd] = useState(false);
   let errorMessage = "";
@@ -60,31 +60,16 @@ const Login = () => {
 
   return (
     <>
-      {/* Google */}
-      {provider && user ? (
-        <div className="profile">
-          <h2>{user.name}</h2>
-          <h4>{user.email}</h4>
-          <img className="picture" src={user.picture} alt="" />
-          <button className="logout" onClick={handleLogout}>
-            Salir
-          </button>
-        </div>
-      ) : (
-        ""
-      )}
-
-      {!profile ? (
+      {!profile && !showUser ? (
         <div className="flex flex-wrap min-h-screen w-full content-center justify-center  py-10">
           <div className="flex flex-wrap content-center justify-center rounded-l-md bg-white">
             <div className="w-auto">
-              <h1 className=" text-left font-bold sesion pt-2">
+              <h1 className=" text-left font-bold inicio pt-2">
                 Iniciar sesión
               </h1>
-
               <form id="login" className="mt-4" onSubmit={handleLogin}>
                 <div className="mb-3">
-                  <label className="mb-2 flex text-left correo font-bold">
+                  <label className="mb-2 flex text-left email font-bold">
                     Correo
                   </label>
                   <input
@@ -100,7 +85,7 @@ const Login = () => {
                 </div>
 
                 <div className="mb-3">
-                  <label className="mb-2 flex text-left correo font-bold">
+                  <label className="mb-2 flex text-left email font-bold">
                     Contraseña
                   </label>
                   <input
@@ -138,20 +123,20 @@ const Login = () => {
                 <div className="mb-3  text-right flex-wrap content-end">
                   <a
                     href="#"
-                    className="text-right  olvidar font-normal underline text-zinc-900"
+                    className="text-right  forgot font-normal underline text-zinc-900"
                   >
                     Olvidé mi usuario o contraseña
                   </a>
                 </div>
                 <div className="text-right pb-4">
-                  <span className=" text-gray-400 cuenta font-normal">
+                  <span className=" text-gray-400 account font-normal">
                     No tienes cuenta?
                   </span>
                   <a
                     href="registro-usuario"
-                    className=" font-normal cuenta pl-2 text-blue-700"
+                    className=" font-normal register pl-2 text-blue-700"
                   >
-                    Registrate aquí
+                    Regístrate aquí
                   </a>
                 </div>
 
@@ -159,32 +144,28 @@ const Login = () => {
                   <button
                     type="submit"
                     form="login"
-                    className="mb-1.5 h-16   w-full font-normal  text-center text-white  fondo hover:bg-blue-800 px-2 py-1.5 rounded-2xl"
+                    className="mb-1.5 h-11   w-full font-normal  text-center text-white  fondo hover:bg-blue-800 px-2 py-1.5 rounded-2xl"
                   >
                     Ingresar
                   </button>
-                  {!provider && !user ? (
-                    <LoginSocialGoogle
-                      className="h-16"
-                      client_id={
-                        "784746710413-13dn5g9q2cc1rr8p1j37u28cvrkfi33m.apps.googleusercontent.com"
-                      }
-                      onResolve={({ provider, data }) => {
-                        setProvider(provider);
-                        setUser(data);
-                        console.log(provider, data);
-                      }}
-                      onReject={(err) => {
-                        console.log(err);
-                      }}
-                    >
-                      <GoogleLoginButton className="google login__button">
-                        <span className="login">Iniciar con Google</span>
-                      </GoogleLoginButton>
-                    </LoginSocialGoogle>
-                  ) : (
-                    ""
-                  )}
+                  <LoginSocialGoogle
+                    className="h-16"
+                    client_id={
+                      "784746710413-13dn5g9q2cc1rr8p1j37u28cvrkfi33m.apps.googleusercontent.com"
+                    }
+                    onResolve={({ provider, data }) => {
+                      setProvider(provider);
+                      setShowUser(data);
+                      console.log(provider, data);
+                    }}
+                    onReject={(err) => {
+                      console.log(err);
+                    }}
+                  >
+                    <GoogleLoginButton className="google login__button">
+                      <span className="login__google">Ingresar con Google</span>
+                    </GoogleLoginButton>
+                  </LoginSocialGoogle>
                   <LoginSocialFacebook
                     className="h-16"
                     appId="923289062026344"
@@ -196,8 +177,8 @@ const Login = () => {
                       console.log(error);
                     }}
                   >
-                    <FacebookLoginButton className="login__button ">
-                      <span className="login">Iniciar con Facebook</span>
+                    <FacebookLoginButton className="login__button w-full ">
+                      <span className="login">Ingresar con Facebook</span>
                     </FacebookLoginButton>
                   </LoginSocialFacebook>
                 </div>
@@ -208,7 +189,19 @@ const Login = () => {
       ) : (
         ""
       )}
-
+      {/* Google */}
+      {showUser ? (
+        <div className="profile">
+          <h2>{showUser.name}</h2>
+          <h4>{showUser.email}</h4>
+          <img className="picture" src={showUser.picture} alt="" />
+          <button className="logout" onClick={handleLogout}>
+            Salir
+          </button>
+        </div>
+      ) : (
+        ""
+      )}
       {/* Facebook */}
       {profile ? (
         <div className="profile">
