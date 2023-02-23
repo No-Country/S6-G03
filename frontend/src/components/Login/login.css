@@ -26,44 +26,57 @@ input {
   width: 100%;
 }
 .inicio {
-  line-height: 28px;
+  line-height: 36px;
   font-size: 32px;
+  width: 350px;
 }
 .email {
-  font-size: 16px;
-  line-height: 16px;
+  font-size: 23px;
+  line-height: 24px;
 }
 .forgot {
   font-size: 16px;
-  line-height: 32px;
+  line-height: 20px;
 }
 .account {
   font-size: 16px;
-  line-height: 28px;
+  line-height: 20px;
+  width: 136px;
+  color: #000000;
 }
 .register {
   font-size: 16px;
-  line-height: 28px;
+  line-height: 20px;
   font-weight: bold;
+  color: #275ecd;
+  width: 110px;
 }
 .facebook {
   margin-bottom: 1rem !important;
 }
 .login__button {
-  border-radius: 1rem !important;
+  border-radius: 16px !important;
   margin-bottom: 1rem !important;
 }
 .fondo {
-  background: rgb(39, 94, 205) !important;
+  background: #275ecd !important;
   font-size: 20px;
 }
 .google {
   width: 87%;
   margin-left: 1rem;
+  text-align: center;
+}
+.login {
+  display: flex;
+  justify-content: center;
 }
 .login__google {
   font-size: 20px;
   padding: 24px 10px !important;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 .profile {
   text-align: center;

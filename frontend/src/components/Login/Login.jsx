@@ -129,12 +129,12 @@ const Login = () => {
                   </a>
                 </div>
                 <div className="text-right pb-4">
-                  <span className=" text-gray-400 account font-normal">
-                    No tienes cuenta?
+                  <span className=" account font-normal">
+                    ¿No tienes cuenta?
                   </span>
                   <a
                     href="registro-usuario"
-                    className=" font-normal register pl-2 text-blue-700"
+                    className=" font-normal register pl-2"
                   >
                     Regístrate aquí
                   </a>
@@ -149,7 +149,7 @@ const Login = () => {
                     Ingresar
                   </button>
                   <LoginSocialGoogle
-                    className="h-16"
+                    className="h-16 "
                     client_id={
                       "784746710413-13dn5g9q2cc1rr8p1j37u28cvrkfi33m.apps.googleusercontent.com"
                     }
@@ -163,7 +163,9 @@ const Login = () => {
                     }}
                   >
                     <GoogleLoginButton className="google login__button">
-                      <span className="login__google">Ingresar con Google</span>
+                      <span className="login__google ">
+                        Ingresar con Google
+                      </span>
                     </GoogleLoginButton>
                   </LoginSocialGoogle>
                   <LoginSocialFacebook
