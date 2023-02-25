@@ -1,6 +1,5 @@
 import { BrowserRouter, Route, Routes, Navigate } from "react-router-dom";
 import Navbar from "./components/Navbar/Navbar";
-
 import Login from "./components/Login/Login";
 import ProfesionalByCategory from "./components/Category/ProfesionalByCategory";
 import SingleProfessional from "./components/Category/SingleProfessional";
@@ -11,6 +10,7 @@ import Footer from "./components/Footer/Footer";
 import Home from "./components/Home/Home";
 import UserProfile from "./components/UserProfile/UserProfile";
 import Addresses from "./components/Addresses/Addresses";
+import ConfirmationRequest from "./components/Payments/ConfirmationRequest";
 // import 'flowbite'; //PEPE VERIFICAR flowbite
 
 const App = () => {
@@ -18,8 +18,9 @@ const App = () => {
     <>
       <BrowserRouter>
         <Navbar />
-
+        
         <Routes>
+        <Route path="confirmar-pago" element={<ConfirmationRequest/>} />
           <Route index element={<Home />} />
           {/* Rutas de Login */}
           <Route path="login-usuario" element={<Login />} />
@@ -46,6 +47,8 @@ const App = () => {
 
           {/* Rutas del Panel de Usuario */}
           <Route index element={<UserProfile />} />
+          
+          
           <Route
             path="perfil-usuario"
             element={
@@ -75,6 +78,7 @@ const App = () => {
             <Route path="contratos" element={<h1>Contratos</h1>} />
             <Route path="change-password" element={<h3>Cambiar pass</h3>} />
             <Route path="mensajes" element={<h3>Mis Mensajes</h3>} />
+            
           </Route>
         </Routes>
         <Footer />
