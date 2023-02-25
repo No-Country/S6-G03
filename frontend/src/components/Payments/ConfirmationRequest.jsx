@@ -3,8 +3,8 @@ import { AiOutlineArrowLeft } from "react-icons/ai"
 
 const ConfirmationRequest = () => {
     return (
-        <section className="w-[80%] mx-auto mt-[156px] container mb-10 ">
-            <div className="flex  items-center mb-6">
+        <section className="w-[80%] mx-auto mt-[156px] container mb-10 grid place-items-center ">
+            <div className="flex -translate-x-[360px]  items-center mb-6">
                 <AiOutlineArrowLeft className="w-[48px] h-[48px] fill-blue-primary " />
                 <div className="flex ">
                     <span className="text-[45px] font-bold">Volver</span>
@@ -25,11 +25,11 @@ const ConfirmationRequest = () => {
                     <span className='text-[32px] font-bold'>$1000</span>
                 </div>
             </div>
-            <div className='mt-20 ml-4'>
+            <div className='mt-20 ml-4 -translate-x-20'>
                 <p className='font-bold text-[32px]'>La contraction incluye:</p>
                 <p className='text-[32px]'>Presupuesto del servicio en el siguiente domicilio</p>
             </div>
-            <div className='mt-16 ml-4'>
+            <div className='mt-16 ml-4 -translate-x-10 '>
                 <p className='text-[32px] '>
                     <span className='font-bold'>Domicilio:</span>
                     Merlo 4061 - Remedios de Escalada CP 1826                   
@@ -37,7 +37,7 @@ const ConfirmationRequest = () => {
                     <p className='text-[32px] '><span className='font-bold '>Entre las calles:</span> Sáenz Peña - De la Cruz</p>
                 <p className='text-[32px]'>Presupuesto del servicio en el siguiente domicilio</p>
             </div>
-            <div className='mt-10 flex gap-4 mb-24 ml-4'>               
+            <div className='mt-10 flex gap-4 mb-24 ml-4 -translate-x-1'>               
                 <p className='text-[32px] '><span className='font-bold'>Contacto:</span> 11 6228-3220(Esteban Rivellota)</p>
                 <button className='border-4 text-blue-primary-80 text-[23px] font-bold border-gray-400 lg:translate-x-4 lg:translate-y-16 rounded-full w-[219] h-16 px-4 py-2'>
                 Editar / Elegir otra
