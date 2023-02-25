@@ -11,6 +11,7 @@ import Home from "./components/Home/Home";
 import UserProfile from "./components/UserProfile/UserProfile";
 import Addresses from "./components/Addresses/Addresses";
 import ConfirmationRequest from "./components/Payments/ConfirmationRequest";
+import PaymentMethods from "./components/Payments/PaymentMethods";
 // import 'flowbite'; //PEPE VERIFICAR flowbite
 
 const App = () => {
@@ -21,6 +22,7 @@ const App = () => {
         
         <Routes>
         <Route path="confirmar-pago" element={<ConfirmationRequest/>} />
+        <Route path="medios-de-pago" element={<PaymentMethods/>} />
           <Route index element={<Home />} />
           {/* Rutas de Login */}
           <Route path="login-usuario" element={<Login />} />
