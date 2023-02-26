@@ -1,47 +1,30 @@
 package com.nocountry.service;
 
-import com.nocountry.dto.response.ImageResponse;
 import com.nocountry.exception.ImageException;
 import com.nocountry.model.Image;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.nio.file.Path;
+import java.io.IOException;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public interface IImageService {
 
     @Transactional
-    void init(Path pathFolderUpload) throws ImageException;
+    Image saveImage(MultipartFile multipartFile) throws ImageException, IOException;
 
     @Transactional
-    String uploadFiles(MultipartFile multipartFile, Path pathFolderUpload) throws ImageException;
+    void modifyImage(String idImage, MultipartFile multipartFile) throws ImageException, IOException;
 
     @Transactional
-    Image saveFile(MultipartFile multipartFile, Path pathFolderUpload, String pathFileUpload) throws ImageException;
-
-    ImageResponse getFileResponse(Image image);
-
-    @Transactional
-    List<Image> saveFiles(List<MultipartFile> multipartFiles, Path pathFolderUpload, String pathFileUpload) throws ImageException;
-
-    @Transactional
-    List<ImageResponse> getFilesResponses(List<Image> imageList);
-
-    @Transactional
-    Image modifyFile(String id, MultipartFile multipartFile, Path pathFolderUpload, String pathFileUpload) throws ImageException;
-
-    @Transactional
-    void deleteFileById(String id, Path pathFolderUpload) throws ImageException;
-
-    @Transactional
-    String deleteFileByOriginalName(String originalName, Path pathFileUpload);
-
-    @Transactional
-    void deleteAll(Path pathFolderUpload);
+    void deleteImage(String idImage) throws IOException, ImageException;
 
     @Transactional(readOnly = true)
-    Image getById(String id) throws ImageException;
+    Optional<Image> getImageById(String idImage) throws ImageException;
+
+    @Transactional(readOnly = true)
+    List<Image> getAllImage();
 }
