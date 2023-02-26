@@ -2,7 +2,6 @@ package com.nocountry.controller;
 
 import com.nocountry.dto.request.ProvisionRequest;
 import com.nocountry.dto.request.ProvisionRequestModify;
-import com.nocountry.dto.response.AdminResponseList;
 import com.nocountry.dto.response.ProvisionResponse;
 import com.nocountry.dto.response.ProvisionResponseList;
 import com.nocountry.exception.ImageException;
@@ -23,6 +22,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.Optional;
 
@@ -61,10 +61,15 @@ public interface IProvisionController {
 
     @PostMapping(path = "/add-image-to-provision/{id-provision}", consumes = {MediaType.APPLICATION_JSON_VALUE, MediaType.MULTIPART_FORM_DATA_VALUE},
             produces = MediaType.APPLICATION_JSON_VALUE)
-    ResponseEntity<ProvisionResponse> addFileToProvision(@NotNull @PathVariable("id-provision") String idProvision,
-                                                         @RequestParam(value = "image", required = false) MultipartFile image) throws ProvisionException, ImageException;
+    ResponseEntity<ProvisionResponse> addImageToProvision(@NotNull @PathVariable("id-provision") String idProvision,
+                                                          @RequestParam(value = "multipartFile", required = false) MultipartFile multipartFile) throws ProvisionException, ImageException, IOException;
+
+    @PutMapping(path = "/modify-image-to-provision/{id-provision}", consumes = {MediaType.APPLICATION_JSON_VALUE, MediaType.MULTIPART_FORM_DATA_VALUE},
+            produces = MediaType.APPLICATION_JSON_VALUE)
+    ResponseEntity<ProvisionResponse> modifyImageToProvision(@NotNull @PathVariable("id-provision") String idProvision,
+                                                             @RequestParam(value = "multipartFile", required = false) MultipartFile multipartFile) throws ProvisionException, ImageException, IOException;
 
     @DeleteMapping(path = "/remove-image-to-provision/{id-provision}/image/{id-image}", produces = MediaType.APPLICATION_JSON_VALUE)
-    ResponseEntity<ProvisionResponse> removeFileToProvision(@NotNull @PathVariable("id-provision") String idProvision,
-                                                            @NotNull @PathVariable("id-image") String idImage) throws ImageException, ProvisionException;
+    ResponseEntity<ProvisionResponse> removeImageToProvision(@NotNull @PathVariable("id-provision") String idProvision,
+                                                             @NotNull @PathVariable("id-image") String idImage) throws ImageException, ProvisionException, IOException;
 }

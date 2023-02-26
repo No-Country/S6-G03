@@ -13,6 +13,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
 import java.util.List;
 
 public interface IProviderService {
@@ -21,7 +22,7 @@ public interface IProviderService {
 
     ProviderResponse modify(String idProvider, ProviderRequestModify request) throws ProviderException, EmailAlreadyExistException;
 
-    ProviderResponse modifyPassword(String idProvider, ProviderRequestPassword request) throws ProviderException;
+    void modifyPassword(String idProvider, ProviderRequestPassword request) throws ProviderException;
 
     void delete(String idProvider) throws ProviderException, ProvisionException;
 
@@ -36,7 +37,10 @@ public interface IProviderService {
     @Transactional(readOnly = true)
     List<ProviderResponse> getForHigh() throws ProviderException;
 
-    void addFileToProvider(String idProvider, MultipartFile image) throws ProviderException, ImageException;
+    void addImageToProvider(String idProvider, MultipartFile image) throws ProviderException, ImageException, IOException;
 
-    void removeFileToProvider(String idProvider, String idImage) throws ImageException, ProviderException;
+    @Transactional
+    void modifyImageToProvider(String idProvider, MultipartFile image) throws ProviderException, ImageException, IOException;
+
+    void removeImageToProvider(String idProvider, String idImage) throws ImageException, ProviderException, IOException;
 }
