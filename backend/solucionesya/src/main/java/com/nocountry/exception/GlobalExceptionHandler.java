@@ -180,14 +180,21 @@ public class GlobalExceptionHandler {
         return new ResponseEntity<>(errorResponse, status);
     }
 
-   /* @ExceptionHandler(value = ImageException.class)
+    @ExceptionHandler(value = ImageException.class)
     protected ResponseEntity<ErrorResponse> handlerFileException(ImageException exception) {
 
         ErrorResponse errorResponse = null;
         HttpStatus status = null;
-        String typeException = "FILE EXCEPTION";
+        String typeException = "IMAGE EXCEPTION";
 
-        if (exception.getMessage().equals(EExceptionMessage.FILE_NOT_FOUND.getMessage())) {
+        if (exception.getMessage().equals(EExceptionMessage.IMAGE_NOT_VALID.getMessage())) {
+            errorResponse = buildErrorResponse(HttpStatus.NOT_FOUND, typeException,
+                    EExceptionMessage.IMAGE_NOT_VALID.getMessage(),
+                    exception);
+            status = HttpStatus.BAD_REQUEST;
+        }
+
+       /* if (exception.getMessage().equals(EExceptionMessage.FILE_NOT_FOUND.getMessage())) {
             errorResponse = buildErrorResponse(HttpStatus.NOT_FOUND, typeException,
                     EExceptionMessage.FILE_NOT_FOUND.getMessage(),
                     exception);
@@ -216,12 +223,12 @@ public class GlobalExceptionHandler {
                     EExceptionMessage.ERROR_DELETING_FILE.getMessage(),
                     exception);
             status = HttpStatus.INTERNAL_SERVER_ERROR;
-        }
+        }*/
         assert status != null;
         return new ResponseEntity<>(errorResponse, status);
     }
 
-    @ExceptionHandler(MaxUploadSizeExceededException.class)
+   /* @ExceptionHandler(MaxUploadSizeExceededException.class)
     public ResponseEntity<ErrorResponse> handlerMaxUploadSizeException(MaxUploadSizeExceededException exception) {
 
         String typeException = "MAX UPLOAD SIZE EXCEEDED EXCEPTION";

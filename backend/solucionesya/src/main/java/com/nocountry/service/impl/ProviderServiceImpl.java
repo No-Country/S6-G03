@@ -11,7 +11,6 @@ import com.nocountry.exception.ImageException;
 import com.nocountry.exception.ProviderException;
 import com.nocountry.exception.ProvisionException;
 import com.nocountry.list.EExceptionMessage;
-import com.nocountry.list.EPathUpload;
 import com.nocountry.mapper.ProviderMapper;
 import com.nocountry.model.Image;
 import com.nocountry.model.Provider;
@@ -29,8 +28,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.nio.file.Path;
-import java.nio.file.Paths;
+import java.io.IOException;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
@@ -39,8 +37,6 @@ import java.util.Optional;
 @RequiredArgsConstructor
 public class ProviderServiceImpl implements IProviderService {
 
-    private final Path pathFolderUpload = Paths.get(EPathUpload.CREATE_PROVIDER_FOLDER.toString());
-    private final String pathFileUpload = EPathUpload.PATH_PROVIDER_IMAGE.toString();
     private final ProviderMapper mapper;
     private final IProviderRepository repository;
     private final IProvisionRepository provisionRepository;
@@ -69,13 +65,13 @@ public class ProviderServiceImpl implements IProviderService {
     }
 
     @Override
-    public ProviderResponse modifyPassword(String idProvider, ProviderRequestPassword request) throws ProviderException {
+    public void modifyPassword(String idProvider, ProviderRequestPassword request) throws ProviderException {
         Optional<Provider> providerOptional = repository.findById(idProvider);
         if (providerOptional.isPresent()) {
             Provider provider = providerOptional.get();
             Provider entityForConvert = mapper.convertToEntityModifyPassword(provider, request);
             Provider entityForSave = repository.save(entityForConvert);
-            return mapper.convertToResponse(entityForSave);
+            mapper.convertToResponse(entityForSave);
         } else {
             throw new ProviderException(EExceptionMessage.PROVIDER_NOT_FOUND.getMessage());
         }
@@ -104,6 +100,25 @@ public class ProviderServiceImpl implements IProviderService {
                 Provision provision = provisionList.get(i);
                 removeProvision(idProvider, provision.getId());
             }
+        }
+    }
+
+    @Transactional
+    public void removeProvision(String idProvider, String idProvision) throws ProvisionException, ProviderException {
+        Optional<Provider> optionalProvider = repository.findById(idProvider);
+        if (optionalProvider.isPresent()) {
+            Provider provider = optionalProvider.get();
+            Optional<Provision> optionalProvision = provisionRepository.findById(idProvision);
+            if (optionalProvision.isPresent()) {
+                Provision provision = optionalProvision.get();
+                List<Provision> provisionList = provider.getProvisions();
+                provisionList.remove(provision);
+                repository.save(provider);
+            } else {
+                throw new ProvisionException(EExceptionMessage.PROVISION_NOT_FOUND.getMessage());
+            }
+        } else {
+            throw new ProviderException(EExceptionMessage.PROVIDER_NOT_FOUND.getMessage());
         }
     }
 
@@ -178,14 +193,14 @@ public class ProviderServiceImpl implements IProviderService {
     }
 
     @Override
-    public void addFileToProvider(String idProvider, MultipartFile multipartFile) throws ProviderException, ImageException {
+    public void addImageToProvider(String idProvider, MultipartFile multipartFile) throws ProviderException, ImageException, IOException {
         Optional<Provider> optionalProvider = repository.findById(idProvider);
         if (optionalProvider.isPresent()) {
             Provider provider = repository.getReferenceById(idProvider);
             if (provider.getImage() != null) {
                 throw new ProviderException(EExceptionMessage.THE_PROVIDER_ALREADY_CONTAINS_IMAGE.getMessage());
             } else {
-                Image image = imageService.saveFile(multipartFile, pathFolderUpload, pathFileUpload);
+                Image image = imageService.saveImage(multipartFile);
                 image.setProvider(provider);
                 provider.setImage(image);
                 repository.save(provider);
@@ -196,7 +211,27 @@ public class ProviderServiceImpl implements IProviderService {
     }
 
     @Override
-    public void removeFileToProvider(String idProvider, String idImage) throws ImageException, ProviderException {
+    public void modifyImageToProvider(String idProvider, MultipartFile multipartFile) throws ProviderException, ImageException, IOException {
+        Optional<Provider> optionalProvider = repository.findById(idProvider);
+        if (optionalProvider.isPresent()) {
+            Provider provider = repository.getReferenceById(idProvider);
+            if (provider.getImage() != null) {
+                Image image = provider.getImage();
+                imageService.modifyImage(image.getId(), multipartFile);
+                image.setProvider(provider);
+                provider.setImage(image);
+                provider.setUpdateDate(new Date());
+                repository.save(provider);
+            } else {
+                throw new ImageException(EExceptionMessage.IMAGE_NOT_FOUND.getMessage());
+            }
+        } else {
+            throw new ProviderException(EExceptionMessage.PROVISION_NOT_FOUND.getMessage());
+        }
+    }
+
+    @Override
+    public void removeImageToProvider(String idProvider, String idImage) throws ImageException, ProviderException, IOException {
         Optional<Provider> optionalProvider = repository.findById(idProvider);
         if (optionalProvider.isPresent()) {
             Provider provider = repository.getReferenceById(idProvider);
@@ -205,29 +240,10 @@ public class ProviderServiceImpl implements IProviderService {
                 Image image = imageRepository.getReferenceById(idImage);
                 image.setProvider(null);
                 provider.setImage(null);
-                imageService.deleteFileById(idImage, pathFolderUpload);
+                imageService.deleteImage(idImage);
                 repository.save(provider);
             } else {
                 throw new ImageException(EExceptionMessage.IMAGE_NOT_FOUND.getMessage());
-            }
-        } else {
-            throw new ProviderException(EExceptionMessage.PROVIDER_NOT_FOUND.getMessage());
-        }
-    }
-
-    @Transactional
-    public void removeProvision(String idProvider, String idProvision) throws ProvisionException, ProviderException {
-        Optional<Provider> optionalProvider = repository.findById(idProvider);
-        if (optionalProvider.isPresent()) {
-            Provider provider = optionalProvider.get();
-            Optional<Provision> optionalProvision = provisionRepository.findById(idProvision);
-            if (optionalProvision.isPresent()) {
-                Provision provision = optionalProvision.get();
-                List<Provision> provisionList = provider.getProvisions();
-                provisionList.remove(provision);
-                repository.save(provider);
-            } else {
-                throw new ProvisionException(EExceptionMessage.PROVISION_NOT_FOUND.getMessage());
             }
         } else {
             throw new ProviderException(EExceptionMessage.PROVIDER_NOT_FOUND.getMessage());

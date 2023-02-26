@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
 import java.util.List;
 
 @Service
@@ -42,8 +43,11 @@ public interface IProvisionService {
     List<ProvisionResponse> getForHigh() throws ProvisionException;
 
     @Transactional
-    void addFileToService(String idProvision, MultipartFile image) throws ProvisionException, ImageException;
+    void addImageToProvision(String idProvision, MultipartFile image) throws ProvisionException, ImageException, IOException;
 
     @Transactional
-    void removeFileToService(String idProvision, String idImage) throws ImageException, ProvisionException;
+    void modifyImageToProvision(String idProvision, MultipartFile image) throws ImageException, IOException, ProvisionException;
+
+    @Transactional
+    void removeImageToProvision(String idProvision, String idImage) throws ImageException, ProvisionException, IOException;
 }
