@@ -29,7 +29,6 @@ public class ContractMapper {
 
     public Contract convertToEntity(Contract entity, ContractRequest request) throws ContractException, ProvisionException, ClientException {
         validateRequest(request);
-        //BeanUtils.copyProperties(request, entity);
         Optional<Provision> optionalProvision = provisionRepository.findById(request.getIdProvision());
         if (optionalProvision.isPresent()) {
             Provision provision = optionalProvision.get();
@@ -51,7 +50,6 @@ public class ContractMapper {
 
     public ContractResponse convertToResponse(Contract entity) {
         ContractResponse response = new ContractResponse();
-        //BeanUtils.copyProperties(entity, response);
         response.setId(entity.getId());
         response.setProvision(entity.getProvision().getName());
         response.setClient(entity.getClient().getFullName());
