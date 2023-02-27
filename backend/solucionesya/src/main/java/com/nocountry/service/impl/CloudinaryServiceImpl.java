@@ -32,7 +32,7 @@ public class CloudinaryServiceImpl implements ICloudinaryService {
 //
 //        System.setProperty("dotenv.path", absolutePath );
 
-        System.setProperty("dotenv.path", "app/.env");
+        System.setProperty("dotenv.path", "/app/.env");
         Dotenv dotenv = Dotenv.load();
         cloudinary = new Cloudinary(dotenv.get("CLOUDINARY_URL"));
         cloudinary.config.secure = true;
