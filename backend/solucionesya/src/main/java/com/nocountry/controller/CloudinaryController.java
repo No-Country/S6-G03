@@ -2,6 +2,7 @@ package com.nocountry.controller;
 
 import com.nocountry.exception.ImageException;
 import com.nocountry.service.ICloudinaryService;
+import com.nocountry.service.IImageService;
 import com.nocountry.service.impl.ImageServiceImpl;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -25,7 +26,7 @@ import java.util.Map;
 public class CloudinaryController {
 
     private final ICloudinaryService service;
-    private final ImageServiceImpl imageService;
+    private final IImageService imageService;
 
     @PostMapping("/upload")
     public ResponseEntity<?> upload(@RequestParam MultipartFile multipartFile) throws IOException, ImageException {

@@ -24,6 +24,15 @@ public class CloudinaryServiceImpl implements ICloudinaryService {
     private final Cloudinary cloudinary;
 
     public CloudinaryServiceImpl() {
+
+        String filename = ".env";
+        String pathRootDirectory = System.getProperty("user.dir");
+        String absolutePath  = pathRootDirectory + File.separator + filename;
+        System.err.println("PATH FILE .env : " + absolutePath );
+
+        System.setProperty("dotenv.path", absolutePath );
+
+        //System.setProperty("dotenv.path", "backend/.env");
         Dotenv dotenv = Dotenv.load();
         cloudinary = new Cloudinary(dotenv.get("CLOUDINARY_URL"));
         cloudinary.config.secure = true;
