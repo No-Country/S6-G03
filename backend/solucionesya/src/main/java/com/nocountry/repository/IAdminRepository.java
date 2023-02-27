@@ -2,17 +2,19 @@ package com.nocountry.repository;
 
 import com.nocountry.model.Admin;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
+@Repository
 public interface IAdminRepository extends JpaRepository<Admin, String> {
 
     @Query("SELECT a FROM Admin a WHERE a.softDelete = false ORDER BY a.lastName ASC")
-    Page<Admin> searchByHighPage(PageRequest request);
+    Page<Admin> searchByHighPage(Pageable page);
 
     @Query("SELECT a FROM Admin a WHERE a.firstName LIKE :value " +
             "OR a.lastName LIKE :value " +
