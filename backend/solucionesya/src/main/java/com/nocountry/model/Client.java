@@ -8,6 +8,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
 import jakarta.persistence.OneToMany;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
@@ -31,6 +32,12 @@ public class Client extends User {
     @Enumerated(EnumType.STRING)
     private ERoleName role = ERoleName.ROLE_CLIENT;
 
+    // RELATION CLIENT --> CONTRACT
+    @OneToOne(mappedBy = "client", cascade = CascadeType.ALL, orphanRemoval = true)
+    @ToString.Exclude
+    private Contract contract;
+
+    // RELATION CLIENT --> OPINION
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "client")
     @ToString.Exclude
     private List<Opinion> opinions;
