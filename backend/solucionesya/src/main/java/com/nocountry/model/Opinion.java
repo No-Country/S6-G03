@@ -51,6 +51,12 @@ public class Opinion {
     @ToString.Exclude
     private Provider provider;
 
+    // RELATION OPINION --> PROVISION
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "provision_id")
+    @ToString.Exclude
+    private Provision provision;
+
     // RELATION OPINION --> CLIENT
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "client_id")
