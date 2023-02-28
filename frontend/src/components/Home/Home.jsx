@@ -15,16 +15,16 @@ function Home() {
       <div className="flex flex-col justify-center items-center text-center">
         <div className="p-8">
           <div>
-            <span className="font-[700] text-[45px] leading-64">
+            <span className="xs:text-[35px] md:font-[700] md:text-[45px] md:leading-64">
               ¿Necesitas un profesional urgente? <br />
               Conseguilo al instante con SolucionesYa!
             </span>
           </div>
         </div>
 
-        <div className="p-8">
+        <div className="p-4">
           <div>
-            <span className="font-[400] text-[45px] leading-56">
+            <span className="xs:text-[30px] md:font-[400] md:text-[45px] md:leading-56">
               ¿Qué tipo de profesional buscas?
             </span>
           </div>
@@ -32,7 +32,7 @@ function Home() {
           <SearchBar />
         </div>
 
-        <div className="flex flex-col justify-around items-center bg-[#1E9E69] w-[1120px] h-[360px] p-3 rounded-[40px] ">
+        <div className="xs:hidden md:flex md:flex-col md:justify-around md:items-center md:bg-[#1E9E69] md:w-[1120px] md:h-[360px] md:p-3 md:rounded-[40px] ">
           <div>
             <span className="font-[700] text-[45px] leading-64 text-[#FFFFFF]">
               Ventajas de usar SolucionesYa!
@@ -67,21 +67,21 @@ function Home() {
           </div>
         </div>
 
-        <div className="flex flex-col items-center justify-around p-8 w-full h-[500px]">
+        <div className=" flex flex-col items-center justify-around p-8 xs:w-[242px] md:w-full h-[500px]">
           <div>
-            <span className="font-[400] text-[43px] leading-56">
-              Servicios más buscados
+            <span className="xs:text-[35px] md:font-[400] md:text-[43px] md:leading-56">
+              Servicios más solicitados
             </span>
           </div>
-          <div className="flex flex-row items-center justify-around w-full">
+          <div className="xs:gap-5 flex flex-row items-center justify-around w-full">
             <Link to="/profesionales/plomeria">
               <div>
                 <img
                   src={PlomeriaImg}
                   alt=""
-                  className="w-[261px] h-[250px] rounded-[40px]"
+                  className="xs:w-[75px] xs:h-[120px] xs:rounded-[10px] xs:mb-4 md:w-[261px] md:h-[250px] md:rounded-[40px]"
                 />
-                <span className="font-[400] text-[24px] leading-40">
+                <span className=" xs:text-[19px] md:font-[400] md:text-[24px] md:leading-40">
                   Plomeria
                 </span>
               </div>
@@ -92,9 +92,9 @@ function Home() {
                 <img
                   src={CerrajeriaImg}
                   alt=""
-                  className="w-[261px] h-[250px] rounded-[40px]"
+                  className="xs:w-[75px] xs:h-[120px] xs:rounded-[10px] xs:mb-4  md:w-[261px] md:h-[250px] md:rounded-[40px]"
                 />
-                <span className="font-[400] text-[24px] leading-40">
+                <span className="xs:text-[19px] md:font-[400] md:text-[24px] md:leading-40">
                   Cerrajeria
                 </span>
               </div>
@@ -105,9 +105,9 @@ function Home() {
                 <img
                   src={ElectricistaImg}
                   alt=""
-                  className="w-[261px] h-[250px] rounded-[40px]"
+                  className="xs:w-[75px] xs:h-[120px] xs:rounded-[10px] xs:mb-4 md:w-[261px] md:h-[250px] md:rounded-[40px]"
                 />
-                <span className="font-[400] text-[24px] leading-40">
+                <span className="xs:text-[16px] md:font-[400] md:text-[24px] md:leading-40">
                   Electricidad
                 </span>
               </div>
@@ -118,9 +118,9 @@ function Home() {
                 <img
                   src={GasistaImg}
                   alt=""
-                  className="w-[261px] h-[250px] rounded-[40px]"
+                  className="xs:w-[75px] xs:h-[120px] xs:rounded-[10px] xs:mb-4 md:w-[261px] md:h-[250px] md:rounded-[40px]"
                 />
-                <span className="font-[400] text-[24px] leading-40">
+                <span className="xs:text-[19px] md:font-[400] md:text-[24px]  md:leading-40">
                   Gasista
                 </span>
               </div>
@@ -128,7 +128,7 @@ function Home() {
           </div>
 
           <div className="my-[15px]">
-            <button className="bg-[#1E9E69] w-[504px] h-[68px] rounded-[12px] content-center font-[700] text-[32px] leading-36 text-[#FFFFFF]">
+            <button className="xs:hidden md:block  bg-[#1E9E69] w-[504px] h-[68px] rounded-[12px] content-center font-[700] text-[32px] leading-36 text-[#FFFFFF]">
               Ver todos los servicios
             </button>
           </div>
