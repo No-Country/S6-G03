@@ -63,6 +63,12 @@ public class Provision {
     @ToString.Exclude
     private Provider provider;
 
+    // RELATION PROVISION --> CLIENT
+    /*@ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "client_id")
+    @ToString.Exclude
+    private Client client;*/
+
     // RELATION PROVISION --> CONTRACT
     @OneToOne(mappedBy = "provision", cascade = CascadeType.ALL, orphanRemoval = true)
     @ToString.Exclude

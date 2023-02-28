@@ -2,7 +2,7 @@ package com.nocountry.controller.impl;
 
 import com.nocountry.config.ApiConstants;
 import com.nocountry.controller.IOpinionController;
-import com.nocountry.dto.request.OpinionRequest;
+import com.nocountry.dto.request.Opinion.OpinionRequest;
 import com.nocountry.dto.response.OpinionResponse;
 import com.nocountry.dto.response.OpinionResponseList;
 import com.nocountry.exception.ClientException;

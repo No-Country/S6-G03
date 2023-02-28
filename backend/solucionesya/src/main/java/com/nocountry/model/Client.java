@@ -32,6 +32,16 @@ public class Client extends User {
     @Enumerated(EnumType.STRING)
     private ERoleName role = ERoleName.ROLE_CLIENT;
 
+    // RELATION CLIENT --> PROVISION
+    /*@OneToMany(cascade = CascadeType.ALL, mappedBy = "client")
+    @ToString.Exclude
+    private List<Provision> provisions;*/
+
+    // RELATION CLIENT --> IMAGE
+    @OneToOne(mappedBy = "client", cascade = CascadeType.ALL, orphanRemoval = true)
+    @ToString.Exclude
+    private Image image;
+
     // RELATION CLIENT --> CONTRACT
     @OneToOne(mappedBy = "client", cascade = CascadeType.ALL, orphanRemoval = true)
     @ToString.Exclude

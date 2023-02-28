@@ -1,8 +1,8 @@
 package com.nocountry.service.impl;
 
 import com.nocountry.config.ApiConstants;
-import com.nocountry.dto.request.ProvisionRequest;
-import com.nocountry.dto.request.ProvisionRequestModify;
+import com.nocountry.dto.request.Provision.ProvisionRequest;
+import com.nocountry.dto.request.Provision.ProvisionRequestModify;
 import com.nocountry.dto.response.ProvisionResponse;
 import com.nocountry.dto.response.ProvisionResponseList;
 import com.nocountry.exception.ImageException;

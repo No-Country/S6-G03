@@ -2,9 +2,9 @@ package com.nocountry.controller.impl;
 
 import com.nocountry.config.ApiConstants;
 import com.nocountry.controller.IAdminController;
-import com.nocountry.dto.request.AdminRequest;
-import com.nocountry.dto.request.AdminRequestModify;
-import com.nocountry.dto.request.AdminRequestPassword;
+import com.nocountry.dto.request.Admin.AdminRequest;
+import com.nocountry.dto.request.Admin.AdminRequestModify;
+import com.nocountry.dto.request.Admin.AdminRequestPassword;
 import com.nocountry.dto.response.AdminResponse;
 import com.nocountry.dto.response.AdminResponseList;
 import com.nocountry.exception.AdminException;

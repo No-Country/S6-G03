@@ -1,6 +1,6 @@
 package com.nocountry.controller;
 
-import com.nocountry.dto.request.OpinionRequest;
+import com.nocountry.dto.request.Opinion.OpinionRequest;
 import com.nocountry.dto.response.OpinionResponse;
 import com.nocountry.dto.response.OpinionResponseList;
 import com.nocountry.exception.ClientException;
