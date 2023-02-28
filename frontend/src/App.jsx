@@ -21,8 +21,6 @@ const App = () => {
         <Navbar />
         
         <Routes>
-        <Route path="confirmar-pago" element={<ConfirmationRequest/>} />
-        <Route path="medios-de-pago" element={<PaymentMethods/>} />
           <Route index element={<Home />} />
           {/* Rutas de Login */}
           <Route path="login-usuario" element={<Login />} />
@@ -46,7 +44,8 @@ const App = () => {
           <Route path="profesional/:id" element={<SingleProfessional />} />
           {/* Rutas por defecto */}
           <Route path="restringido" element={<h1>No Autorizado</h1>} />
-
+          <Route path="confirmar-pago" element={<ConfirmationRequest/>} />
+          <Route path="medios-de-pago" element={<PaymentMethods/>} />
           {/* Rutas del Panel de Usuario */}
           <Route index element={<UserProfile />} />
           

@@ -1,5 +1,5 @@
 import React from "react";
-import { useParams, Link } from "react-router-dom";
+import { useParams, Link, redirect } from "react-router-dom";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import "./SingleProfessional.css";
@@ -12,6 +12,7 @@ import StarRating from "./StarRating";
 const SingleProfessional = () => {
    //const { id } = useParams();
   const [professional, setProfessional] = useState(professionals[0]);
+  const [order, setOrder] = useState({});
   // const [professional, setProfessional] = useState([]);
  // console.log(id);
 
@@ -42,6 +43,12 @@ getRating();
     return ((prom/professional.reviews.length).toFixed(2));
     
     
+  }
+  const previewOrder = ()=>{
+    setOrder({
+      id:professional.id,
+      
+    })
   }
 
   const getSkills = (p)=>{

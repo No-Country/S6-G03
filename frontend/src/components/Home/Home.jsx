@@ -88,7 +88,7 @@ function Home(){
                     </div>
 
                     <div className="my-[15px]">
-                        <button className="bg-[#1E9E69] w-[504px] h-[68px] rounded-[12px] content-center font-[700] text-[32px] leading-36 text-[#FFFFFF]">Ver todos los servicios</button>
+                        <Link to="/categorias-profesionales"><button className="bg-[#1E9E69] w-[504px] h-[68px] rounded-[12px] content-center font-[700] text-[32px] leading-36 text-[#FFFFFF]">Ver todos los servicios</button></Link>
                     </div>
                 </div>
             </div>
