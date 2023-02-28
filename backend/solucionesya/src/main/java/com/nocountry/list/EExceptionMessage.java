@@ -79,7 +79,16 @@ public enum EExceptionMessage {
     THE_FOLDER_CANNOT_BE_INITIALIZED("THE FOLDER CANNOT BE INITIALIZED"),
     THE_IMAGE_CANNOT_BE_SAVED("THE IMAGE CANNOT BE SAVED ERROR"),
     IMAGE_DELETED("IMAGE DELETED"),
-    ERROR_DELETING_IMAGE("ERROR DELETING IMAGE");
+    IMAGE_NOT_VALID("IMAGE NOT VALID"),
+    ERROR_DELETING_IMAGE("ERROR DELETING IMAGE"),
+
+    ////////////////////////////////////////////////////////////////////////////////////////////
+    // CONTRACT
+    ////////////////////////////////////////////////////////////////////////////////////////////
+
+    CONTRACT_NOT_FOUND("CONTRACT NOT FOUND"),
+    ERROR_DISPLAYING_ALL_CONTRACT("ERROR DISPLAYING ALL CONTRACT"),
+    ERROR_DISPLAYING_CONTRACT_ACTIVE("ERROR DISPLAYING CONTRACT ACTIVE");
 
     private final String messageString;
 

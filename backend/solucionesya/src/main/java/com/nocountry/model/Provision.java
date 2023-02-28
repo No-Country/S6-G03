@@ -57,11 +57,16 @@ public class Provision {
     @ToString.Exclude
     private Image image;
 
-    // RELATION SERVICE --> PROVIDER
+    // RELATION PROVISION --> PROVIDER
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "provider_id")
     @ToString.Exclude
     private Provider provider;
+
+    // RELATION PROVISION --> CONTRACT
+    @OneToOne(mappedBy = "provision", cascade = CascadeType.ALL, orphanRemoval = true)
+    @ToString.Exclude
+    private Contract contract;
 
     //@CreationTimestamp
     @Temporal(TemporalType.TIMESTAMP)
