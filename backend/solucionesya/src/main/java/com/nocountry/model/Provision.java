@@ -11,6 +11,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import jakarta.persistence.Temporal;
@@ -23,6 +24,7 @@ import org.hibernate.Hibernate;
 import org.hibernate.annotations.GenericGenerator;
 
 import java.util.Date;
+import java.util.List;
 import java.util.Objects;
 
 @Getter
@@ -51,6 +53,14 @@ public class Provision {
 
     @Column(name = "price")
     private String price;
+
+    @Column(name = "payment_link")
+    private String paymentLink;
+
+    // RELATION PROVIDER --> OPINION
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "provision")
+    @ToString.Exclude
+    private List<Opinion> opinions;
 
     // RELATION PROVISION --> IMAGE
     @OneToOne(mappedBy = "provision", cascade = CascadeType.ALL, orphanRemoval = true)

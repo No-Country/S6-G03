@@ -9,5 +9,6 @@ public class ProvisionRequest {
     private String category;
     private String description;
     private String price;
+    private String paymentLink;
     private String idProvider;
 }

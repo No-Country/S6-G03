@@ -12,10 +12,11 @@ public class ProvisionResponse {
     private String category;
     private String description;
     private String price;
+    private String paymentLink;
     private ImageResponse image;
     private String pathImage;
     private String provider;
-    private List<OpinionResponse> opinionResponseList;
+    private List<OpinionResponse> opinionList;
     private String creationDate;
     private String updateDate;
     private boolean softDelete;
