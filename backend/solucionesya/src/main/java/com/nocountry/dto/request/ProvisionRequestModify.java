@@ -9,4 +9,5 @@ public class ProvisionRequestModify {
     private String category;
     private String description;
     private String price;
+    private String idProvider;
 }

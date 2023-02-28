@@ -1,17 +1,17 @@
 import React from "react";
 import { AiOutlineLeft, AiOutlineDown } from "react-icons/ai";
-import cerrajeria from "../assets/images/cerrajeria.jpg";
-import albañileria from "../assets/images/albañileria.jpg";
-import electricidad from "../assets/images/electricidad.jpg";
-import gasista from "../assets/images/gasista.jpg";
-import herreria from "../assets/images/herreria.jpg";
-import jardineria from "../assets/images/jardineria.jpg";
-import mensajeria from "../assets/images/mensajeria.jpg";
-import mudanzas from "../assets/images/mudanza.jpg";
-import pintura from "../assets/images/pintura.jpg";
-import plomeria from "../assets/images/plomeria.jpg";
-import aire from "../assets/images/aire.jpg";
-import electro from "../assets/images/electro.jpg";
+import cerrajeria from "../../assets/images/cerrajeria.jpg"
+import albañileria from "../../assets/images/albañileria.jpg";
+import electricidad from "../../assets/images/electricidad.jpg";
+import gasista from "../../assets/images/gasista.jpg";
+import herreria from "../../assets/images/herreria.jpg";
+import jardineria from "../../assets/images/jardineria.jpg";
+import mensajeria from "../../assets/images/mensajeria.jpg";
+import mudanzas from "../../assets/images/mudanza.jpg";
+import pintura from "../../assets/images/pintura.jpg";
+import plomeria from "../../assets/images/plomeria.jpg";
+import aire from "../../assets/images/aire.jpg";
+import electro from "../../assets/images/electro.jpg";
 
 const ServiceList = () => {
   return (

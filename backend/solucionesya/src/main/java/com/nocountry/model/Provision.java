@@ -57,19 +57,26 @@ public class Provision {
     @ToString.Exclude
     private Image image;
 
-    // RELATION SERVICE --> PROVIDER
+    // RELATION PROVISION --> PROVIDER
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "provider_id")
     @ToString.Exclude
     private Provider provider;
 
+    // RELATION PROVISION --> CONTRACT
+    @OneToOne(mappedBy = "provision", cascade = CascadeType.ALL, orphanRemoval = true)
+    @ToString.Exclude
+    private Contract contract;
+
+    //@CreationTimestamp
     @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "creation_date", nullable = false)
-    protected Date creationDate = new Date();
+    private Date creationDate = new Date();
 
+    //@UpdateTimestamp
     @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "update_date")
-    protected Date updateDate;
+    private Date updateDate;
 
     private boolean softDelete = false;
 

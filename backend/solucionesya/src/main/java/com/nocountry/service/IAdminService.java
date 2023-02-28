@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
 import java.util.List;
 
 @Service
@@ -25,7 +26,7 @@ public interface IAdminService {
     AdminResponse modify(String idAdmin, AdminRequestModify request) throws AdminException, EmailAlreadyExistException;
 
     @Transactional
-    AdminResponse modifyPassword(String id, AdminRequestPassword request) throws AdminException;
+    void modifyPassword(String id, AdminRequestPassword request) throws AdminException;
 
     @Transactional
     void delete(String idAdmin) throws AdminException;
@@ -46,8 +47,11 @@ public interface IAdminService {
     List<AdminResponse> getForHigh() throws AdminException;
 
     @Transactional
-    void addFileToAdmin(String idAdmin, MultipartFile image) throws AdminException, ImageException;
+    void addImageToAdmin(String idAdmin, MultipartFile image) throws AdminException, ImageException, IOException;
 
     @Transactional
-    void removeFileToAdmin(String idAdmin, String idImage) throws ImageException, AdminException;
+    void modifyImageToAdmin(String idAdmin, MultipartFile image) throws AdminException, ImageException, IOException;
+
+    @Transactional
+    void removeImageToAdmin(String idAdmin, String idImage) throws ImageException, AdminException, IOException;
 }

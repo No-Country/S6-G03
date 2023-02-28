@@ -1,6 +1,5 @@
 package com.nocountry.model;
 
-import jakarta.persistence.Basic;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -9,14 +8,13 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
+import jakarta.persistence.Temporal;
+import jakarta.persistence.TemporalType;
 import lombok.Getter;
-import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 import org.hibernate.Hibernate;
-import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.GenericGenerator;
-import org.hibernate.annotations.UpdateTimestamp;
 
 import java.util.Date;
 import java.util.Objects;
@@ -26,7 +24,6 @@ import java.util.Objects;
 @Getter
 @Setter
 @ToString(onlyExplicitlyIncluded = true)
-@RequiredArgsConstructor
 public class Image {
 
 	@Id
@@ -35,24 +32,22 @@ public class Image {
 	@Column(unique = true, name = "id")
 	private String id;
 
-	@Basic
 	@Column(name = "original_name")
 	private String originalName;
-
-	@Basic
-	@Column(name = "image_name")
-	private String imageName;
 
 	@Column(name = "path")
 	private String path;
 
-	@CreationTimestamp
-	@Column(name = "creation_date", nullable = false)
-	protected Date creationDate = new Date();
+	@Column(name = "cloudinary_id")
+	private String cloudinaryId;
 
-	@UpdateTimestamp
+	@Temporal(TemporalType.TIMESTAMP)
+	@Column(name = "creation_date", nullable = false)
+	private Date creationDate = new Date();
+
+	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name = "update_date")
-	protected Date updateDate;
+	private Date updateDate;
 
 	// RELATION FILE --> ADMIN
 	@OneToOne(fetch = FetchType.LAZY)
@@ -72,8 +67,14 @@ public class Image {
 	@ToString.Exclude
 	private Provision provision;
 
-	@Column(name = "soft_delete", nullable = false)
-	private boolean softDelete = Boolean.FALSE;
+	public Image() {
+	}
+
+	public Image(String originalName, String path, String cloudinaryId) {
+		this.originalName = originalName;
+		this.path = path;
+		this.cloudinaryId = cloudinaryId;
+	}
 
 	@Override
 	public boolean equals(Object o) {

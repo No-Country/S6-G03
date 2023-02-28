@@ -3,41 +3,62 @@ package com.nocountry.mapper;
 import com.nocountry.dto.request.ProvisionRequest;
 import com.nocountry.dto.request.ProvisionRequestModify;
 import com.nocountry.dto.response.ProvisionResponse;
+import com.nocountry.exception.ProviderException;
 import com.nocountry.exception.ProvisionException;
 import com.nocountry.list.ECategory;
+import com.nocountry.list.EExceptionMessage;
+import com.nocountry.model.Provider;
 import com.nocountry.model.Provision;
+import com.nocountry.repository.IProviderRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 
 @Component
 @RequiredArgsConstructor
 public class ProvisionMapper {
 
-    private static final String REQUEST_WRONG_DATA = "{general.request.wrong.data}";
     private final ImageMapper imageMapper;
+    private final IProviderRepository providerRepository;
 
-    public Provision convertToEntity(Provision provision, ProvisionRequest request) throws ProvisionException {
+    public Provision convertToEntity(Provision provision, ProvisionRequest request) throws ProvisionException, ProviderException {
         validateRequestCreate(request);
-        provision.setName(request.getName());
-        provision.setDescription(request.getDescription());
-        ECategory category = ECategory.typeOrValue(request.getCategory());
-        provision.setCategory(category);
-        provision.setPrice(request.getPrice());
-        return provision;
+        Optional<Provider> optionalProvider = providerRepository.findById(request.getIdProvider());
+        if (optionalProvider.isPresent()) {
+            Provider provider = optionalProvider.get();
+            provision.setName(request.getName());
+            provision.setDescription(request.getDescription());
+            ECategory category = ECategory.typeOrValue(request.getCategory());
+            provision.setCategory(category);
+            provision.setPrice(request.getPrice());
+            provision.setProvider(provider);
+            return provision;
+        } else {
+            throw new ProviderException(EExceptionMessage.PROVIDER_NOT_FOUND.getMessage());
+        }
     }
 
-    public Provision convertToEntityModify(Provision provision, ProvisionRequestModify request) throws ProvisionException {
+    public Provision convertToEntityModify(Provision provision, ProvisionRequestModify request) throws ProvisionException, ProviderException {
         validateRequestModify(request);
-        provision.setName(request.getName());
-        provision.setDescription(request.getDescription());
-        ECategory category = ECategory.typeOrValue(request.getCategory());
-        provision.setCategory(category);
-        provision.setPrice(request.getPrice());
-        return provision;
+        Optional<Provider> optionalProvider = providerRepository.findById(request.getIdProvider());
+        if (optionalProvider.isPresent()) {
+            Provider provider = optionalProvider.get();
+            provision.setName(request.getName());
+            provision.setDescription(request.getDescription());
+            ECategory category = ECategory.typeOrValue(request.getCategory());
+            provision.setCategory(category);
+            provision.setPrice(request.getPrice());
+            provision.setProvider(provider);
+            provision.setUpdateDate(new Date());
+            return provision;
+        } else {
+            throw new ProviderException(EExceptionMessage.PROVIDER_NOT_FOUND.getMessage());
+        }
     }
 
     public ProvisionResponse convertToResponse(Provision provision) {
@@ -52,6 +73,8 @@ public class ProvisionMapper {
             response.setPathImage(provision.getImage().getPath());
         }
 
+        response.setProvider(provision.getProvider().getFullName());
+
         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
         String stringCreationDate = sdf.format(provision.getCreationDate());
         String stringUpdateDate;
@@ -60,6 +83,7 @@ public class ProvisionMapper {
         } else {
             stringUpdateDate = " - ";
         }
+
         response.setCreationDate(stringCreationDate);
         response.setUpdateDate(stringUpdateDate);
         response.setSoftDelete(provision.isSoftDelete());
@@ -75,14 +99,16 @@ public class ProvisionMapper {
     }
 
     private static void validateRequestCreate(ProvisionRequest request) throws ProvisionException {
-        if (request.getName() == null || request.getCategory() == null || request.getDescription() == null || request.getPrice() == null) {
-            throw new ProvisionException(REQUEST_WRONG_DATA);
+        if (request.getName() == null || request.getCategory() == null || request.getDescription() == null ||
+                request.getPrice() == null || request.getIdProvider() == null) {
+            throw new ProvisionException(EExceptionMessage.REQUEST_WRONG_DATA.getMessage());
         }
     }
 
     private static void validateRequestModify(ProvisionRequestModify request) throws ProvisionException {
-        if (request.getName() == null || request.getCategory() == null || request.getDescription() == null || request.getPrice() == null) {
-            throw new ProvisionException(REQUEST_WRONG_DATA);
+        if (request.getName() == null || request.getCategory() == null || request.getDescription() == null ||
+                request.getPrice() == null || request.getIdProvider() == null) {
+            throw new ProvisionException(EExceptionMessage.REQUEST_WRONG_DATA.getMessage());
         }
     }
 }

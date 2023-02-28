@@ -17,6 +17,9 @@ module.exports = {
         "neutral-60":"#B6B8B8",
         "neutral-80":"#DEDFDF",
                  
+      },
+      fontFamily: {        
+        'roboto': ['Roboto', 'sans-serif']
       }
     },
   },

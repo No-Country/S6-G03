@@ -25,19 +25,91 @@ input {
   border-radius: 10px;
   width: 100%;
 }
-.sesion {
-  line-height: 64px;
-  font-size: 45px;
-}
-.correo {
-  font-size: 32px;
+.inicio {
   line-height: 36px;
+  font-size: 32px;
+  width: 350px;
 }
-.olvidar {
-  font-size: 25px;
-  line-height: 32px;
-}
-.cuenta {
+.email {
   font-size: 23px;
-  line-height: 28px;
+  line-height: 24px;
+}
+.forgot {
+  font-size: 16px;
+  line-height: 20px;
+}
+.account {
+  font-size: 16px;
+  line-height: 20px;
+  width: 136px;
+  color: #000000;
+}
+.register {
+  font-size: 16px;
+  line-height: 20px;
+  font-weight: bold;
+  color: #275ecd;
+  width: 110px;
+}
+.facebook {
+  margin-bottom: 1rem !important;
+}
+.login__button {
+  border-radius: 16px !important;
+  margin-bottom: 1rem !important;
+}
+.fondo {
+  background: #275ecd !important;
+  font-size: 20px;
+}
+.google {
+  width: 87%;
+  margin-left: 1rem;
+  text-align: center;
+}
+.login {
+  display: flex;
+  justify-content: center;
+}
+.login__google {
+  font-size: 20px;
+  padding: 24px 10px !important;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.profile {
+  text-align: center;
+  font-size: 20px;
+}
+.picture {
+  width: 100%;
+  max-width: 7rem;
+  margin: 0 auto;
+  object-fit: cover;
+  margin-bottom: 1rem;
+}
+.logout {
+  box-shadow: 0px 0px 0px 2px #9fb4f2;
+  background: linear-gradient(to bottom, #7892c2 5%, #476e9e 100%);
+  background-color: #275ecd;
+  border-radius: 10px;
+  border: 1px solid #275ecd;
+  display: inline-block;
+  cursor: pointer;
+  color: #ffffff;
+  font-family: Arial;
+  font-size: 19px;
+  padding: 12px 37px;
+  text-decoration: none;
+  text-shadow: 0px 1px 0px #283966;
+  margin-bottom: 1rem;
+}
+.logout:hover {
+  background: linear-gradient(to bottom, #476e9e 5%, #7892c2 100%);
+  background-color: #476e9e;
+}
+.logout:active {
+  position: relative;
+  top: 1px;
 }

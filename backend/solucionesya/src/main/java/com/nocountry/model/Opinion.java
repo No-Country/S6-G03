@@ -17,9 +17,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 import org.hibernate.Hibernate;
-import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.GenericGenerator;
-import org.hibernate.annotations.UpdateTimestamp;
 
 import java.util.Date;
 import java.util.Objects;
@@ -47,11 +45,13 @@ public class Opinion {
     @NotNull(message = "{rating.opinion.notnull}")
     private Integer rating;
 
+    // RELATION OPINION --> PROVIDER
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "provider_id")
     @ToString.Exclude
     private Provider provider;
 
+    // RELATION OPINION --> CLIENT
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "client_id")
     @ToString.Exclude
@@ -60,12 +60,12 @@ public class Opinion {
     //@CreationTimestamp
     @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "creation_date", nullable = false)
-    protected Date creationDate = new Date();
+    private Date creationDate = new Date();
 
     //@UpdateTimestamp
     @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "update_date")
-    protected Date updateDate;
+    private Date updateDate;
 
     private boolean softDelete = false;
 
