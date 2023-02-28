@@ -47,8 +47,8 @@ const Navbar = () => {
         </a> */}
 
         <div className=" flex justify-end">
-          <div className="flex items-center mt-4 font-[400] text-[18px] leading-28">
-            <a href="" className="md:mr-30 sm:mr-10">
+          <div className="md:flex md:items-center md:mt-4 md:font-[400] md:text-[18px] md:leading-28">
+            <a href="" className="xs:hidden md:mr-30 md:block sm:mr-10">
               Quienes Somos
             </a>
           </div>
