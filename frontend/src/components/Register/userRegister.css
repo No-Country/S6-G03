@@ -26,18 +26,23 @@ input {
   width: 100%;
 }
 .sesion {
-  line-height: 64px;
-  font-size: 45px;
+  line-height: 36px;
+  font-size: 32px;
+  width: 350px;
+}
+.nombre {
+  font-size: 23px;
+  line-height: 32px;
 }
 .correo {
-  font-size: 32px;
-  line-height: 36px;
+  font-size: 23px;
+  line-height: 32px;
 }
 .olvidar {
   font-size: 25px;
   line-height: 32px;
 }
 .cuenta {
-  font-size: 23px;
+  font-size: 16px;
   line-height: 28px;
 }
