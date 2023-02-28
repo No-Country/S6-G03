@@ -1,7 +1,7 @@
 package com.nocountry.mapper;
 
-import com.nocountry.dto.request.ProvisionRequest;
-import com.nocountry.dto.request.ProvisionRequestModify;
+import com.nocountry.dto.request.Provision.ProvisionRequest;
+import com.nocountry.dto.request.Provision.ProvisionRequestModify;
 import com.nocountry.dto.response.ProvisionResponse;
 import com.nocountry.exception.ProviderException;
 import com.nocountry.exception.ProvisionException;

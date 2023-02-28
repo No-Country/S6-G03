@@ -1,12 +1,11 @@
 package com.nocountry.service;
 
-import com.nocountry.dto.request.OpinionRequest;
+import com.nocountry.dto.request.Opinion.OpinionRequest;
 import com.nocountry.dto.response.OpinionResponse;
 import com.nocountry.dto.response.OpinionResponseList;
 import com.nocountry.exception.ClientException;
 import com.nocountry.exception.OpinionException;
 import com.nocountry.exception.ProviderException;
-import com.nocountry.exception.ProvisionException;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

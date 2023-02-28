@@ -61,6 +61,12 @@ public class Image {
 	@ToString.Exclude
 	private Provider provider;
 
+	// RELATION FILE --> CLIENT
+	@OneToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "client_id")
+	@ToString.Exclude
+	private Client client;
+
 	// RELATION IMAGE --> PROVISION
 	@OneToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "provision_id")

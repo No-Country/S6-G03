@@ -2,7 +2,7 @@ package com.nocountry.controller.impl;
 
 import com.nocountry.config.ApiConstants;
 import com.nocountry.controller.IContractController;
-import com.nocountry.dto.request.ContractRequest;
+import com.nocountry.dto.request.Contract.ContractRequest;
 import com.nocountry.dto.response.ContractResponse;
 import com.nocountry.dto.response.ContractResponseList;
 import com.nocountry.exception.AdminException;
