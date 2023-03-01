@@ -12,6 +12,7 @@ import pintura from "../../assets/images/pintura.jpg";
 import plomeria from "../../assets/images/plomeria.jpg";
 import aire from "../../assets/images/aire.jpg";
 import electro from "../../assets/images/electro.jpg";
+import {Link} from "react-router-dom"
 
 const ServiceList = () => {
   return (
@@ -19,9 +20,11 @@ const ServiceList = () => {
       <section className="mt-10 flex justify-center">
         <div className="grid grid-cols-6 ml-32 w-[1032px] h-16  ">
           <div className="col-span-5 w-full flex place-items-center gap-2">
+            <Link to="/">
             <div className="w-12 h-12 ">
               <AiOutlineLeft className="w-12 h-12" />
             </div>
+            </Link>
             <div className=" text-left font-bold text-[45px]">
               Todos los Servicios
             </div>
@@ -93,15 +96,17 @@ const ServiceList = () => {
         </div>
       </section>
       <section className=" mt-6 ml-[124px] flex justify-center">
-        <div className="grid grid-cols-4 w-[1032px] gap-6 place-items-center">
+        <div className="grid grid-cols-4 w-[1032px] gap-6 place-items-center mb-10">
           <div>
             <img src={pintura} alt="pintura" className="rounded-xl mb-4" />
             <p className="text-3xl text-center ">Pintura</p>
           </div>
+          <Link to="/profesionales/:categoria">
           <div>
-            <img src={plomeria} alt="plomeria" className="rounded-xl mb-4" />
+            <img src={plomeria} alt="plomeria" className="rounded-xl mb-4 " />
             <p className="text-3xl text-center ">Plomeria</p>
           </div>
+          </Link>
           <div>
             <img src={aire} alt="Service Aire Ac" className="rounded-xl mb-4" />
             <p className="text-3xl text-center ">Service Aire AC</p>

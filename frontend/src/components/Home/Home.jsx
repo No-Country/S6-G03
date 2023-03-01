@@ -70,7 +70,11 @@ function Home() {
         <div className="xs:w-[242px] xs:h-[285px] md:flex md:flex-col md:items-center md:justify-around md:p-8  md:w-full md:h-[500px]">
           <div>
             <span className="xs:text-[35px] md:font-[400] md:text-[43px] md:leading-56">
-              Servicios más solicitados
+              <Link to="/categorias-profesionales">
+              <button className="px-4 py-2  bg-green-secondary-80 rounded-lg text-white ">
+                  Ver todos los servicios
+              </button>
+              </Link>
             </span>
           </div>
           <div className="xs:gap-3 xs:mt-4 flex flex-row items-center justify-around w-full">
