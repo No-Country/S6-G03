@@ -17,7 +17,7 @@ public enum EExceptionMessage {
     EMAIL_ALREADY_EXISTS("EMAIL {0} ALREADY EXISTS"),
     EMAIL_DOES_NOT_EXIST("EMAIL {0} DOES NOT EXISTS"),
     WRONG_PASSWORD("WRONG PASSWORD"),
-    PASSWORD_DOES_NOT_MATCH("PASSWORD DO NOT MATCH"),
+    PASSWORD_DOES_NOT_MATCH("PASSWORD DOES NOT MATCH"),
 
     ////////////////////////////////////////////////////////////////////////////////////////////
     // ADMIN
