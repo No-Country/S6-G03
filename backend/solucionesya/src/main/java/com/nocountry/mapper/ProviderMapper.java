@@ -45,7 +45,7 @@ public class ProviderMapper {
             String encryptedPassword = encryptPassword.encode(request.getPassword());
             entity.setPassword(encryptedPassword);
         } else {
-            throw new ProviderException(EExceptionMessage.PASSWORD_DO_NOT_MATCH.getMessage());
+            throw new ProviderException(EExceptionMessage.PASSWORD_DOES_NOT_MATCH.getMessage());
         }
         entity.setAddress(request.getAddress());
         entity.setPhone(request.getPhone());
@@ -147,7 +147,7 @@ public class ProviderMapper {
                 if (request.getConfirmNewPassword() != null && request.getConfirmNewPassword().equals(request.getNewPassword())) {
                     entity.setPassword(encryptPassword.encode(request.getNewPassword()));
                 } else {
-                    throw new ProviderException(EExceptionMessage.PASSWORD_DO_NOT_MATCH.getMessage());
+                    throw new ProviderException(EExceptionMessage.PASSWORD_DOES_NOT_MATCH.getMessage());
                 }
             }
         } else {

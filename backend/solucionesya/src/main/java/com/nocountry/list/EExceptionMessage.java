@@ -15,8 +15,9 @@ public enum EExceptionMessage {
     RESPONSE_WRONG_DATA("INVALID RESPONSE"),
     DOCUMENT_ALREADY_EXISTS("DOCUMENT {0} ALREADY EXISTS"),
     EMAIL_ALREADY_EXISTS("EMAIL {0} ALREADY EXISTS"),
+    EMAIL_DOES_NOT_EXIST("EMAIL {0} DOES NOT EXISTS"),
     WRONG_PASSWORD("WRONG PASSWORD"),
-    PASSWORD_DO_NOT_MATCH("PASSWORD DO NOT MATCH"),
+    PASSWORD_DOES_NOT_MATCH("PASSWORD DO NOT MATCH"),
 
     ////////////////////////////////////////////////////////////////////////////////////////////
     // ADMIN
