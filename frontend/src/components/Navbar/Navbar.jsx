@@ -2,6 +2,8 @@ import React from "react";
 import { useEffect, useState } from "react";
 import { Navigate, useNavigate, Link } from "react-router-dom";
 import "./Navbar.css";
+import muñeco from "../../assets/images/pf-image.jpg";
+import { FaChevronDown } from "react-icons/fa";
 
 const Navbar = () => {
   const navigate = useNavigate();
@@ -30,6 +32,7 @@ const Navbar = () => {
     //   navigate("/login-usuario") ;
     //   setUser("");
     //   localStorage.setItem("auth", false);
+
     //  }
   };
 
@@ -48,15 +51,31 @@ const Navbar = () => {
 
         <div className=" flex justify-end">
           <div className="md:flex md:items-center md:mt-4 md:font-[400] md:text-[18px] md:leading-28">
-            <a href="" className="xs:hidden md:mr-30 md:block sm:mr-10">
-              Quienes Somos
-            </a>
+            {user ? (
+              ""
+            ) : (
+              <a href="" className="xs:hidden md:mr-30 md:block sm:mr-10">
+                Quienes Somos
+              </a>
+            )}
           </div>
-          {user ? <div className="text-center mt-4 px-5"> {user}</div> : ""}
+
           {user ? (
             //  Elementos si esta logueado
 
-            <div className="flex  gap-1  flex-col">
+            <div className="flex flex-col items-center  ">
+              <div className="flex-row flex justify-between  gap-4  ">
+                <div className="flex">
+                  <Link to="/perfil-usuario">
+                    <img
+                      src={muñeco}
+                      alt="muñeco"
+                      className="w-8 h-8 border rounded-full translate-y-3 "
+                    />
+                  </Link>
+                </div>
+                <div className="text-center mt-4 text-[20px]"> {user}</div>
+              </div>
               <button
                 onClick={handleLogin}
                 className="w-[140px]  h-[40px] font-[400] text-[18px] leading-28  mt-3 border border-red-800 rounded-md bg-red-800"
@@ -66,6 +85,7 @@ const Navbar = () => {
             </div>
           ) : (
             //Elementos si no hay user logueado
+
             <div className="flex  gap-1  flex-col">
               <Link to="/login-usuario">
                 <button className="w-[140px]  h-[40px] font-[400] text-[18px] leading-28  border border-green-secondary rounded-md">
