@@ -35,11 +35,11 @@ public class User  {
     @GenericGenerator(name = "uuid", strategy = "uuid2")
     private String id;
 
-    @NotEmpty(message = "{firstname.notnull}")
+//    @NotEmpty(message = "{firstname.notnull}")
     @Column(name = "first_name")
     protected String firstName;
 
-    @NotEmpty(message = "{lastname.notnull}")
+//    @NotEmpty(message = "{lastname.notnull}")
     @Column(name = "last_name")
     protected String lastName;
 

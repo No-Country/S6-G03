@@ -9,6 +9,7 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 public interface IProviderRepository extends JpaRepository<Provider, String> {
@@ -26,4 +27,6 @@ public interface IProviderRepository extends JpaRepository<Provider, String> {
 
     @Query("SELECT (count(p) > 0) FROM Provider p WHERE p.email = :email")
     boolean existsByEmail(@Param("email") String email);
+
+    Optional<Provider> findByEmail(String email);
 }

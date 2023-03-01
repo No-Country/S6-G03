@@ -9,10 +9,12 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
-import java.util.List;
+import java.util.Optional;
 
 @Repository
 public interface IClientRepository extends JpaRepository<Client, String> {
+
+    Optional<Client> findByEmail(String email);
 
     @Query("SELECT c FROM Client c WHERE c.softDelete = false ORDER BY c.lastName ASC")
     Page<Client> searchByHighPage(Pageable page);
