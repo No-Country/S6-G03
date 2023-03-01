@@ -67,13 +67,13 @@ function Home() {
           </div>
         </div>
 
-        <div className=" flex flex-col items-center justify-around p-8 xs:w-[242px] md:w-full h-[500px]">
+        <div className="xs:w-[242px] xs:h-[285px] md:flex md:flex-col md:items-center md:justify-around md:p-8  md:w-full md:h-[500px]">
           <div>
             <span className="xs:text-[35px] md:font-[400] md:text-[43px] md:leading-56">
               Servicios más solicitados
             </span>
           </div>
-          <div className="xs:gap-5 flex flex-row items-center justify-around w-full">
+          <div className="xs:gap-3 xs:mt-4 flex flex-row items-center justify-around w-full">
             <Link to="/profesionales/plomeria">
               <div>
                 <img
@@ -105,9 +105,9 @@ function Home() {
                 <img
                   src={ElectricistaImg}
                   alt=""
-                  className="xs:w-[75px] xs:h-[120px] xs:rounded-[10px] xs:mb-4 md:w-[261px] md:h-[250px] md:rounded-[40px]"
+                  className="xs:w-[100px] xs:h-[120px] xs:rounded-[10px] xs:mb-4 md:w-[261px] md:h-[250px] md:rounded-[40px]"
                 />
-                <span className="xs:text-[16px] md:font-[400] md:text-[24px] md:leading-40">
+                <span className="xs:text-[19px] md:font-[400] md:text-[24px] md:leading-40">
                   Electricidad
                 </span>
               </div>
@@ -127,7 +127,7 @@ function Home() {
             </Link>
           </div>
 
-          <div className="my-[15px]">
+          <div className="xs:hidden md:my-[15px]">
             <button className="xs:hidden md:block  bg-[#1E9E69] w-[504px] h-[68px] rounded-[12px] content-center font-[700] text-[32px] leading-36 text-[#FFFFFF]">
               Ver todos los servicios
             </button>
