@@ -2,8 +2,8 @@ package com.nocountry.controller.impl;
 
 import com.nocountry.config.ApiConstants;
 import com.nocountry.controller.IProvisionController;
-import com.nocountry.dto.request.ProvisionRequest;
-import com.nocountry.dto.request.ProvisionRequestModify;
+import com.nocountry.dto.request.Provision.ProvisionRequest;
+import com.nocountry.dto.request.Provision.ProvisionRequestModify;
 import com.nocountry.dto.response.ProvisionResponse;
 import com.nocountry.dto.response.ProvisionResponseList;
 import com.nocountry.exception.ImageException;
@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.Optional;
 
@@ -83,14 +84,20 @@ public class ProvisionController implements IProvisionController {
     }
 
     @Override
-    public ResponseEntity<ProvisionResponse> addFileToProvision(String idProvision, MultipartFile image) throws ProvisionException, ImageException {
-        service.addFileToService(idProvision, image);
+    public ResponseEntity<ProvisionResponse> addImageToProvision(String idProvision, MultipartFile multipartFile) throws ProvisionException, ImageException, IOException {
+        service.addImageToProvision(idProvision, multipartFile);
         return ResponseEntity.status(HttpStatus.OK).build();
     }
 
     @Override
-    public ResponseEntity<ProvisionResponse> removeFileToProvision(String idProvision, String idImage) throws ImageException, ProvisionException {
-        service.removeFileToService(idProvision, idImage);
+    public ResponseEntity<ProvisionResponse> modifyImageToProvision(String idProvision, MultipartFile multipartFile) throws ProvisionException, ImageException, IOException {
+        service.modifyImageToProvision(idProvision, multipartFile);
+        return ResponseEntity.status(HttpStatus.OK).build();
+    }
+
+    @Override
+    public ResponseEntity<ProvisionResponse> removeImageToProvision(String idProvision, String idImage) throws ImageException, ProvisionException, IOException {
+        service.removeImageToProvision(idProvision, idImage);
         return ResponseEntity.status(HttpStatus.OK).build();
     }
 }

@@ -1,6 +1,5 @@
 package com.nocountry.model;
 
-import jakarta.persistence.Basic;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -12,13 +11,10 @@ import jakarta.persistence.Table;
 import jakarta.persistence.Temporal;
 import jakarta.persistence.TemporalType;
 import lombok.Getter;
-import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 import org.hibernate.Hibernate;
-import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.GenericGenerator;
-import org.hibernate.annotations.UpdateTimestamp;
 
 import java.util.Date;
 import java.util.Objects;
@@ -28,7 +24,6 @@ import java.util.Objects;
 @Getter
 @Setter
 @ToString(onlyExplicitlyIncluded = true)
-@RequiredArgsConstructor
 public class Image {
 
 	@Id
@@ -37,23 +32,19 @@ public class Image {
 	@Column(unique = true, name = "id")
 	private String id;
 
-	@Basic
 	@Column(name = "original_name")
 	private String originalName;
-
-	@Basic
-	@Column(name = "image_name")
-	private String imageName;
 
 	@Column(name = "path")
 	private String path;
 
-	//@CreationTimestamp
+	@Column(name = "cloudinary_id")
+	private String cloudinaryId;
+
 	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name = "creation_date", nullable = false)
 	private Date creationDate = new Date();
 
-	//@UpdateTimestamp
 	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name = "update_date")
 	private Date updateDate;
@@ -70,14 +61,26 @@ public class Image {
 	@ToString.Exclude
 	private Provider provider;
 
+	// RELATION FILE --> CLIENT
+	@OneToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "client_id")
+	@ToString.Exclude
+	private Client client;
+
 	// RELATION IMAGE --> PROVISION
 	@OneToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "provision_id")
 	@ToString.Exclude
 	private Provision provision;
 
-	@Column(name = "soft_delete", nullable = false)
-	private boolean softDelete = Boolean.FALSE;
+	public Image() {
+	}
+
+	public Image(String originalName, String path, String cloudinaryId) {
+		this.originalName = originalName;
+		this.path = path;
+		this.cloudinaryId = cloudinaryId;
+	}
 
 	@Override
 	public boolean equals(Object o) {

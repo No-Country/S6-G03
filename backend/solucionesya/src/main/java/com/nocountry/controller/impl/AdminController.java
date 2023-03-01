@@ -2,9 +2,9 @@ package com.nocountry.controller.impl;
 
 import com.nocountry.config.ApiConstants;
 import com.nocountry.controller.IAdminController;
-import com.nocountry.dto.request.AdminRequest;
-import com.nocountry.dto.request.AdminRequestModify;
-import com.nocountry.dto.request.AdminRequestPassword;
+import com.nocountry.dto.request.Admin.AdminRequest;
+import com.nocountry.dto.request.Admin.AdminRequestModify;
+import com.nocountry.dto.request.Admin.AdminRequestPassword;
 import com.nocountry.dto.response.AdminResponse;
 import com.nocountry.dto.response.AdminResponseList;
 import com.nocountry.exception.AdminException;
@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.Optional;
 
@@ -90,14 +91,20 @@ public class AdminController implements IAdminController {
     }
 
     @Override
-    public ResponseEntity<AdminResponse> addFileToAdmin(String idAdmin, MultipartFile image) throws AdminException, ImageException {
-        service.addFileToAdmin(idAdmin, image);
+    public ResponseEntity<AdminResponse> addImageToAdmin(String idAdmin, MultipartFile multipartFile) throws AdminException, ImageException, IOException {
+        service.addImageToAdmin(idAdmin, multipartFile);
         return ResponseEntity.status(HttpStatus.OK).build();
     }
 
     @Override
-    public ResponseEntity<AdminResponse> removeFileToAdmin(String idAdmin, String idImage) throws ImageException, AdminException {
-        service.removeFileToAdmin(idAdmin, idImage);
+    public ResponseEntity<AdminResponse> modifyImageToAdmin(String idAdmin, MultipartFile multipartFile) throws AdminException, ImageException, IOException {
+        service.modifyImageToAdmin(idAdmin, multipartFile);
+        return ResponseEntity.status(HttpStatus.OK).build();
+    }
+
+    @Override
+    public ResponseEntity<AdminResponse> removeImageToAdmin(String idAdmin, String idImage) throws ImageException, AdminException, IOException {
+        service.removeImageToAdmin(idAdmin, idImage);
         return ResponseEntity.status(HttpStatus.OK).build();
     }
 }

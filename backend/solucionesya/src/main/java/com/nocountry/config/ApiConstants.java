@@ -11,6 +11,8 @@ public interface ApiConstants {
     String PROVIDER_URI = "/api/provider";
     String PROVISION_URI = "/api/provision";
     String OPINION_URI = "/api/opinion";
+    String CONTRACT_URI = "/api/contract";
+    String CLIENT_URI = "/api/client";
 
     int DEFAULT_PAGE = 0;
     int DEFAULT_PAGE_SIZE = 10;

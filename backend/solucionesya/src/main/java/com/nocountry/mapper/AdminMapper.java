@@ -1,8 +1,8 @@
 package com.nocountry.mapper;
 
-import com.nocountry.dto.request.AdminRequest;
-import com.nocountry.dto.request.AdminRequestModify;
-import com.nocountry.dto.request.AdminRequestPassword;
+import com.nocountry.dto.request.Admin.AdminRequest;
+import com.nocountry.dto.request.Admin.AdminRequestModify;
+import com.nocountry.dto.request.Admin.AdminRequestPassword;
 import com.nocountry.dto.response.AdminResponse;
 import com.nocountry.exception.AdminException;
 import com.nocountry.exception.EmailAlreadyExistException;
@@ -39,7 +39,7 @@ public class AdminMapper {
             String encryptedPassword = encryptPassword.encode(request.getPassword());
             entity.setPassword(encryptedPassword);
         } else {
-            throw new AdminException(EExceptionMessage.PASSWORD_DO_NOT_MATCH.getMessage());
+            throw new AdminException(EExceptionMessage.PASSWORD_DOES_NOT_MATCH.getMessage());
         }
         entity.setAddress(request.getAddress());
         entity.setPhone(request.getPhone());
@@ -127,7 +127,7 @@ public class AdminMapper {
                 if (request.getConfirmNewPassword() != null && request.getConfirmNewPassword().equals(request.getNewPassword())) {
                     entity.setPassword(encryptPassword.encode(request.getNewPassword()));
                 } else {
-                    throw new AdminException(EExceptionMessage.PASSWORD_DO_NOT_MATCH.getMessage());
+                    throw new AdminException(EExceptionMessage.PASSWORD_DOES_NOT_MATCH.getMessage());
                 }
             }
         } else {

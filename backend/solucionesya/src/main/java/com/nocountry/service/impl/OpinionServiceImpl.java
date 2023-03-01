@@ -1,13 +1,12 @@
 package com.nocountry.service.impl;
 
 import com.nocountry.config.ApiConstants;
-import com.nocountry.dto.request.OpinionRequest;
+import com.nocountry.dto.request.Opinion.OpinionRequest;
 import com.nocountry.dto.response.OpinionResponse;
 import com.nocountry.dto.response.OpinionResponseList;
 import com.nocountry.exception.ClientException;
 import com.nocountry.exception.OpinionException;
 import com.nocountry.exception.ProviderException;
-import com.nocountry.exception.ProvisionException;
 import com.nocountry.list.EExceptionMessage;
 import com.nocountry.mapper.OpinionMapper;
 import com.nocountry.model.Opinion;
@@ -81,7 +80,7 @@ public class OpinionServiceImpl implements IOpinionService {
         if (!(opinionList.isEmpty())) {
             return mapper.convertToResponseList(opinionList);
         } else {
-            throw new OpinionException(EExceptionMessage.ERROR_DISPLAYING_ALL_OPINION.getMessage());
+            throw new OpinionException(EExceptionMessage.THE_OPINIONS_LIST_IS_EMPTY.getMessage());
         }
     }
 
@@ -92,7 +91,7 @@ public class OpinionServiceImpl implements IOpinionService {
             OpinionList opinionList = new OpinionList(opinionPage.getContent(), request, opinionPage.getTotalElements());
             return getOpinionResponseList(opinionList);
         } else {
-            throw new OpinionException(EExceptionMessage.ERROR_DISPLAYING_ALL_OPINION.getMessage());
+            throw new OpinionException(EExceptionMessage.THE_LIST_OF_ACTIVE_OPINIONS_IS_EMPTY.getMessage());
         }
     }
 
@@ -131,7 +130,7 @@ public class OpinionServiceImpl implements IOpinionService {
         List<Opinion> opinionList = repository.searchByHigh();
         if (opinionList != null) return mapper.convertToResponseList(opinionList);
         else {
-            throw new OpinionException(EExceptionMessage.ERROR_DISPLAYING_OPINION_ACTIVE.getMessage());
+            throw new OpinionException(EExceptionMessage.THE_LIST_OF_ACTIVE_OPINIONS_IS_EMPTY.getMessage());
         }
     }
 }

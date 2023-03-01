@@ -1,15 +1,14 @@
 package com.nocountry.service.impl;
 
 import com.nocountry.config.ApiConstants;
-import com.nocountry.dto.request.ProvisionRequest;
-import com.nocountry.dto.request.ProvisionRequestModify;
+import com.nocountry.dto.request.Provision.ProvisionRequest;
+import com.nocountry.dto.request.Provision.ProvisionRequestModify;
 import com.nocountry.dto.response.ProvisionResponse;
 import com.nocountry.dto.response.ProvisionResponseList;
 import com.nocountry.exception.ImageException;
 import com.nocountry.exception.ProviderException;
 import com.nocountry.exception.ProvisionException;
 import com.nocountry.list.EExceptionMessage;
-import com.nocountry.list.EPathUpload;
 import com.nocountry.mapper.ProvisionMapper;
 import com.nocountry.model.Image;
 import com.nocountry.model.Provision;
@@ -24,8 +23,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.nio.file.Path;
-import java.nio.file.Paths;
+import java.io.IOException;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
@@ -34,8 +32,6 @@ import java.util.Optional;
 @RequiredArgsConstructor
 public class ProvisionServiceImpl implements IProvisionService {
 
-    private final Path pathFolderUpload = Paths.get(EPathUpload.CREATE_PROVISION_FOLDER.toString());
-    private final String pathFileUpload = EPathUpload.PATH_PROVISION_IMAGE.toString();
     private final ProvisionMapper mapper;
     private final IProvisionRepository repository;
     private final IImageService imageService;
@@ -91,7 +87,7 @@ public class ProvisionServiceImpl implements IProvisionService {
         if (!(provisionList.isEmpty())) {
             return mapper.convertToResponseList(provisionList);
         } else {
-            throw new ProvisionException(EExceptionMessage.ERROR_DISPLAYING_ALL_PROVISION.getMessage());
+            throw new ProvisionException(EExceptionMessage.THE_PROVISIONS_LIST_IS_EMPTY.getMessage());
         }
     }
 
@@ -102,7 +98,7 @@ public class ProvisionServiceImpl implements IProvisionService {
             ProvisionList provisionList = new ProvisionList(provisionPage.getContent(), request, provisionPage.getTotalElements());
             return getProvisionResponseList(provisionList);
         } else {
-            throw new ProvisionException(EExceptionMessage.ERROR_DISPLAYING_ALL_PROVISION.getMessage());
+            throw new ProvisionException(EExceptionMessage.THE_LIST_OF_ACTIVE_PROVISIONS_IS_EMPTY.getMessage());
         }
     }
 
@@ -141,19 +137,19 @@ public class ProvisionServiceImpl implements IProvisionService {
         List<Provision> provisionList = repository.searchByHigh();
         if (provisionList != null) return mapper.convertToResponseList(provisionList);
         else {
-            throw new ProvisionException(EExceptionMessage.ERROR_DISPLAYING_PROVISION_ACTIVE.getMessage());
+            throw new ProvisionException(EExceptionMessage.THE_LIST_OF_ACTIVE_PROVISIONS_IS_EMPTY.getMessage());
         }
     }
 
     @Override
-    public void addFileToService(String idProvision, MultipartFile multipartFile) throws ProvisionException, ImageException {
+    public void addImageToProvision(String idProvision, MultipartFile multipartFile) throws ProvisionException, ImageException, IOException {
         Optional<Provision> optionalProvision = repository.findById(idProvision);
         if (optionalProvision.isPresent()) {
             Provision provision = repository.getReferenceById(idProvision);
             if (provision.getImage() != null) {
                 throw new ProvisionException(EExceptionMessage.THE_PROVISION_ALREADY_CONTAINS_IMAGE.getMessage());
             } else {
-                Image image = imageService.saveFile(multipartFile, pathFolderUpload, pathFileUpload);
+                Image image = imageService.saveImage(multipartFile);
                 image.setProvision(provision);
                 provision.setImage(image);
                 repository.save(provision);
@@ -164,16 +160,36 @@ public class ProvisionServiceImpl implements IProvisionService {
     }
 
     @Override
-    public void removeFileToService(String idProvision, String idImage) throws ImageException, ProvisionException {
+    public void modifyImageToProvision(String idProvision, MultipartFile multipartFile) throws ImageException, IOException, ProvisionException {
+        Optional<Provision> optionalProvision = repository.findById(idProvision);
+        if (optionalProvision.isPresent()) {
+            Provision provision = repository.getReferenceById(idProvision);
+            if (provision.getImage() != null) {
+                Image image = provision.getImage();
+                imageService.modifyImage(image.getId(), multipartFile);
+                image.setProvision(provision);
+                provision.setImage(image);
+                provision.setUpdateDate(new Date());
+                repository.save(provision);
+            } else {
+                throw new ImageException(EExceptionMessage.IMAGE_NOT_FOUND.getMessage());
+            }
+        } else {
+            throw new ProvisionException(EExceptionMessage.PROVISION_NOT_FOUND.getMessage());
+        }
+    }
+
+    @Override
+    public void removeImageToProvision(String idProvision, String idImage) throws ImageException, ProvisionException, IOException {
         Optional<Provision> optionalProvision = repository.findById(idProvision);
         if (optionalProvision.isPresent()) {
             Provision provision = repository.getReferenceById(idProvision);
             Optional<Image> optionalFile = imageRepository.findById(idImage);
             if (optionalFile.isPresent()) {
                 Image image = imageRepository.getReferenceById(idImage);
-                image.setAdmin(null);
+                image.setProvision(null);
                 provision.setImage(null);
-                imageService.deleteFileById(idImage, pathFolderUpload);
+                imageService.deleteImage(idImage);
                 repository.save(provision);
             } else {
                 throw new ImageException(EExceptionMessage.IMAGE_NOT_FOUND.getMessage());

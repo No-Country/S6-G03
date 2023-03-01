@@ -1,8 +1,8 @@
 package com.nocountry.controller;
 
-import com.nocountry.dto.request.AdminRequest;
-import com.nocountry.dto.request.AdminRequestModify;
-import com.nocountry.dto.request.AdminRequestPassword;
+import com.nocountry.dto.request.Admin.AdminRequest;
+import com.nocountry.dto.request.Admin.AdminRequestModify;
+import com.nocountry.dto.request.Admin.AdminRequestPassword;
 import com.nocountry.dto.response.AdminResponse;
 import com.nocountry.dto.response.AdminResponseList;
 import com.nocountry.exception.AdminException;
@@ -23,6 +23,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.Optional;
 
@@ -70,10 +71,15 @@ public interface IAdminController {
 
     @PostMapping(path = "/add-image-to-admin/{id-admin}", consumes = {MediaType.APPLICATION_JSON_VALUE, MediaType.MULTIPART_FORM_DATA_VALUE},
             produces = MediaType.APPLICATION_JSON_VALUE)
-    ResponseEntity<AdminResponse> addFileToAdmin(@NotNull @PathVariable("id-admin") String idAdmin,
-                                                 @RequestParam(value = "image", required = false) MultipartFile image) throws AdminException, ImageException;
+    ResponseEntity<AdminResponse> addImageToAdmin(@NotNull @PathVariable("id-admin") String idAdmin,
+                                                 @RequestParam(value = "multipartFile", required = false) MultipartFile multipartFile) throws AdminException, ImageException, IOException;
+
+    @PutMapping(path = "/modify-image-to-admin/{id-admin}", consumes = {MediaType.APPLICATION_JSON_VALUE, MediaType.MULTIPART_FORM_DATA_VALUE},
+            produces = MediaType.APPLICATION_JSON_VALUE)
+    ResponseEntity<AdminResponse> modifyImageToAdmin(@NotNull @PathVariable("id-admin") String idAdmin,
+                                                     @RequestParam(value = "multipartFile", required = false) MultipartFile multipartFile) throws AdminException, ImageException, IOException;
 
     @DeleteMapping(path = "/remove-image-to-admin/{id-admin}/image/{id-image}", produces = MediaType.APPLICATION_JSON_VALUE)
-    ResponseEntity<AdminResponse> removeFileToAdmin(@NotNull @PathVariable("id-admin") String idAdmin,
-                                                    @NotNull @PathVariable("id-image") String idImage) throws ImageException, AdminException;
+    ResponseEntity<AdminResponse> removeImageToAdmin(@NotNull @PathVariable("id-admin") String idAdmin,
+                                                    @NotNull @PathVariable("id-image") String idImage) throws ImageException, AdminException, IOException;
 }

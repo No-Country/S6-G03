@@ -2,9 +2,9 @@ package com.nocountry.controller.impl;
 
 import com.nocountry.config.ApiConstants;
 import com.nocountry.controller.IProviderController;
-import com.nocountry.dto.request.ProviderRequest;
-import com.nocountry.dto.request.ProviderRequestModify;
-import com.nocountry.dto.request.ProviderRequestPassword;
+import com.nocountry.dto.request.Provider.ProviderRequest;
+import com.nocountry.dto.request.Provider.ProviderRequestModify;
+import com.nocountry.dto.request.Provider.ProviderRequestPassword;
 import com.nocountry.dto.response.ProviderResponse;
 import com.nocountry.dto.response.ProviderResponseList;
 import com.nocountry.exception.EmailAlreadyExistException;
@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.Optional;
 
@@ -91,14 +92,20 @@ public class ProviderController implements IProviderController {
     }
 
     @Override
-    public ResponseEntity<ProviderResponse> addFileToProvider(String idProvider, MultipartFile image) throws ProviderException, ImageException {
-        service.addFileToProvider(idProvider, image);
+    public ResponseEntity<ProviderResponse> addImageToProvider(String idProvider, MultipartFile multipartFile) throws ProviderException, ImageException, IOException {
+        service.addImageToProvider(idProvider, multipartFile);
         return ResponseEntity.status(HttpStatus.OK).build();
     }
 
     @Override
-    public ResponseEntity<ProviderResponse> removeFileToProvider(String idProvider, String idImage) throws ImageException, ProviderException {
-        service.removeFileToProvider(idProvider, idImage);
+    public ResponseEntity<ProviderResponse> modifyImageToProvider(String idProvider, MultipartFile multipartFile) throws ProviderException, ImageException, IOException {
+        service.modifyImageToProvider(idProvider, multipartFile);
+        return ResponseEntity.status(HttpStatus.OK).build();
+    }
+
+    @Override
+    public ResponseEntity<ProviderResponse> removeImageToProvider(String idProvider, String idImage) throws ImageException, ProviderException, IOException {
+        service.removeImageToProvider(idProvider, idImage);
         return ResponseEntity.status(HttpStatus.OK).build();
     }
 }
