@@ -37,7 +37,7 @@ public class ClientMapper {
             String encryptedPassword = encryptPassword.encode(request.getPassword());
             entity.setPassword(encryptedPassword);
         } else {
-            throw new ClientException(EExceptionMessage.PASSWORD_DO_NOT_MATCH.getMessage());
+            throw new ClientException(EExceptionMessage.PASSWORD_DOES_NOT_MATCH.getMessage());
         }
         return entity;
     }
@@ -84,7 +84,7 @@ public class ClientMapper {
                 if (request.getConfirmNewPassword() != null && request.getConfirmNewPassword().equals(request.getNewPassword())) {
                     entity.setPassword(encryptPassword.encode(request.getNewPassword()));
                 } else {
-                    throw new ClientException(EExceptionMessage.PASSWORD_DO_NOT_MATCH.getMessage());
+                    throw new ClientException(EExceptionMessage.PASSWORD_DOES_NOT_MATCH.getMessage());
                 }
             }
         } else {
