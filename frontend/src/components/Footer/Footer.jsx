@@ -12,7 +12,7 @@ function Footer() {
             </span>
           </div>
 
-          <div className="flex flex-col">
+          <div className="xs:flex xs:flex-col xs:gap-2  md:flex md:flex-col md:gap-0  ">
             <Link className="font-[400] text-[16px]">Quienes Somos</Link>
             <Link className="font-[400] text-[16px]">
               Términos y Condiciones
