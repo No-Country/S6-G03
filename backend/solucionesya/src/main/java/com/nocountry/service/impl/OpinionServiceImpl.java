@@ -80,7 +80,7 @@ public class OpinionServiceImpl implements IOpinionService {
         if (!(opinionList.isEmpty())) {
             return mapper.convertToResponseList(opinionList);
         } else {
-            throw new OpinionException(EExceptionMessage.ERROR_DISPLAYING_ALL_OPINION.getMessage());
+            throw new OpinionException(EExceptionMessage.THE_OPINIONS_LIST_IS_EMPTY.getMessage());
         }
     }
 
@@ -91,7 +91,7 @@ public class OpinionServiceImpl implements IOpinionService {
             OpinionList opinionList = new OpinionList(opinionPage.getContent(), request, opinionPage.getTotalElements());
             return getOpinionResponseList(opinionList);
         } else {
-            throw new OpinionException(EExceptionMessage.ERROR_DISPLAYING_ALL_OPINION.getMessage());
+            throw new OpinionException(EExceptionMessage.THE_LIST_OF_ACTIVE_OPINIONS_IS_EMPTY.getMessage());
         }
     }
 
@@ -130,7 +130,7 @@ public class OpinionServiceImpl implements IOpinionService {
         List<Opinion> opinionList = repository.searchByHigh();
         if (opinionList != null) return mapper.convertToResponseList(opinionList);
         else {
-            throw new OpinionException(EExceptionMessage.ERROR_DISPLAYING_OPINION_ACTIVE.getMessage());
+            throw new OpinionException(EExceptionMessage.THE_LIST_OF_ACTIVE_OPINIONS_IS_EMPTY.getMessage());
         }
     }
 }

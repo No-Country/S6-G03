@@ -100,7 +100,7 @@ public class ClientServiceImpl implements IClientService {
         if (!(clientList.isEmpty())) {
             return mapper.convertToResponseList(clientList);
         } else {
-            throw new ClientException(EExceptionMessage.ERROR_DISPLAYING_ALL_CLIENT.getMessage());
+            throw new ClientException(EExceptionMessage.THE_CLIENTS_LIST_IS_EMPTY.getMessage());
         }
     }
 
@@ -111,7 +111,7 @@ public class ClientServiceImpl implements IClientService {
             ClientList clientList = new ClientList(clientPage.getContent(), request, clientPage.getTotalElements());
             return getClientResponseList(clientList);
         } else {
-            throw new ClientException(EExceptionMessage.ERROR_DISPLAYING_ALL_CLIENT.getMessage());
+            throw new ClientException(EExceptionMessage.THE_CONTRACT_LIST_IS_EMPTY.getMessage());
         }
     }
 
@@ -150,7 +150,7 @@ public class ClientServiceImpl implements IClientService {
         List<Client> clientList = repository.searchByHigh();
         if (clientList != null) return mapper.convertToResponseList(clientList);
         else {
-            throw new ClientException(EExceptionMessage.ERROR_DISPLAYING_CLIENT_ACTIVE.getMessage());
+            throw new ClientException(EExceptionMessage.THE_CONTRACT_LIST_IS_EMPTY.getMessage());
         }
     }
 

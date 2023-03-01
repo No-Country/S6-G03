@@ -100,7 +100,7 @@ public class AdminServiceImpl implements IAdminService {
         if (!(adminList.isEmpty())) {
             return mapper.convertToResponseList(adminList);
         } else {
-            throw new AdminException(EExceptionMessage.ERROR_DISPLAYING_ALL_ADMIN.getMessage());
+            throw new AdminException(EExceptionMessage.THE_ADMIN_LIST_IS_EMPTY.getMessage());
         }
     }
 
@@ -111,7 +111,7 @@ public class AdminServiceImpl implements IAdminService {
             AdminList adminList = new AdminList(adminPage.getContent(), request, adminPage.getTotalElements());
             return getAdminResponseList(adminList);
         } else {
-            throw new AdminException(EExceptionMessage.ERROR_DISPLAYING_ALL_ADMIN.getMessage());
+            throw new AdminException(EExceptionMessage.THE_LIST_OF_ACTIVE_ADMIN_IS_EMPTY.getMessage());
         }
     }
 
@@ -150,7 +150,7 @@ public class AdminServiceImpl implements IAdminService {
         List<Admin> adminList = repository.searchByHigh();
         if (adminList != null) return mapper.convertToResponseList(adminList);
         else {
-            throw new AdminException(EExceptionMessage.ERROR_DISPLAYING_ADMIN_ACTIVE.getMessage());
+            throw new AdminException(EExceptionMessage.THE_LIST_OF_ACTIVE_ADMIN_IS_EMPTY.getMessage());
         }
     }
 

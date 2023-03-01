@@ -87,7 +87,7 @@ public class ProvisionServiceImpl implements IProvisionService {
         if (!(provisionList.isEmpty())) {
             return mapper.convertToResponseList(provisionList);
         } else {
-            throw new ProvisionException(EExceptionMessage.ERROR_DISPLAYING_ALL_PROVISION.getMessage());
+            throw new ProvisionException(EExceptionMessage.THE_PROVISIONS_LIST_IS_EMPTY.getMessage());
         }
     }
 
@@ -98,7 +98,7 @@ public class ProvisionServiceImpl implements IProvisionService {
             ProvisionList provisionList = new ProvisionList(provisionPage.getContent(), request, provisionPage.getTotalElements());
             return getProvisionResponseList(provisionList);
         } else {
-            throw new ProvisionException(EExceptionMessage.ERROR_DISPLAYING_ALL_PROVISION.getMessage());
+            throw new ProvisionException(EExceptionMessage.THE_LIST_OF_ACTIVE_PROVISIONS_IS_EMPTY.getMessage());
         }
     }
 
@@ -137,7 +137,7 @@ public class ProvisionServiceImpl implements IProvisionService {
         List<Provision> provisionList = repository.searchByHigh();
         if (provisionList != null) return mapper.convertToResponseList(provisionList);
         else {
-            throw new ProvisionException(EExceptionMessage.ERROR_DISPLAYING_PROVISION_ACTIVE.getMessage());
+            throw new ProvisionException(EExceptionMessage.THE_LIST_OF_ACTIVE_PROVISIONS_IS_EMPTY.getMessage());
         }
     }
 
