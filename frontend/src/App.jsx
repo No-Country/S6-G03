@@ -42,10 +42,12 @@ const App = () => {
           />
           <Route path="profesionales-zone" element={<ProfesionalByZone />} />
           <Route path="profesional/:id" element={<SingleProfessional />} />
+          <Route path="profesional/:id/confirmar-pago" element={<ConfirmationRequest/>} />
+          <Route path="profesional/:id/medios-de-pago" element={<PaymentMethods/>} />
+          
           {/* Rutas por defecto */}
           <Route path="restringido" element={<h1>No Autorizado</h1>} />
-          <Route path="confirmar-pago" element={<ConfirmationRequest/>} />
-          <Route path="medios-de-pago" element={<PaymentMethods/>} />
+          
           {/* Rutas del Panel de Usuario */}
           <Route index element={<UserProfile />} />
           

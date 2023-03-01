@@ -12,15 +12,19 @@ import pintura from "../../assets/images/pintura.jpg";
 import plomeria from "../../assets/images/plomeria.jpg";
 import aire from "../../assets/images/aire.jpg";
 import electro from "../../assets/images/electro.jpg";
+import {useParams, Link}  from "react-router-dom";
 
 const ServiceList = () => {
   return (
     <>
       <section className="mt-10 flex justify-center">
-        <div className="grid grid-cols-6 ml-32 w-[1032px] h-16  ">
+        <div className="grid grid-cols-6  w-[1032px] h-16  ">
           <div className="col-span-5 w-full flex place-items-center gap-2">
             <div className="w-12 h-12 ">
+              <Link to="/">
               <AiOutlineLeft className="w-12 h-12" />
+              </Link>
+              
             </div>
             <div className=" text-left font-bold text-[45px]">
               Todos los Servicios
@@ -32,8 +36,9 @@ const ServiceList = () => {
           </button>
         </div>
       </section>
-      <section className=" mt-10 ml-[124px] flex justify-center">
+      <section className=" mt-10  flex justify-center">
         <div className="grid grid-cols-4 w-[1032px] gap-6 place-items-center">
+        <Link to="/profesionales/albañileria">
           <div>
             <img
               src={albañileria}
@@ -42,6 +47,8 @@ const ServiceList = () => {
             />
             <p className="text-3xl text-center ">Albañileria</p>
           </div>
+        </Link>
+        <Link to="/profesionales/cerrajeria">
           <div>
             <img
               src={cerrajeria}
@@ -50,26 +57,36 @@ const ServiceList = () => {
             />
             <p className="text-3xl text-center ">Cerrajeria</p>
           </div>
+        </Link>
+        <Link to="/profesionales/electricidad">
           <div>
-            <img
-              src={electricidad}
-              alt="electricidad"
-              className="rounded-xl mb-4"
-            />
-            <p className="text-3xl text-center ">Electricidad</p>
-          </div>
-          <div>
+              <img
+                src={electricidad}
+                alt="electricidad"
+                className="rounded-xl mb-4"
+              />
+              <p className="text-3xl text-center ">Electricidad</p>
+            </div>
+         </Link>
+         <Link to="/profesionales/gasista">
+         <div>
             <img src={gasista} alt="gasista" className="rounded-xl mb-4" />
             <p className="text-3xl text-center ">Gasista</p>
           </div>
+         </Link>
+          
         </div>
       </section>
-      <section className=" mt-6 ml-[124px] flex justify-center">
+      <section className=" mt-6  flex justify-center">
         <div className="grid grid-cols-4 w-[1032px] gap-6 place-items-center">
+          <Link to="/profesionales/albañileria">
           <div>
             <img src={herreria} alt="herreria" className="rounded-xl mb-4" />
             <p className="text-3xl text-center -translate-y-7">Herreria</p>
           </div>
+          </Link>
+          
+          <Link to="/profesionales/jardineria">
           <div>
             <img
               src={jardineria}
@@ -78,6 +95,8 @@ const ServiceList = () => {
             />
             <p className="text-3xl text-center ">Jardineria</p>
           </div>
+          </Link>
+          <Link to="/profesionales/mensajeria">
           <div>
             <img
               src={mensajeria}
@@ -86,34 +105,47 @@ const ServiceList = () => {
             />
             <p className="text-3xl text-center ">Mensajeria</p>
           </div>
+          </Link>
+          <Link to="/profesionales/mudanzas">
           <div>
             <img src={mudanzas} alt="mudanzas" className="rounded-xl mb-4" />
             <p className="text-3xl text-center ">Mudanzas</p>
           </div>
+          </Link>
         </div>
       </section>
-      <section className=" mt-6 ml-[124px] flex justify-center">
+      <section className=" mt-6 mb-20  flex justify-center">
+        
         <div className="grid grid-cols-4 w-[1032px] gap-6 place-items-center">
+        <Link to="/profesionales/pintura">
           <div>
-            <img src={pintura} alt="pintura" className="rounded-xl mb-4" />
-            <p className="text-3xl text-center ">Pintura</p>
+              <img src={pintura} alt="pintura" className="rounded-xl mb-4" />
+              <p className="text-3xl text-center ">Pintura</p>
           </div>
+        </Link>
+          
+          <Link to="/profesionales/plomeria">
           <div>
             <img src={plomeria} alt="plomeria" className="rounded-xl mb-4" />
             <p className="text-3xl text-center ">Plomeria</p>
           </div>
+          </Link>
+          <Link to="/profesionales/servicio-ac">
           <div>
             <img src={aire} alt="Service Aire Ac" className="rounded-xl mb-4" />
-            <p className="text-3xl text-center ">Service Aire AC</p>
+            <p className="text-3xl text-center ">Servicio Aires AC</p>
           </div>
+          </Link>
+          <Link to="/profesionales/servicio-electro">
           <div>
             <img
               src={electro}
               alt="Service Electro"
               className="rounded-xl mb-4"
             />
-            <p className="text-3xl text-center ">Service Electro</p>
+            <p className="text-3xl text-center ">Servicio Electros</p>
           </div>
+          </Link>
         </div>
       </section>
     </>
