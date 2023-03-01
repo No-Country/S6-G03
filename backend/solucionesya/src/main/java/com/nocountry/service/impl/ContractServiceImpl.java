@@ -1,7 +1,7 @@
 package com.nocountry.service.impl;
 
 import com.nocountry.config.ApiConstants;
-import com.nocountry.dto.request.ContractRequest;
+import com.nocountry.dto.request.Contract.ContractRequest;
 import com.nocountry.dto.response.ContractResponse;
 import com.nocountry.dto.response.ContractResponseList;
 import com.nocountry.exception.AdminException;
@@ -80,7 +80,7 @@ public class ContractServiceImpl implements IContractService {
         if (!(contractList.isEmpty())) {
             return mapper.convertToResponseList(contractList);
         } else {
-            throw new ContractException(EExceptionMessage.ERROR_DISPLAYING_ALL_CONTRACT.getMessage());
+            throw new ContractException(EExceptionMessage.THE_CONTRACT_LIST_IS_EMPTY.getMessage());
         }
     }
 
@@ -91,7 +91,7 @@ public class ContractServiceImpl implements IContractService {
             ContractList contractList = new ContractList(contractPage.getContent(), request, contractPage.getTotalElements());
             return getContractResponseList(contractList);
         } else {
-            throw new ContractException(EExceptionMessage.ERROR_DISPLAYING_ALL_CONTRACT.getMessage());
+            throw new ContractException(EExceptionMessage.THE_LIST_OF_ACTIVE_CONTRACT_IS_EMPTY.getMessage());
         }
     }
 
@@ -130,7 +130,7 @@ public class ContractServiceImpl implements IContractService {
         List<Contract> contractList = repository.searchByHigh();
         if (contractList != null) return mapper.convertToResponseList(contractList);
         else {
-            throw new AdminException(EExceptionMessage.ERROR_DISPLAYING_CONTRACT_ACTIVE.getMessage());
+            throw new AdminException(EExceptionMessage.THE_LIST_OF_ACTIVE_CONTRACT_IS_EMPTY.getMessage());
         }
     }
 }

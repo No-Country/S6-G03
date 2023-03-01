@@ -1,4 +1,4 @@
-package com.nocountry.dto.request;
+package com.nocountry.dto.request.Contract;
 
 import lombok.Data;
 

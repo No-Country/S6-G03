@@ -1,6 +1,6 @@
 package com.nocountry.mapper;
 
-import com.nocountry.dto.request.ContractRequest;
+import com.nocountry.dto.request.Contract.ContractRequest;
 import com.nocountry.dto.response.ContractResponse;
 import com.nocountry.exception.ClientException;
 import com.nocountry.exception.ContractException;

@@ -58,12 +58,10 @@ public class User  {
     @Column(name = "profile_photo")
     protected String profilePhoto;
 
-    //@CreationTimestamp
     @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "creation_date", nullable = false)
     protected Date creationDate = new Date();
 
-    //@UpdateTimestamp
     @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "update_date")
     protected Date updateDate;

@@ -1,7 +1,7 @@
 package com.nocountry.service;
 
-import com.nocountry.dto.request.ProvisionRequest;
-import com.nocountry.dto.request.ProvisionRequestModify;
+import com.nocountry.dto.request.Provision.ProvisionRequest;
+import com.nocountry.dto.request.Provision.ProvisionRequestModify;
 import com.nocountry.dto.response.ProvisionResponse;
 import com.nocountry.dto.response.ProvisionResponseList;
 import com.nocountry.exception.ImageException;

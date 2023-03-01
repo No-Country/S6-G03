@@ -1,9 +1,9 @@
 package com.nocountry.service.impl;
 
 import com.nocountry.config.ApiConstants;
-import com.nocountry.dto.request.ProviderRequest;
-import com.nocountry.dto.request.ProviderRequestModify;
-import com.nocountry.dto.request.ProviderRequestPassword;
+import com.nocountry.dto.request.Provider.ProviderRequest;
+import com.nocountry.dto.request.Provider.ProviderRequestModify;
+import com.nocountry.dto.request.Provider.ProviderRequestPassword;
 import com.nocountry.dto.response.ProviderResponse;
 import com.nocountry.dto.response.ProviderResponseList;
 import com.nocountry.exception.EmailAlreadyExistException;
@@ -138,7 +138,7 @@ public class ProviderServiceImpl implements IProviderService {
         if (!(providerList.isEmpty())) {
             return mapper.convertToResponseList(providerList);
         } else {
-            throw new ProviderException(EExceptionMessage.ERROR_DISPLAYING_ALL_PROVIDER.getMessage());
+            throw new ProviderException(EExceptionMessage.THE_PROVIDERS_LIST_IS_EMPTY.getMessage());
         }
     }
 
@@ -149,7 +149,7 @@ public class ProviderServiceImpl implements IProviderService {
             ProviderList providerList = new ProviderList(providerPage.getContent(), request, providerPage.getTotalElements());
             return getProviderResponseList(providerList);
         } else {
-            throw new ProviderException(EExceptionMessage.ERROR_DISPLAYING_ALL_PROVIDER.getMessage());
+            throw new ProviderException(EExceptionMessage.THE_LIST_OF_ACTIVE_PROVIDERS_IS_EMPTY.getMessage());
         }
     }
 
@@ -188,7 +188,7 @@ public class ProviderServiceImpl implements IProviderService {
         List<Provider> providerList = repository.searchByHigh();
         if (providerList != null) return mapper.convertToResponseList(providerList);
         else {
-            throw new ProviderException(EExceptionMessage.ERROR_WHEN_DISPLAYING_ACTIVE_PROVIDERS.getMessage());
+            throw new ProviderException(EExceptionMessage.THE_LIST_OF_ACTIVE_PROVIDERS_IS_EMPTY.getMessage());
         }
     }
 

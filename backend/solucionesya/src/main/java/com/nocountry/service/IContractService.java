@@ -1,6 +1,6 @@
 package com.nocountry.service;
 
-import com.nocountry.dto.request.ContractRequest;
+import com.nocountry.dto.request.Contract.ContractRequest;
 import com.nocountry.dto.response.ContractResponse;
 import com.nocountry.dto.response.ContractResponseList;
 import com.nocountry.exception.AdminException;
