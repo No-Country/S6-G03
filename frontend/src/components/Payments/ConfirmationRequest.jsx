@@ -58,7 +58,7 @@ const ConfirmationRequest = () => {
                 </div>
                 <span className=' h-[2px] w-full bg-gray-500 col-span-2 '></span>
                 <div className='flex justify-between col-span-2'>
-                    <span className="xs:text-[17px] md:text-[32px]"'>Total</span>
+                    <span className="xs:text-[17px] md:text-[32px]">Total</span>
                     <span className="xs:text-[17px] xs:pl-3 md:text-[32px] font-bold">${order.price}</span>
                 </div>
             </div>
