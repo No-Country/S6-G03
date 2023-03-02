@@ -98,7 +98,7 @@ getRating();
 
     <div className="flex flex-auto w-100  professional-card mx-auto my-5  text-white" >
     <div className=" text-center   gap-7 w-1/4">
-        <div className="object-top rounded"><img className="pf-image mx-auto" src="/pf-image.jpg" alt="" /></div>
+        <div className="object-top rounded"><img className="pf-image object-cover  mx-auto" src={professional.profileImg?professional.profileImg:"/pf-image.jpg"} alt="" /></div>
         {/* <div className="py-24 flex"></div> */}
         <div className=" my-5">
         <h5 className="card-title">{professional.firstName} {professional.lastName}</h5>

@@ -4,7 +4,7 @@ export const professionals= [
             firstName:"Alberto",
             lastName:"Paez",
             skills:["Plomeria", "Gasista"],
-            profileImg:"image url",
+            profileImg:"https://media.istockphoto.com/id/178126106/photo/hot-water-heater-service.jpg?s=612x612&w=0&k=20&c=dQDPH9tY01tOfw8Fts22QoiCaevnMpekRlktgsPgZ_E=",
             title:"Plomero / Gasista Matriculado",
             description: "!Hola Comunidad! Soy beto soy plomero y gasista matriculado... Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris placerat accumsan justo, at luctus nulla. Fusce luctus felis eget laoreet efficitur.",
             budget:1000,

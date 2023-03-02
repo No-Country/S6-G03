@@ -13,17 +13,8 @@
                 "title":"Excelente trabajo",
                 "rating":4
 
-            },
-            {
-                "id":"002",
-                "title":"buen trabajo 2",
-                "rating":5
-            },
-            {
-                "id":"003",
-                "title":"regular trabajo ",
-                "rating":4
-            }],
+            }
+            ],
             "jobs":[{
                 "title":"Reemplazo de Cañeria",
                 "date":"29/12/2022",
@@ -32,36 +23,9 @@
                 "client":"Susana Villagraña",
                 "review":"Estoy confirme con el servicio que me brindo beto. ademas dejo todo muy limpio",
                 "reviewID":"001"
-            },
-            {
-                "title":"Instalación de inodoro",
-                "date":"03/01/2023",
-                "zone":"Lanús",
-                "jobImg": "https://mdbootstrap.com/img/new/standard/nature/182.jpg",
-                "client":"Stella Peris",
-                "review":"Estoy conforme con el servicio que me brindo beto. ademas dejo todo muy limpio",
-                "reviewID":"002"
-            },
-            {
-                "title":"Reemplazo de Cañeria",
-                "date":"29/12/2022",
-                "zone":"Gerli",
-                "jobImg": "https://mdbootstrap.com/img/new/standard/nature/182.jpg",
-                "client":"Susana Villagraña",
-                "review":"Estoy confirme con el servicio que me brindo beto. ademas dejo todo muy limpio",
-                "reviewID":"001"
-            },
-            {
-                "title":"Instalación de inodoro",
-                "date":"03/01/2023",
-                "zone":"Lanús",
-                "jobImg": "https://mdbootstrap.com/img/new/standard/nature/182.jpg",
-                "client":"Stella Peris",
-                "review":"Estoy conforme con el servicio que me brindo beto. ademas dejo todo muy limpio",
-                "reviewID":"002"
             }]
             
-        }
-    
+        },
+        { "id": 2, "firstName": "Juan", "lastName": "Garcia", "skills": ["Carpintería", "Albañilería"], "profileImg": "image url", "title": "Carpintero/Albañil Matriculado", "description": "¡Hola Comunidad! Soy Juan, carpintero y albañil matriculado. Ofrezco servicios de construcción, reparación y mantenimiento de casas, edificios y otros. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris placerat accumsan justo, at luctus nulla. Fusce luctus felis eget laoreet efficitur.", "budget": 1000, "zone": "Lomas de Zamora", "reviews": [ { "id": "002", "title": "Excelente trabajo", "rating": 4 } ], "jobs": [ { "title": "Instalación de Puerta", "date": "30/12/2022", "zone": "Lomas de Zamora", "jobImg": "https://mdbootstrap.com/img/new/standard/nature/182.jpg", "client": "Daniela Fernandez", "review": "Estoy muy contenta con el trabajo que hizo Juan. Dejo todo impecable y la puerta quedó perfecta.", "reviewID": "002" } ] }
         
     ]
