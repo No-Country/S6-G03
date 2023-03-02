@@ -145,9 +145,9 @@ getRating();
              </span></div>
            </div>
            <div class="p-3">
-           <a href="#!" data-mdb-ripple="true" data-mdb-ripple-color="light">
-             <img class="rounded" src={job.jobImg} alt=""/>
-           </a>
+           
+             <img class="rounded object-cover h-96 mx-auto" src={job.jobImg} alt=""/>
+           
            <div id="jobReview" class="py-5 px-5  mt-5 rounded-[16px] bg-neutral-80 text-black ">
             <div className="flex justify-start"><strong>{job.client}</strong>{" "}  - Cliente</div>
             <div className="flex text-justify ">{`"${job.review}"`}</div>

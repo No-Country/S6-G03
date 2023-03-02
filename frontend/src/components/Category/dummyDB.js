@@ -29,7 +29,7 @@ export const professionals= [
                 title:"Reemplazo de Cañeria",
                 date:"29/12/2022",
                 zone:"Gerli",
-                jobImg: "https://mdbootstrap.com/img/new/standard/nature/182.jpg",
+                jobImg: "https://media.gettyimages.com/id/155432541/photo/plumber-hands-holding-wrench-and-fixing-a-sink-in-bathroom.jpg?s=612x612&w=gi&k=20&c=v6HT1gcTvEkk6EXanchlBrRyhuilMlMq5N06GvRVxFI=",
                 client:"Susana Villagraña",
                 review:"Estoy confirme con el servicio que me brindo beto. ademas dejo todo muy limpio",
                 reviewID:"001"
@@ -38,29 +38,12 @@ export const professionals= [
                 title:"Instalación de inodoro",
                 date:"03/01/2023",
                 zone:"Lanús",
-                jobImg: "https://mdbootstrap.com/img/new/standard/nature/182.jpg",
+                jobImg: "https://www.shutterstock.com/image-photo/plumber-work-bathroom-plumbing-repair-260nw-1066126052.jpg",
                 client:"Stella Peris",
                 review:"Estoy conforme con el servicio que me brindo beto. ademas dejo todo muy limpio",
                 reviewID:"002"
             },
-            {
-                title:"Reemplazo de Cañeria",
-                date:"29/12/2022",
-                zone:"Gerli",
-                jobImg: "https://mdbootstrap.com/img/new/standard/nature/182.jpg",
-                client:"Susana Villagraña",
-                review:"Estoy confirme con el servicio que me brindo beto. ademas dejo todo muy limpio",
-                reviewID:"001"
-            },
-            {
-                title:"Instalación de inodoro",
-                date:"03/01/2023",
-                zone:"Lanús",
-                jobImg: "https://mdbootstrap.com/img/new/standard/nature/182.jpg",
-                client:"Stella Peris",
-                review:"Estoy conforme con el servicio que me brindo beto. ademas dejo todo muy limpio",
-                reviewID:"002"
-            },
+            
             ]
         },
     ]
