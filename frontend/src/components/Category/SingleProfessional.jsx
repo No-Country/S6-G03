@@ -9,6 +9,7 @@ import StarRating from "./StarRating";
 
 
 
+
 const SingleProfessional = () => {
   const navigate = useNavigate();
   const { id } = useParams();
@@ -67,7 +68,7 @@ getRating();
     console.log("order is");
     console.log(order);
     localStorage.setItem("previewOrder", JSON.stringify(order));
-    navigate(`/profesional/:${id}/confirmar-pago`);
+    navigate(`/profesional/${id}/confirmar-pago`);
   }
 
   const getSkills = (p)=>{

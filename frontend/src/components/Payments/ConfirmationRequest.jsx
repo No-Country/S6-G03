@@ -27,6 +27,15 @@ const ConfirmationRequest = () => {
         }
       
     }, [order])
+
+    const createOrder = ()=>{
+        let orderID=((Math.random()*10000)+1)
+        setOrder({
+            ...order, id:orderID
+        })
+        localStorage.setItem("previewOrder",JSON.stringify(order));
+        navigate(`/profesional/${order.professional.id}/medios-de-pago`);
+    }
     
 
    
@@ -74,7 +83,7 @@ const ConfirmationRequest = () => {
             </div>
             <span className=' h-2 w-[57%] bg-black block my-4'></span>
            
-            <button className='w-[880px] h-16 text-white bg-green-secondary-80 rounded-xl text-[32px] font-bold my-10'>
+            <button onClick={createOrder} className='w-[880px] h-16 text-white bg-green-secondary-80 rounded-xl text-[32px] font-bold my-10'>
                 Confirmar
             </button>
 

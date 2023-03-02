@@ -12,6 +12,7 @@ import UserProfile from "./components/UserProfile/UserProfile";
 import Addresses from "./components/Addresses/Addresses";
 import ConfirmationRequest from "./components/Payments/ConfirmationRequest";
 import PaymentMethods from "./components/Payments/PaymentMethods";
+import { ToastContainer } from 'react-toastify';
 // import 'flowbite'; //PEPE VERIFICAR flowbite
 
 const App = () => {
@@ -47,6 +48,7 @@ const App = () => {
           
           {/* Rutas por defecto */}
           <Route path="restringido" element={<h1>No Autorizado</h1>} />
+          <Route path="*" element={<h1>OOPS! No hay nada que mostrar</h1>} />
           
           {/* Rutas del Panel de Usuario */}
           <Route index element={<UserProfile />} />
@@ -85,6 +87,7 @@ const App = () => {
           </Route>
         </Routes>
         <Footer />
+        <ToastContainer />
       </BrowserRouter>
     </>
   );
