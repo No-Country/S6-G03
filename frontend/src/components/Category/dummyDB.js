@@ -64,3 +64,17 @@ export const professionals= [
             ]
         },
     ]
+
+    export const users= [
+        {
+            id:1,
+            firstName:"Esteban",
+            lastName:"Rivellota",
+            address:{
+                main: "Merlo 4061 - Remedios de Escalada CP 1826",
+                street: "Sáenz Peña - De la Cruz"
+            },
+            phone:"11 6228-3220",
+            zone:"Lanús",
+        }
+    ]
