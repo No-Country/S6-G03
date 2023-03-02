@@ -35,11 +35,11 @@ public class User  {
     @GenericGenerator(name = "uuid", strategy = "uuid2")
     private String id;
 
-    @NotEmpty(message = "{firstname.notnull}")
+//    @NotEmpty(message = "{firstname.notnull}")
     @Column(name = "first_name")
     protected String firstName;
 
-    @NotEmpty(message = "{lastname.notnull}")
+//    @NotEmpty(message = "{lastname.notnull}")
     @Column(name = "last_name")
     protected String lastName;
 
@@ -58,12 +58,10 @@ public class User  {
     @Column(name = "profile_photo")
     protected String profilePhoto;
 
-    //@CreationTimestamp
     @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "creation_date", nullable = false)
     protected Date creationDate = new Date();
 
-    //@UpdateTimestamp
     @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "update_date")
     protected Date updateDate;

@@ -2,11 +2,10 @@ package com.nocountry.service.impl;
 
 import com.cloudinary.Cloudinary;
 import com.cloudinary.utils.ObjectUtils;
+import com.nocountry.exception.CloudinaryException;
 import com.nocountry.exception.ImageException;
 import com.nocountry.list.EExceptionMessage;
 import com.nocountry.service.ICloudinaryService;
-import io.github.cdimascio.dotenv.Dotenv;
-import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -15,26 +14,30 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.Map;
+import java.util.Properties;
 
 @Service
-@RequiredArgsConstructor
 public class CloudinaryServiceImpl implements ICloudinaryService {
 
+    private static final String APPLICATION_PROPERTIES = "/application.properties";
+    private static final String CLOUDINARY_URL = "cloudinary.url";
     private final Cloudinary cloudinary;
+    private final String cloudinaryUrl;
 
-    public CloudinaryServiceImpl() {
-
-//        String filename = ".env";
-//        String pathRootDirectory = System.getProperty("user.dir");
-//        String absolutePath  = pathRootDirectory + File.separator + filename;
-//        System.err.println("PATH FILE .env : " + absolutePath );
-//
-//        System.setProperty("dotenv.path", absolutePath );
-
-        System.setProperty("dotenv.path", "/.env");
-        Dotenv dotenv = Dotenv.load();
-        cloudinary = new Cloudinary(dotenv.get("CLOUDINARY_URL"));
+    public CloudinaryServiceImpl() throws CloudinaryException {
+        try (InputStream input = getClass().getResourceAsStream(APPLICATION_PROPERTIES)) {
+            Properties prop = new Properties();
+            if (input == null) {
+                throw new CloudinaryException(EExceptionMessage.UNABLE_TO_FIND_APPLICATION_PROPERTIES_FILE.getMessage());
+            }
+            prop.load(input);
+            cloudinaryUrl = prop.getProperty(CLOUDINARY_URL);
+        } catch (Exception exception) {
+            throw new CloudinaryException(EExceptionMessage.UNABLE_TO_FIND_APPLICATION_PROPERTIES_FILE.getMessage() + exception.getMessage());
+        }
+        cloudinary = new Cloudinary(cloudinaryUrl);
         cloudinary.config.secure = true;
     }
 
@@ -60,8 +63,7 @@ public class CloudinaryServiceImpl implements ICloudinaryService {
         File file = convert(multipartFile);
         Map params = ObjectUtils.asMap(
                 "public_id", cloudinaryId,
-                "overwrite", true
-        );
+                "overwrite", true);
         Map result = cloudinary.uploader().upload(file, params);
         file.delete();
         return result;

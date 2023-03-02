@@ -14,18 +14,23 @@ import aire from "../../assets/images/aire.jpg";
 import electro from "../../assets/images/electro.jpg";
 import {useParams, Link}  from "react-router-dom";
 
+
+
+
 const ServiceList = () => {
   return (
     <>
       <section className="mt-10 flex justify-center">
         <div className="grid grid-cols-6  w-[1032px] h-16  ">
           <div className="col-span-5 w-full flex place-items-center gap-2">
+            <Link to="/">
             <div className="w-12 h-12 ">
               <Link to="/">
               <AiOutlineLeft className="w-12 h-12" />
               </Link>
               
             </div>
+            </Link>
             <div className=" text-left font-bold text-[45px]">
               Todos los Servicios
             </div>
@@ -118,6 +123,7 @@ const ServiceList = () => {
         
         <div className="grid grid-cols-4 w-[1032px] gap-6 place-items-center">
         <Link to="/profesionales/pintura">
+
           <div>
               <img src={pintura} alt="pintura" className="rounded-xl mb-4" />
               <p className="text-3xl text-center ">Pintura</p>
@@ -125,11 +131,13 @@ const ServiceList = () => {
         </Link>
           
           <Link to="/profesionales/plomeria">
+
           <div>
-            <img src={plomeria} alt="plomeria" className="rounded-xl mb-4" />
+            <img src={plomeria} alt="plomeria" className="rounded-xl mb-4 " />
             <p className="text-3xl text-center ">Plomeria</p>
           </div>
           </Link>
+
           <Link to="/profesionales/servicio-ac">
           <div>
             <img src={aire} alt="Service Aire Ac" className="rounded-xl mb-4" />

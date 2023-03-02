@@ -1,6 +1,6 @@
 package com.nocountry.mapper;
 
-import com.nocountry.dto.request.OpinionRequest;
+import com.nocountry.dto.request.Opinion.OpinionRequest;
 import com.nocountry.dto.response.OpinionResponse;
 import com.nocountry.exception.ClientException;
 import com.nocountry.exception.OpinionException;

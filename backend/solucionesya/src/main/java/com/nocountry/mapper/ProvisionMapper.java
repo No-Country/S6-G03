@@ -1,12 +1,14 @@
 package com.nocountry.mapper;
 
-import com.nocountry.dto.request.ProvisionRequest;
-import com.nocountry.dto.request.ProvisionRequestModify;
+import com.nocountry.dto.request.Provision.ProvisionRequest;
+import com.nocountry.dto.request.Provision.ProvisionRequestModify;
+import com.nocountry.dto.response.OpinionResponse;
 import com.nocountry.dto.response.ProvisionResponse;
 import com.nocountry.exception.ProviderException;
 import com.nocountry.exception.ProvisionException;
 import com.nocountry.list.ECategory;
 import com.nocountry.list.EExceptionMessage;
+import com.nocountry.model.Opinion;
 import com.nocountry.model.Provider;
 import com.nocountry.model.Provision;
 import com.nocountry.repository.IProviderRepository;
@@ -24,69 +26,81 @@ import java.util.Optional;
 public class ProvisionMapper {
 
     private final ImageMapper imageMapper;
+    private final OpinionMapper opinionMapper;
     private final IProviderRepository providerRepository;
 
-    public Provision convertToEntity(Provision provision, ProvisionRequest request) throws ProvisionException, ProviderException {
+    public Provision convertToEntity(Provision entity, ProvisionRequest request) throws ProvisionException, ProviderException {
         validateRequestCreate(request);
         Optional<Provider> optionalProvider = providerRepository.findById(request.getIdProvider());
         if (optionalProvider.isPresent()) {
             Provider provider = optionalProvider.get();
-            provision.setName(request.getName());
-            provision.setDescription(request.getDescription());
+            entity.setName(request.getName());
+            entity.setDescription(request.getDescription());
             ECategory category = ECategory.typeOrValue(request.getCategory());
-            provision.setCategory(category);
-            provision.setPrice(request.getPrice());
-            provision.setProvider(provider);
-            return provision;
+            entity.setCategory(category);
+            entity.setPrice(request.getPrice());
+            entity.setPaymentLink(request.getPaymentLink());
+            entity.setProvider(provider);
+            return entity;
         } else {
             throw new ProviderException(EExceptionMessage.PROVIDER_NOT_FOUND.getMessage());
         }
     }
 
-    public Provision convertToEntityModify(Provision provision, ProvisionRequestModify request) throws ProvisionException, ProviderException {
+    public Provision convertToEntityModify(Provision entity, ProvisionRequestModify request) throws ProvisionException, ProviderException {
         validateRequestModify(request);
         Optional<Provider> optionalProvider = providerRepository.findById(request.getIdProvider());
         if (optionalProvider.isPresent()) {
             Provider provider = optionalProvider.get();
-            provision.setName(request.getName());
-            provision.setDescription(request.getDescription());
+            entity.setName(request.getName());
+            entity.setDescription(request.getDescription());
             ECategory category = ECategory.typeOrValue(request.getCategory());
-            provision.setCategory(category);
-            provision.setPrice(request.getPrice());
-            provision.setProvider(provider);
-            provision.setUpdateDate(new Date());
-            return provision;
+            entity.setCategory(category);
+            entity.setPrice(request.getPrice());
+            entity.setPaymentLink(request.getPaymentLink());
+            entity.setProvider(provider);
+            entity.setUpdateDate(new Date());
+            return entity;
         } else {
             throw new ProviderException(EExceptionMessage.PROVIDER_NOT_FOUND.getMessage());
         }
     }
 
-    public ProvisionResponse convertToResponse(Provision provision) {
+    public ProvisionResponse convertToResponse(Provision entity) {
         ProvisionResponse response = new ProvisionResponse();
-        response.setId(provision.getId());
-        response.setName(provision.getName());
-        response.setDescription(provision.getDescription());
-        response.setCategory(provision.getCategory().toString());
+        response.setId(entity.getId());
+        response.setName(entity.getName());
+        response.setDescription(entity.getDescription());
+        response.setCategory(entity.getCategory().toString());
+        response.setPrice(entity.getPrice());
+        response.setPaymentLink(entity.getPaymentLink());
 
         if (response.getImage() != null) {
-            response.setImage(imageMapper.convertToResponse(provision.getImage()));
-            response.setPathImage(provision.getImage().getPath());
+            response.setImage(imageMapper.convertToResponse(entity.getImage()));
+            response.setPathImage(entity.getImage().getPath());
         }
 
-        response.setProvider(provision.getProvider().getFullName());
+        response.setProvider(entity.getProvider().getFullName());
+
+        // LIST OF OPINIONS
+        List<Opinion> opinionList = entity.getOpinions();
+        // ORDER OF THE LIST
+        opinionList.sort(((o1, o2) -> CharSequence.compare(o1.getTitle(), o2.getTitle())));
+        List<OpinionResponse> opinionResponseList = opinionMapper.convertToResponseList(opinionList);
+        response.setOpinionList(opinionResponseList);
 
         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-        String stringCreationDate = sdf.format(provision.getCreationDate());
+        String stringCreationDate = sdf.format(entity.getCreationDate());
         String stringUpdateDate;
-        if (provision.getUpdateDate() != null) {
-            stringUpdateDate = sdf.format(provision.getUpdateDate());
+        if (entity.getUpdateDate() != null) {
+            stringUpdateDate = sdf.format(entity.getUpdateDate());
         } else {
             stringUpdateDate = " - ";
         }
 
         response.setCreationDate(stringCreationDate);
         response.setUpdateDate(stringUpdateDate);
-        response.setSoftDelete(provision.isSoftDelete());
+        response.setSoftDelete(entity.isSoftDelete());
         return response;
     }
 

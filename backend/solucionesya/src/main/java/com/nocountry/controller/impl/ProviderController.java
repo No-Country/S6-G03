@@ -2,9 +2,9 @@ package com.nocountry.controller.impl;
 
 import com.nocountry.config.ApiConstants;
 import com.nocountry.controller.IProviderController;
-import com.nocountry.dto.request.ProviderRequest;
-import com.nocountry.dto.request.ProviderRequestModify;
-import com.nocountry.dto.request.ProviderRequestPassword;
+import com.nocountry.dto.request.Provider.ProviderRequest;
+import com.nocountry.dto.request.Provider.ProviderRequestModify;
+import com.nocountry.dto.request.Provider.ProviderRequestPassword;
 import com.nocountry.dto.response.ProviderResponse;
 import com.nocountry.dto.response.ProviderResponseList;
 import com.nocountry.exception.EmailAlreadyExistException;

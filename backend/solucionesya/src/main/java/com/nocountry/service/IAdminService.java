@@ -1,8 +1,8 @@
 package com.nocountry.service;
 
-import com.nocountry.dto.request.AdminRequest;
-import com.nocountry.dto.request.AdminRequestModify;
-import com.nocountry.dto.request.AdminRequestPassword;
+import com.nocountry.dto.request.Admin.AdminRequest;
+import com.nocountry.dto.request.Admin.AdminRequestModify;
+import com.nocountry.dto.request.Admin.AdminRequestPassword;
 import com.nocountry.dto.response.AdminResponse;
 import com.nocountry.dto.response.AdminResponseList;
 import com.nocountry.exception.AdminException;
