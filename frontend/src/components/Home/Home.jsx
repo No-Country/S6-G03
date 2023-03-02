@@ -131,14 +131,15 @@ function Home() {
             </Link>
           </div>
 
-          <div className="xs:hidden md:my-[15px]">
-            <button className="xs:hidden md:block  bg-[#1E9E69] w-[504px] h-[68px] rounded-[12px] content-center font-[700] text-[32px] leading-36 text-[#FFFFFF]">
-              Ver todos los servicios
-            </button>
-          </div>
+
+                    <div className="xs:hidden md:my-[15px]">
+                        <Link to="/categorias-profesionales">
+                        <button className=" xs:hidden md:block bg-[#1E9E69] w-[504px] h-[68px] rounded-[12px] content-center font-[700] text-[32px] leading-36 text-[#FFFFFF]">Ver todos los servicios</button></Link>
+                    </div>
+                </div>
+            </div>
+
         </div>
-      </div>
-    </div>
   );
 }
 
