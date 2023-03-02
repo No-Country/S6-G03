@@ -38,21 +38,25 @@ Frontend
 
 Tareas desarrolladas:
 
-- Julián Perna: integración de login con redes sociales
-- Luciano Olmedo: maquetado de profesionales
-- Rafael León: integración de metodos de pago
+- Julián Perna: integración de login con redes sociales, register
+- Luciano Olmedo: maquetado de servicios y profesionales
+- Rafael León: integración de metodos de pago, checkout
 - Diego Juarez: creación de navbar, main, footer
 
-Tester
+Tester - Paula Alejandra Ortíz
 
-- Paula Alejandra Ortíz
+Tareas desarrolladas:
+
+- Generación de la documentación relacionada con el testing (Casos de Uso, Casos de Prueba).
+- Realización y presentación de informes.
 
 ## Stack/Tecnologias 🛠️
 
 - **Frontend** : React JS, Axios, React-Router, Redux-Toolkit, Tailwind, Sweet-Alert2,etc.
-- **Backend**: Java, Spring Boot
-- **UX/UI**: Figma - Illustrator - Canva
+- **Backend**: Java, Spring Boot , Hibernate , JPA , Spring Security , Log4j , JUnit, Mockito
+- **UX/UI**: Figma, Illustrator, Canva
 - **Databases** : Mysql
+- **QA**: Excel, Postman
 
 ## Integrantes 🧑👩
 
